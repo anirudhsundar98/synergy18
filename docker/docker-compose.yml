@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  pma:
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - .:/pma
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
