@@ -1,0 +1,100 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=no">
+	<title>Synergy'18</title>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/requests.js' %}"></script>
+	{% block css %}
+	{% endblock %}
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+</body>
+{% block afterBody %}
+{% endblock %}
+</html>
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="{% static 'js/requests.js' %}"></script>
+{% endblock %}
+
+{% block formTitle %}
+{{ purpose }}
+{% endblock %}
+
+{% block content %}
+
+<form class="main-form" data-purpose="{{ purpose }}">{% csrf_token %}
+    {{ form.as_html_field }}
+    {% if purpose == 'register' %}
+        <div class="g-recaptcha field half" data-sitekey="6LcmLz8UAAAAAKXZA2gw3qIPRmNGRZdPf_TDm121"></div>
+
+    {% endif %}
+
+    <ul class="actions text-center">
+        <li style="float:left;"><input class="special" type="submit" value="Submit"/></li>
+    </ul>
+</form>
+
+
+<script>
+
+	function after_req(msg) {
+	console.log(msg);
+		if(typeof(msg) != "object")
+			$(".all-errors").html("There was an issue with your request. Please try again !");
+		else
+		{
+			try{
+				if(msg.status != 200)
+				{
+					$(".all-errors").html(msg.errors);
+					alert('Please resolve the errors and try again !');
+				}
+				else if(msg.hasOwnProperty('inline'))
+				{
+				    if(msg.inline == true)
+				        alert("Done updating !");
+				    else
+				        console.log(" What's goin on ?");
+				}
+				else
+					window.location.href = "synergy.nitt.edu";
+			}
+			catch(e){
+
+				$(".all-errors").html("There was an issue with your request. Please try again !");
+			}
+
+		}
+
+	}
+
+	function request_form(e){
+
+		console.log(" here1 !");
+
+		e.preventDefault();
+
+		form = $(".main-form");
+
+		request(after_req, form);
+	}
+
+	$(document).ready(function(){
+		console.log(" here !");
+		$(".main-form").submit(request_form);
+	});
+
+</script>
+{% endblock %}

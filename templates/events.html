@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="all-errors"></div>
+<ul class="events-list">
+{% for event, reg in events %}
+    <li class="event">{{ event.name }}
+        <br>
+        {% if not reg %}
+        <button class="event" data-event="{{ event.unique }}" onclick="register_event(this)">register</button>
+        {% else %}
+        <span>Registered !</span>
+        {% endif %}
+
+    </li>
+{% endfor %}
+</ul>
+
+
+<ul class="workshops-list">
+{% for event in workshops %}
+    <li class="workshop">{{ event.name }}
+        <br>
+        <button>register</button>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
+{% block afterBody %}
+<script>
+    function register_event(event)
+    {
+        console.log(typeof(event.getAttribute('data-event')));
+        data = {'event': event.getAttribute('data-event')};
+
+        $.ajax({
+
+        url:"/events/register/",
+        method:"POST",
+        data:data,
+        timeout:20000,
+        beforeSend:function(){
+            console.log(" loading .. ");
+            // $('#loading').show();
+        },
+        complete:function(){
+            // $('#loading').hide();
+        },
+        error:function(err)
+        {
+            error_div= $('.all-errors');
+            error_div.html(err);
+            error_div.show();
+        }
+
+    })
+    .done(function(msg){
+        console.log(msg);
+
+        if(typeof(msg) != "object")
+            $(".all-errors").html("There was an issue with your request. Please check your connection and try again !");
+        else
+        {
+            try{
+                if(msg.status != 200)
+                    $(".all-errors").html(msg.errors);
+                else
+                {
+                    alert("Registered for event !");
+                    event.remove();
+                }
+
+            }
+            catch(e){
+                $(".all-errors").html("There was an issue with your request. Please try again !");
+            }
+        }
+            
+        });
+    }
+</script>
+{% endblock %}

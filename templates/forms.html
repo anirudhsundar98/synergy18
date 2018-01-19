@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="{% static 'js/requests.js' %}"></script>
+
+{% endblock %}
+
+{% block formTitle %}
+{{ purpose }}
+{% endblock %}
+
+{% block content %}
+
+
+<!--elements={{ form.as_html_field }}-->
+<form class="main-form" data-purpose="{{ purpose }}">
+  	{{ csrf }}
+    {{ form.as_html_field }}
+    <captcha purpose="{{ purpose }}"></captcha>
+    <submit/>
+
+</form>
+
+{% endblock %}
+{% block afterBody %}
+<script src="{% static 'js/components.js' %}"></script>
+<script src="{% static 'js/formScript.js' %}"></script>
+{% endblock %}

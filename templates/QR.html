@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+<script src="{% static 'js/qrcode.min.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div id="QrC0dE">
+
+</div>
+{% endblock %}
+
+{% block afterBody %}
+<script>
+    new QRCode(document.getElementById("QrC0dE"), "{{ qr }}");
+</script>
+{% endblock %}

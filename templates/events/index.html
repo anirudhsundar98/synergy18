@@ -1,0 +1,489 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Synergy'18</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/html5shiv.js' %}"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'events/assets/css/main.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'events/assets/css/ie9.css' %" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'events/assets/css/ie8.css' %}" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Synergy</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<li><a href="generic.html">Tempus etiam</a></li>
+							<li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+					</nav>
+
+				<!-- Modals -->
+					
+					{% for event, reg in events %}
+					<div class="modal fade" id="event-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="label-{{ forloop.counter }}" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="label-{{ forloop.counter }}">{{ event.name }}</h5>
+					        <button class="close btn btn-primary" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        {{ event.desc }}
+					      </div>
+					      <div class="modal-footer">
+					      	<span class="pull-left">
+								{% if logged_in %}
+					      			{% if not reg %}
+					      			<button class="btn btn-primary" data-event="{{ event.unique }}" onclick="register_event(this)">register</button>
+					      			{% else %}
+					      			Registered !
+					      			{% endif %}
+								{% endif %}
+					      	</span>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					{% endfor %}
+
+					{% for w, reg in workshops %}
+					<div class="modal fade" id="workshop-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="wlabel-{{ forloop.counter }}" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="wlabel-{{ forloop.counter }}">{{ w.name }}</h5>
+					        <button class="close btn btn-primary" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        {{ w.desc }}
+					      </div>
+					      <div class="modal-footer">
+					      	<span class="pull-left">
+								{% if logged_in %}
+									{% if not reg %}
+									<button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this)">register</button>
+									{% else %}
+									Registered !
+									{% endif %}
+								{% endif %}
+					      	</span>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					{% endfor %}
+
+				{% for gl in guest_lectures %}
+					<div class="modal fade" id="gl-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="glLabel-{{ forloop.counter }}" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="glLabel-{{ forloop.counter }}">{{ gl.name }}</h5>
+					        <button class="close btn btn-primary" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        {{ gl.desc }}
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					{% endfor %}
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+							  <div class="panel">
+								<div class="panel-heading" role="tab" id="heading_events">
+								  <h4 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_events" aria-expanded="true" aria-controls="collapse_events">
+										<h1>Events</h1>
+									</a>
+								  </h4>
+								</div>
+							  </div>
+							</div>
+
+								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
+							</header>
+							<div class="all-errors"></div>
+							<div id="collapse_events" class="collapse" role="tabpanel" aria-labelledby="heading_events">
+							<section class="tiles">
+								{% for event, reg in events %}
+									{% if forloop.counter|divisibleby:2 %}
+									<article class="style2">
+									{% else %}
+									<article class="style1">
+									{% endif %}
+										<span class="image">
+											<img src="{% static 'events/images/pic01.jpg' %}" alt="" />
+										</span>
+										<a href="#" data-toggle="modal" data-target="#event-{{ forloop.counter }}">
+											<h3>{{ event.name }}</h3>
+											<div class="content">
+												<p>{{ event.caption }}</p>
+											</div>
+										</a>
+									</article>
+								{% endfor %}
+							</section>
+							</div>
+								<!--<article class="style1">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic01.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Magna</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style2">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic02.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Lorem</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style3">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic03.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Feugiat</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style4">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic04.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Tempus</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style5">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic05.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Aliquam</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style6">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic06.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Veroeros</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style2">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic07.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Ipsum</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style3">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic08.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Dolor</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style1">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic09.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Nullam</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style5">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic10.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Ultricies</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style6">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic11.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Dictum</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+								<!--<article class="style4">-->
+									<!--<span class="image">-->
+										<!--<img src="{% static 'events/images/pic12.jpg' %}" alt="" />-->
+									<!--</span>-->
+									<!--<a href="generic.html">-->
+										<!--<h2>Pretium</h2>-->
+										<!--<div class="content">-->
+											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
+										<!--</div>-->
+									<!--</a>-->
+								<!--</article>-->
+							<header>
+								<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+							  <div class="panel">
+								<div class="panel-heading" role="tab" id="heading_wks">
+								  <h4 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse_wks" aria-expanded="true" aria-controls="collapse_wks">
+										<h1>Workshops</h1>
+									</a>
+								  </h4>
+								</div>
+							  </div>
+								</div>
+								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
+							</header>
+							<div id="collapse_wks" class="collapse" role="tabpanel" aria-labelledby="heading_wks">
+							<section class="tiles">
+								{% for w, reg in workshops %}
+									{% if forloop.counter|divisibleby:2 %}
+									<article class="style2">
+									{% else %}
+									<article class="style1">
+									{% endif %}
+										<span class="image">
+											<img src="{% static 'events/images/pic01.jpg' %}" alt="" />
+										</span>
+										<a href="#" data-toggle="modal" data-target="#workshop-{{ forloop.counter }}">
+											<h3>{{ w.name }}</h3>
+											<div class="content">
+												<p>{{ w.caption }}</p>
+											</div>
+										</a>
+									</article>
+								{% endfor %}
+							</section>
+							</div>
+
+							<header>
+								<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+							  <div class="panel">
+								<div class="panel-heading" role="tab" id="heading_gl">
+								  <h4 class="panel-title">
+									<a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse_gl" aria-expanded="true" aria-controls="collapse_gl">
+										<h1>Guest Lectures</h1>
+									</a>
+								  </h4>
+								</div>
+							  </div>
+								</div>
+								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
+							</header>
+							<div id="collapse_gl" class="collapse" role="tabpanel" aria-labelledby="heading_gl">
+							<section class="tiles">
+								{% for gl in guest_lectures %}
+									{% if forloop.counter|divisibleby:2 %}
+									<article class="style2">
+									{% else %}
+									<article class="style1">
+									{% endif %}
+										<span class="image">
+											<img src="{% static 'events/images/pic01.jpg' %}" alt="" />
+										</span>
+										<a href="#" data-toggle="modal" data-target="#gl-{{ forloop.counter }}">
+											<h3>{{ gl.name }}</h3>
+											<div class="content">
+												<p>{{ gl.caption }}</p>
+											</div>
+										</a>
+									</article>
+								{% endfor %}
+							</section>
+							</div>
+
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<!--<section>-->
+								<!--<h2>Get in touch</h2>-->
+								<!--<form method="post" action="#">-->
+									<!--<div class="field half first">-->
+										<!--<input type="text" name="name" id="name" placeholder="Name" />-->
+									<!--</div>-->
+									<!--<div class="field half">-->
+										<!--<input type="email" name="email" id="email" placeholder="Email" />-->
+									<!--</div>-->
+									<!--<div class="field">-->
+										<!--<textarea name="message" id="message" placeholder="Message"></textarea>-->
+									<!--</div>-->
+									<!--<ul class="actions">-->
+										<!--<li><input type="submit" value="Send" class="special" /></li>-->
+									<!--</ul>-->
+								<!--</form>-->
+							<!--</section>-->
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Synergy. All rights reserved</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'events/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'events/assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'js/bootstrap.min.js' %}"></script>
+			<script src="{% static 'events/assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/respond.min.js' %}"></script><![endif]-->
+			<script src="{% static 'events/assets/js/main.js' %}"></script>
+
+	</body>
+<script>
+    function register_event(event)
+    {
+    	if(!confirm("Are you sure you want to register ? "))
+    		return;
+        console.log(typeof(event.getAttribute('data-event')));
+        data = {'event': event.getAttribute('data-event')};
+
+        $.ajax({
+
+        url:"/events/register/",
+        method:"POST",
+        data:data,
+        timeout:20000,
+        beforeSend:function(){
+            console.log(" loading .. ");
+            // $('#loading').show();
+        },
+        complete:function(){
+            // $('#loading').hide();
+        },
+        error:function(err)
+        {
+            error_div= $('.all-errors');
+            error_div.html(err);
+            error_div.show();
+        }
+
+    })
+    .done(function(msg){
+        console.log(msg);
+
+        if(typeof(msg) != "object")
+            alert("There was an issue with your request. Please check your connection and try again !");
+        else
+        {
+            try{
+                if(msg.status != 200)
+                    alert(msg.errors);
+                else
+                {
+                    alert("Registered for event !");
+                    span = event.parentElement;
+                    span.innerHTML = " Registered ! "
+                }
+
+            }
+            catch(e){
+            	console.log(e);
+                alert("There was an issue with your request. Please try again !");
+            }
+        }
+
+        });
+    }
+</script>
+</html>
