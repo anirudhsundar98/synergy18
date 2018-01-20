@@ -3,6 +3,7 @@ from models.models.user import UserDetails as u
 from django.views.decorators.http import require_GET
 # from django.http import HttpResponse
 from django.shortcuts import render
+from django.utils.safestring import mark_safe
 
 @require_GET
 def get(request):
@@ -10,6 +11,11 @@ def get(request):
     events = e.objects.filter(type="event")
     workshops = e.objects.filter(type="workshop")
     gl = e.objects.filter(type="gl")
+
+    g_lec = []
+    for g in gl:
+        g.desc = mark_safe(g.desc)
+        g_lec.append(g)
 
     reg = {}
 
@@ -39,9 +45,11 @@ def get(request):
     workshops_list = []
 
     for event in events:
+        event.desc = mark_safe(event.desc)
         events_list.append((event, reg[event.unique]))
 
     for w in workshops:
+        w.desc = mark_safe(w.desc)
         workshops_list.append((w, reg[w.unique]))
 
     logged_in = True
@@ -51,4 +59,4 @@ def get(request):
     else:
         fullname = user.fullname
 
-    return render(request, "events/index.html", {"events": events_list, "workshops":workshops_list, "logged_in":logged_in, "user":fullname, "guest_lectures":gl})
+    return render(request, "events/index.html", {"events": events_list, "workshops":workshops_list, "logged_in":logged_in, "user":fullname, "guest_lectures":g_lec})

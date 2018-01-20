@@ -44,12 +44,19 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<h2>Menu</h2>
+						{% if logged_in %}
+						<h4>Welcome, {{ user }}</h4>
+						{% endif %}
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="generic.html">Ipsum veroeros</a></li>
-							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="/">Home</a></li>
+							<li><a href="/events">Events</a></li>
+							{% if logged_in %}
+							<li><a href="/myQR">QR Code</a></li>
+							<li><a href="/update">Update Info</a></li>
+							<li><a href="/logout">Logout</a></li>
+							{% else %}
+							<li><a href="/login">Login</a></li>
+							{% endif %}
 						</ul>
 					</nav>
 

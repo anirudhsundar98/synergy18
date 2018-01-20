@@ -15,7 +15,7 @@
 
 <!--elements={{ form.as_html_field }}-->
 <form class="main-form" data-purpose="{{ purpose }}">
-  	{{ csrf }}
+  	{% csrf_token %}
     {{ form.as_html_field }}
     <captcha purpose="{{ purpose }}"></captcha>
     <submit/>
