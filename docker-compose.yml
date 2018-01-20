@@ -1,8 +1,9 @@
 version: '3'
-
 services:
   db:
     image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD:
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
@@ -14,9 +15,8 @@ services:
       - db
   pma:
     image: phpmyadmin/phpmyadmin
+    restart: always
     volumes:
       - .:/pma
     ports:
-      - "80:8080"
-    depends_on:
-      - db
+      - "8080:80"
