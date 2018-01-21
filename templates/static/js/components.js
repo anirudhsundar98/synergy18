@@ -8,8 +8,7 @@ submit = Vue.component('submit',{
         <li style="float:left;"><input class="special" type="submit" value="Submit"/></li>
     </ul>`
 });
-
 new Vue({
 	
-	el:"#main",
-})
+	el:"#wrapper",
+});

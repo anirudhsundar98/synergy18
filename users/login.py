@@ -12,7 +12,6 @@ from datetime import datetime
 
 # Functions
 
-# @decorators.check_errors
 @require_POST
 def validate_user(request):
 
@@ -82,33 +81,13 @@ def validate_user(request):
     except Exception as e:
         print(e)
 
-
-    # print(" reached here 1 ")
-    # if 'cur_token' in request.session:
-    #     print("Yay !")
-    # somethin = request.GET.get('somethin', '')
-
-    print(" reached here ")
-
     if not current_user:
-        print(" no matches ")
         final_response['status'] = 400
         final_response['errors'] = "Invalid Credentials"
         return JsonResponse(final_response)
-    print(" matched! ")
-    # return HttpResponseRedirect("/")
-    # response.set_cookie()
 
 @decorators.check_logged_in(redirect_path="/?already_in=1", do_while_loggedin=False)
 def login(request):
-    # Below code only if not logged in
-    # if 'cur_token' in request.session:
-    #     print(request.session["cur_token"])
-    #     cur_user = general.auth_token_lookup(request.session["cur_token"])
-    #     print(type(cur_user))
-    #     if cur_user is not None:
-    #         print("Yay ! ", request.COOKIES.get('cur_token'))
-    #         return HttpResponse(" Already logged in !")
 
     if request.method == 'GET':
         form = loginForm.LoginForm()
@@ -119,7 +98,6 @@ def login(request):
 def logout(request):
     response = HttpResponseRedirect("/")
     if 'cur_token' in request.session:
-        print("cur token ", request.COOKIES.get('cur_token'))
         request.session.pop("cur_token")
         return response
     return response

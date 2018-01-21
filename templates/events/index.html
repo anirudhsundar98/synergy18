@@ -15,8 +15,11 @@
 		<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/html5shiv.js' %}"></script><![endif]-->
 		<link rel="stylesheet" href="{% static 'events/assets/css/main.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="shortcut icon" href="{% static 'images/synergy_logo.png' %}" type="image/png">
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'events/assets/css/ie9.css' %" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'events/assets/css/ie8.css' %}" /><![endif]-->
+		<script type="text/javascript" src="{% static 'js/vue.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/events.js' %}"></script>
 	</head>
 	<body>
 		<!-- Wrapper -->
@@ -28,7 +31,7 @@
 
 							<!-- Logo -->
 								<a href="/" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Synergy</span>
+									<span class="symbol"></span><span class="title">Synergy</span>
 								</a>
 
 							<!-- Nav -->
@@ -61,7 +64,6 @@
 					</nav>
 
 				<!-- Modals -->
-					
 					{% for event, reg in events %}
 					<div class="modal fade" id="event-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="label-{{ forloop.counter }}" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
@@ -91,6 +93,7 @@
 					  </div>
 					</div>
 					{% endfor %}
+					
 
 					{% for w, reg in workshops %}
 					<div class="modal fade" id="workshop-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="wlabel-{{ forloop.counter }}" aria-hidden="true">
@@ -183,138 +186,7 @@
 								{% endfor %}
 							</section>
 							</div>
-								<!--<article class="style1">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic01.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Magna</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style2">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic02.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Lorem</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style3">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic03.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Feugiat</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style4">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic04.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Tempus</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style5">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic05.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Aliquam</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style6">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic06.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Veroeros</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style2">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic07.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Ipsum</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style3">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic08.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Dolor</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style1">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic09.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Nullam</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style5">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic10.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Ultricies</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style6">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic11.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Dictum</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
-								<!--<article class="style4">-->
-									<!--<span class="image">-->
-										<!--<img src="{% static 'events/images/pic12.jpg' %}" alt="" />-->
-									<!--</span>-->
-									<!--<a href="generic.html">-->
-										<!--<h2>Pretium</h2>-->
-										<!--<div class="content">-->
-											<!--<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>-->
-										<!--</div>-->
-									<!--</a>-->
-								<!--</article>-->
+
 							<header>
 								<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
 							  <div class="panel">
@@ -327,7 +199,7 @@
 								</div>
 							  </div>
 								</div>
-								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
+
 							</header>
 							<div id="collapse_wks" class="collapse" role="tabpanel" aria-labelledby="heading_wks">
 							<section class="tiles">
@@ -363,7 +235,7 @@
 								</div>
 							  </div>
 								</div>
-								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
+
 							</header>
 							<div id="collapse_gl" class="collapse" role="tabpanel" aria-labelledby="heading_gl">
 							<section class="tiles">
@@ -393,29 +265,13 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">
-							<!--<section>-->
-								<!--<h2>Get in touch</h2>-->
-								<!--<form method="post" action="#">-->
-									<!--<div class="field half first">-->
-										<!--<input type="text" name="name" id="name" placeholder="Name" />-->
-									<!--</div>-->
-									<!--<div class="field half">-->
-										<!--<input type="email" name="email" id="email" placeholder="Email" />-->
-									<!--</div>-->
-									<!--<div class="field">-->
-										<!--<textarea name="message" id="message" placeholder="Message"></textarea>-->
-									<!--</div>-->
-									<!--<ul class="actions">-->
-										<!--<li><input type="submit" value="Send" class="special" /></li>-->
-									<!--</ul>-->
-								<!--</form>-->
-							<!--</section>-->
-							<section>
+
+						<section>
 								<h2>Follow</h2>
 								<ul class="icons">
-									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="https://twitter.com/synergynitt" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.facebook.com/synergynitt/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/synergynitt/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
 									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
 								</ul>
@@ -435,62 +291,7 @@
 			<script src="{% static 'events/assets/js/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/respond.min.js' %}"></script><![endif]-->
 			<script src="{% static 'events/assets/js/main.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/components.js' %}"></script>
 
 	</body>
-<script>
-    function register_event(event)
-    {
-    	if(!confirm("Are you sure you want to register ? "))
-    		return;
-        console.log(typeof(event.getAttribute('data-event')));
-        data = {'event': event.getAttribute('data-event')};
-
-        $.ajax({
-
-        url:"/events/register/",
-        method:"POST",
-        data:data,
-        timeout:20000,
-        beforeSend:function(){
-            console.log(" loading .. ");
-            // $('#loading').show();
-        },
-        complete:function(){
-            // $('#loading').hide();
-        },
-        error:function(err)
-        {
-            error_div= $('.all-errors');
-            error_div.html(err);
-            error_div.show();
-        }
-
-    })
-    .done(function(msg){
-        console.log(msg);
-
-        if(typeof(msg) != "object")
-            alert("There was an issue with your request. Please check your connection and try again !");
-        else
-        {
-            try{
-                if(msg.status != 200)
-                    alert(msg.errors);
-                else
-                {
-                    alert("Registered for event !");
-                    span = event.parentElement;
-                    span.innerHTML = " Registered ! "
-                }
-
-            }
-            catch(e){
-            	console.log(e);
-                alert("There was an issue with your request. Please try again !");
-            }
-        }
-
-        });
-    }
-</script>
 </html>

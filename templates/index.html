@@ -7,22 +7,27 @@
 -->
 <html>
 	<head>
-		<title>Dimension by HTML5 UP</title>
+		<title>Synergy'18</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<link rel="shortcut icon" href="{% static 'images/synergy_logo.png' %}" type="image/png">
 		<!--<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />-->
 		<!--<link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'css/ie9.css' %}" /><![endif]-->
 		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
 		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/notify.min.js' %}"></script>
+		<script>
+			$(".notifs").notify("Welcome !");
+		</script>
 		<!--<script src="{% static 'js/materialize.min.js' %}"></script>-->
-
 
 
 	</head>
 	<body>
 
+		<div class="notifs" style="top:0px; right:0px;"></div>
 		<!-- Wrapper -->
 			<div id="wrapper">
 					<div class="sidenav left">
@@ -38,6 +43,7 @@
 							<div class="nav"><div class="icon fa fa-qrcode"></div><div class="description"><a href="/myQR">QR</a></div></div>
 							{% else %}
 							<div class="nav"><div class="icon fa fa-sign-in"></div><div class="description"><a href="/login">Login</a></div></div>
+							<div class="nav"><div class="icon fa fa-user-plus"></div><div class="description"><a href="/register">Register</a></div></div>
 							{% endif %}
 
 
@@ -46,9 +52,7 @@
 				<!-- Header -->
 					<header id="header">
 
-						<div class="logo">
-							<!--<span class="icon fa-diamond"></span>-->
-						</div>
+						<div id="imgc" style="background-color: #a7a5a221;border-radius: 50%;"><img src="{% static 'images/synergy_logo.png' %}" style="width:15.5rem; height:9.5rem;"></div>
 						<div class="content">
 							<div class="inner">
 								<h1>Synergy</h1>
@@ -76,7 +80,7 @@
 						<!-- Intro -->
 							<article id="intro">
 								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="{% static 'images/pic01.jpg' %}" alt="" /></span>
+								<span class="image main"><img src="{% static 'images/synergy_intro.jpg' %}" alt="" /></span>
 								Synergy is the annual symposium of the Mechanical Engineering department of NIT Trichy!<p> Come and celebrate Mechanical Engineering at Synergy NITT</p>
 							</article>
 
@@ -92,7 +96,7 @@
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
-								<span class="image main"><img src="{% static 'images/pic03.jpg' %}" alt="" /></span>
+								<span class="image main"><img src="{% static 'images/nitt.jpg' %}" alt="" /></span>
 								<p> Synergy is the annual symposium of the Mechanical Engineering department of NIT Trichy! Prepare to be amazed by a dazzling array of tech events, workshops, and for the very first time, fun and entertainment filled informal events! From events like Fix ‘em Up to Junkyard Wars, from workshops like design to automobile. Held at the Mechanical Department of NIT Trichy’s campus, Synergy promises an educational, exciting and entertainment filled three days, and assures that every person attending will leave with newly acquired knowledge and fond memories. Come and celebrate Mechanical Engineering at Synergy NITT.
 							</article>
 

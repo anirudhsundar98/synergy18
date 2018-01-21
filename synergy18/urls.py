@@ -13,13 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import django
 from django.conf.urls import url
-from django.conf.urls import url, include
+from django.conf.urls import url, include, handler404
 from django.contrib import admin
 from users import login, register, update
 from events.register import register_event as ev_r
 from events.get_events import get
+from events.handlers import handler_404
 from django.views.generic import TemplateView
+from django.views.defaults import page_not_found
 from users import qr, user_home
 
 # event_urls= [url(r"^", TemplateView.as_view(template_name="events.html")),
@@ -36,4 +39,5 @@ urlpatterns = [
     url(r"^events", get),
     url(r"^myQR/$", qr.render_qr),
     url(r"^update", update.update_info),
+    url(r"^", handler_404)
 ]

@@ -32,7 +32,6 @@ def register_user(request):
         final_response["errors"] = str(form.errors)
         final_response["status"] = 400
         return JsonResponse(final_response)#"There were errors in your details !")
-    print(form.cleaned_data.keys())
     try:
         email = form.cleaned_data['email']
         fullname = form.cleaned_data['fullname']
@@ -51,7 +50,7 @@ def register_user(request):
     try:
         url = "https://www.google.com/recaptcha/api/siteverify"
         secr = "6LcmLz8UAAAAAFUFuEGC7gQ8aHCTlSUiDQauPgwi"
-        resp = requests.post(url, {'secret':"6LcmLz8UAAAAAFUFuEGC7gQ8aHCTlSUiDQauPgwi", "response":request.POST.get("g-recaptcha-response", "")})
+        resp = requests.post(url, {'secret':secr, "response":request.POST.get("g-recaptcha-response", "")})
         resp = resp.json()
         if not resp["success"]:
             form.errors["Captcha"] = mark_safe("<ul class=\"errorslist\"><li>Invalid captcha response. Please try again !</li></ul>")
@@ -62,12 +61,6 @@ def register_user(request):
 
 
     errors = {}
-    # if not email_validate(email):
-    #     errors['email'] = "Invalid Email"
-
-    # if len(fullname)==0:
-    #     errors['fullname'] = "Please enter a non-empty full-name"
-
 
 
     if len(form.errors)==0:
@@ -87,8 +80,7 @@ def register_user(request):
         # return (0, None)
         final_response["status"] = 200
         return JsonResponse(final_response)
-    print((1, errors))
-    # return (1, errors)
+
     final_response["status"] = 400
     final_response["errors"] = str(form.errors)
     return JsonResponse(final_response)

@@ -86,7 +86,7 @@ def update_info(request):
         request.session["cur_token"] = new_token
     except Exception as e:
         print("error")
-        raise e
+        jr({"status":500, "errors":"Error in processing. Please try again !"})
 
     final_response["status"] = 200
     final_response["inline"] = True
