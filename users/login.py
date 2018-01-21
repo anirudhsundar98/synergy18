@@ -80,7 +80,8 @@ def validate_user(request):
         final_response["status"] = 200
         return JsonResponse(final_response)
     except Exception as e:
-        pass
+        print(e)
+
 
     # print(" reached here 1 ")
     # if 'cur_token' in request.session:
