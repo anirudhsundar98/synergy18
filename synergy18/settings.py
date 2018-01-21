@@ -28,7 +28,7 @@ SECRET_KEY = '$u1#f-%nnzm@u_zt=kf7*8oxf3rsxjtwu&0%vx@-(j41z&b9#)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['http://128.199.198.39/', "128.199.198.39", "synergy.nitt.edu", "http://synergy.nitt.edu"]
 
 # Application definition
 

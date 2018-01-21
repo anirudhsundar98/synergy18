@@ -37,7 +37,7 @@ urlpatterns = [
     # url(r"^eve/$", TemplateView.as_view(template_name="events/index.html")),
     url(r"^events/register", ev_r),
     url(r"^events", get),
-    url(r"^myQR/$", qr.render_qr),
+    url(r"^myQR", qr.render_qr),
     url(r"^update", update.update_info),
     url(r"^", handler_404)
 ]
