@@ -49,16 +49,15 @@
 						<div class="nav_elements">
 						<!--<div class="nav"><div class="icon fa fa-home"></div><div class="description"><a href="/events">Home</a></div></div>-->
 					  <!--<div class="nav"><div class="icon fa fa-database"></div><div class="description">About</div></div>-->
-							<div class="nav"><div class="icon fa fa-users"></div><div class="description"><a href="/events">Events</a></div></div>
-							<div class="nav"><div class="icon fa fa-cogs"></div><div class="description"><a href="/events">Workshops</a></div></div>
+							<div class="nav"><div class="icon fa fa-arrow-up"></div><div class="description"><a href="#intro">Intro</a></div></div>
+							<div class="nav"><div class="icon fa fa-users"></div><div class="description"><a href="#work">Team</a></div></div>
+                                                        <div class="nav"><div class="icon fa fa-user"></div><div class="description"><a href="#about">About</a></div></div>
+                                                        <div class="nav"><div class="icon fa fa-phone"></div><div class="description"><a href="#contact">Contact Us</a></div></div>
+
+
 							<!--fa-sign-out-->
 							{% if logged_in %}
-							<div class="nav"><div class="icon fa fa-sign-out"></div><div class="description"><a href="/logout">Logout</a></div></div>
-							<div class="nav"><div class="icon fa fa-refresh"></div><div class="description"><a href="/update">Update</a></div></div>
-							<div class="nav"><div class="icon fa fa-qrcode"></div><div class="description"><a href="/myQR">QR</a></div></div>
-							{% else %}
-							<div class="nav"><div class="icon fa fa-sign-in"></div><div class="description"><a href="/login">Login</a></div></div>
-							<div class="nav"><div class="icon fa fa-user-plus"></div><div class="description"><a href="/register">Register</a></div></div>
+						<div class="nav"><div class="icon fa fa-qrcode"></div><div class="description"><a href="/myQR">QR</a></div></div>
 							{% endif %}
 
 
@@ -80,11 +79,16 @@
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Team</a></li>
-								<li><a href="#about">About</a></li>
-								<li><a href="#contact">Contact Us</a></li>
+                                                                <li><a href="/events">Events</a></li>
+                                                                <li><a href="/events">Workshops</a></li>
+                                                                {% if logged_in %}
+								<li><a href="/update">Update</a></li>
+								<li><a href="/logout">Logout</a></li>
+                                                                {% else %}
+								<li><a href="/login">Login</a></li>
+								<li><a href="/register">Register</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
+                                                                {% endif %}
 							</ul>
 						</nav>
 					</header>
