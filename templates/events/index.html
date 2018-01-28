@@ -112,13 +112,15 @@
 					      </div>
 					      <div class="modal-footer">
 					      	<span class="pull-left">
-								{% if logged_in %}
-									{% if not reg %}
-									<button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this)">register</button>
-									{% else %}
-									Registered !
-									{% endif %}
-								{% endif %}
+							{% if logged_in %}
+                                                                {% if not reg %}
+                                                                <button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this)">register</button>
+                                                                {% else %}
+                                                                Registered !
+                                                                {% endif %}
+                                                                {% else %}
+                                                                <a href="/login" class="btn btn-primary">Login</a>
+                                                                {% endif %}
 					      	</span>
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					      </div>
@@ -141,6 +143,17 @@
 					        {{ gl.desc }}
 					      </div>
 					      <div class="modal-footer">
+						<span class="pull-left">
+                                                        {% if logged_in %}
+                                                                {% if not reg %}
+                                                                <button class="btn btn-primary" data-event="{{ gl.unique }}" onclick="register_event(this)">register</button>
+                                                                {% else %}
+                                                                Registered !
+                                                                {% endif %}
+                                                                {% else %}
+                                                                <a href="/login" class="btn btn-primary">Login</a>
+                                                                {% endif %}
+                                                </span>
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					      </div>
 					    </div>
@@ -274,8 +287,8 @@
 									<li><a href="https://twitter.com/synergynitt" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
 									<li><a href="https://www.facebook.com/synergynitt/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
 									<li><a href="https://www.instagram.com/synergynitt/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+									<li><a href="tel:7418171944" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="mailto:mea18.nitt@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
 								</ul>
 							</section>
 							<ul class="copyright">

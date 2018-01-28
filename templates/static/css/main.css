@@ -1669,3 +1669,56 @@
         padding-left:35px;
         height: 100%;
       }
+
+    /* Notifications */
+
+    .notifs{
+        color: black;
+        top: 15px;
+        width: 100%;
+        height: 40px;
+        background-color: #ffffff99;
+        position: relative;
+        white-space: nowrap;
+        overflow:hidden;
+        box-sizing: border-box;
+
+    }
+    .notif {
+        font-weight: bold;
+        position:absolute;
+        height: 100%;
+        display: inline-block;
+        padding-left: 100%;
+        line-height: 40px;
+        text-align:center;
+/*         -moz-transform:translateX(100%);
+        -webkit-transform:translateX(100%);
+        transform:translateX(100%); */
+     /* Apply animation to this element */
+        -moz-animation: example1 30s linear infinite;
+        -webkit-animation: example1 30s linear infinite;
+        animation: example1 30s linear infinite;
+    }
+
+
+    @-moz-keyframes example1 {
+     0%   { transform: translate(0, 0); }
+     100% { transform: translate(-100%, 0); }
+    }
+    @-webkit-keyframes example1 {
+     0%   { transform: translate(0, 0); }
+     100% { transform: translate(-100%, 0); }
+    }
+    @keyframes example1 {
+     0%   { transform: translate(0, 0); }
+     100% { transform: translate(-100%, 0); }
+    }
+
+    .notif:hover {
+        -moz-animation-play-state: paused;
+        -webkit-animation-play-state: paused;
+        animation-play-state: paused;
+
+    }
+
