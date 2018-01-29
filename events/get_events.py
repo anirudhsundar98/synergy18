@@ -6,7 +6,11 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 
 @require_GET
-def get(request):
+def get(request, e_type):
+    if not e_type or e_type == "":
+        e_type="e"
+    if e_type not in ["e", "w", "gl"]:
+        return render(request, "404.html")
 
     events = e.objects.filter(type="event")
     workshops = e.objects.filter(type="workshop")
@@ -59,4 +63,4 @@ def get(request):
     else:
         fullname = user.fullname
 
-    return render(request, "events/index.html", {"events": events_list, "workshops":workshops_list, "logged_in":logged_in, "user":fullname, "guest_lectures":g_lec})
+    return render(request, "events/index.html", {"events": events_list, "workshops":workshops_list, "logged_in":logged_in, "user":fullname, "guest_lectures":g_lec, "e_type":e_type})

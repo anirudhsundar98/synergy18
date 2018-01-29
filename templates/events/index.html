@@ -52,7 +52,9 @@
 						{% endif %}
 						<ul>
 							<li><a href="/">Home</a></li>
-							<li><a href="/events">Events</a></li>
+							<li><a href="/events/e">Events</a></li>
+							<li><a href="/events/w">Workshops</a></li>
+							<li><a href="/events/gl">Guest Lectures</a></li>
 							{% if logged_in %}
 							<li><a href="/myQR">QR Code</a></li>
 							<li><a href="/update">Update Info</a></li>
@@ -180,7 +182,11 @@
 								<!--<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>-->
 							</header>
 							<div class="all-errors"></div>
-							<div id="collapse_events" class="collapse" role="tabpanel" aria-labelledby="heading_events">
+							{% if e_type == "e" %}
+								<div id="collapse_events" class="collapse in" role="tabpanel" aria-labelledby="heading_events">
+							{% else %}
+								<div id="collapse_events" class="collapse" role="tabpanel" aria-labelledby="heading_events">
+							{% endif %}
 							<section class="tiles">
 								{% for event, reg in events %}
 									{% if forloop.counter|divisibleby:2 %}
@@ -216,7 +222,11 @@
 								</div>
 
 							</header>
-							<div id="collapse_wks" class="collapse" role="tabpanel" aria-labelledby="heading_wks">
+							{% if e_type == "w" %}
+								<div id="collapse_wks" class="collapse in" role="tabpanel" aria-labelledby="heading_wks">
+							{% else %}
+								<div id="collapse_wks" class="collapse" role="tabpanel" aria-labelledby="heading_wks">
+							{% endif %}
 							<section class="tiles">
 								{% for w, reg in workshops %}
 									{% if forloop.counter|divisibleby:2 %}
@@ -252,7 +262,11 @@
 								</div>
 
 							</header>
-							<div id="collapse_gl" class="collapse" role="tabpanel" aria-labelledby="heading_gl">
+							{% if e_type == "gl" %}
+								<div id="collapse_gl" class="collapse in" role="tabpanel" aria-labelledby="heading_gl">
+							{% else %}
+								<div id="collapse_gl" class="collapse" role="tabpanel" aria-labelledby="heading_gl">
+							{% endif %}
 							<section class="tiles">
 								{% for gl in guest_lectures %}
 									{% if forloop.counter|divisibleby:2 %}
