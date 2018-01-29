@@ -36,9 +36,9 @@ function register_event(event)
                 alert(msg.errors);
             else
             {
-                alert("Registered for event !");
+                alert("Registered for event ! If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
                 span = event.parentElement;
-                span.innerHTML = " Registered ! "
+                span.innerHTML = " Registered ! Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay"
             }
 
         }
