@@ -83,7 +83,7 @@
 					      	<span class="pull-left">
 								{% if logged_in %}
 					      			{% if not reg %}
-					      			<button class="btn btn-primary" data-event="{{ event.unique }}" onclick="register_event(this)">register</button>
+					      			<button class="btn btn-primary" data-event="{{ event.unique }}" onclick="register_event(this, true)">register</button>
 					      			{% else %}
 					      			Registered !
 					      			{% endif %}
@@ -116,7 +116,7 @@
 					      	<span class="pull-left">
 							{% if logged_in %}
                                                                 {% if not reg %}
-                                                                <button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this)">register</button>
+                                                                <button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this, false)">register</button>
                                                                 {% else %}
                                                                 Registered ! Click <a href="https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk" target="_blank">Here</a> to pay
                                                                 {% endif %}
@@ -148,7 +148,7 @@
 						<span class="pull-left">
                                                         {% if logged_in %}
                                                                 {% if not reg %}
-                                                                <button class="btn btn-primary" data-event="{{ gl.unique }}" onclick="register_event(this)">register</button>
+                                                                <button class="btn btn-primary" data-event="{{ gl.unique }}" onclick="register_event(this, false)">register</button>
                                                                 {% else %}
                                                                 Registered !
                                                                 {% endif %}

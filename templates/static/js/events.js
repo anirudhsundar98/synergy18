@@ -1,4 +1,4 @@
-function register_event(event)
+function register_event(event, isEvent)
 {
 	if(!confirm("Are you sure you want to register ? "))
 		return;
@@ -36,9 +36,14 @@ function register_event(event)
                 alert(msg.errors);
             else
             {
+                if(isEvent)
+                    after_reg_txt = " Registered ! ";
+                else
+                    after_reg_txt = " Registered ! Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay";
+
                 alert("Registered for event ! If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
                 span = event.parentElement;
-                span.innerHTML = " Registered ! Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay"
+                span.innerHTML = after_reg_txt;
             }
 
         }
