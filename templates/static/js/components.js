@@ -8,6 +8,15 @@ submit = Vue.component('submit',{
         <li style="float:left;"><input class="special" type="submit" value="Submit"/></li>
     </ul>`
 });
+
+after_reg = Vue.component('afterReg', {
+
+	template: `<div class="after_reg" style="display:none;">
+		Thank you for registering ! Click <a href="/login">Here</a> to login 
+	</div>
+	`
+});
+
 new Vue({
 	
 	el:"#wrapper",

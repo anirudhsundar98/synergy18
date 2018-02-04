@@ -15,7 +15,10 @@
 				        alert("Done updating !");
 				}
 				else
+				{
 					window.location.href = "http://synergy.nitt.edu";
+
+				}
 //			}
 //			catch(e){
 //
