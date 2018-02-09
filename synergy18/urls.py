@@ -21,6 +21,9 @@ from events.register import register_event as ev_r
 from events.get_events import get
 from events.handlers import handler_404
 from users import qr, user_home
+from django.views.generic import TemplateView
+from events.sponsors import sponsors
+
 # event_urls= [url(r"^", TemplateView.as_view(template_name="events.html")),
 #              url(r"^register/$", ev_r)
 #              ]
@@ -35,5 +38,6 @@ urlpatterns = [
     url(r"^events/([A-Za-z0-9]+)", get),
     url(r"^myQR", qr.render_qr),
     url(r"^update", update.update_info),
+    url(r"^sponsors$", sponsors),
     url(r"^", handler_404)
 ]
