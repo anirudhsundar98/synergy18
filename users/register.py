@@ -77,6 +77,10 @@ def register_user(request):
                  accommodation=accommodation,
                  tokenCreatedAt=datetime.now())
         user.save()
+        try:
+            general.send_welcome_mail(fullname, email, hashlib.sha256(uniq).hexdigest())
+        except Exception as e:
+            print("Error in sending mail : ", e)
         # return (0, None)
         final_response["status"] = 200
         return JsonResponse(final_response)

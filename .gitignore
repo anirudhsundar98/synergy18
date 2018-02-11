@@ -4,3 +4,5 @@ __pycache__*
 db.cnf
 .env
 tmp
+mail_creds
+mailScript.py
