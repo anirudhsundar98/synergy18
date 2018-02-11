@@ -58,7 +58,7 @@ def phno_validate(phno):
     return True
 
 def send_welcome_mail(fullname, email, uniq):
-    me = "synergy18.info@gmail.com"
+    me = "synergy18.web@outlook.com"
     you = email
 
     # Create message container - the correct MIME type is multipart/alternative.
@@ -110,7 +110,7 @@ def send_welcome_mail(fullname, email, uniq):
     msg.attach(part1)
 
     # Send the message via local SMTP server.
-    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s = smtplib.SMTP('smtp-mail.outlook.com', 587)
     s.starttls()
 
     creds_file = open(settings.BASE_DIR+"/utils/mail_creds", "r+")
