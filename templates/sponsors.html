@@ -16,9 +16,30 @@
     </div>
 </header>
 
-<div id="collapse_wks" role="tabpanel" aria-labelledby="heading_wks" class="collapse in" aria-expanded="true">
+<div id="collapse_wks" role="tabpanel" aria-labelledby="heading_wks" class="collapse in" aria-expanded="true" style="padding-bottom:75px;">
     <section class="tiles">
         <div class="text-center" style="padding-top: 40px;"><a target="_blank" style="border: 0px;" href="https://www.ambitions4.com/"><img style="width: 100%; height: 100px;" src="/static/images/a4.png"></a></div>
     </section>
 </div>
+
+<header>
+    <div id="accordion2" role="tablist" aria-multiselectable="true" class="panel-group">
+        <div class="panel">
+            <div role="tab" id="heading_wks1" class="panel-heading">
+                <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse_wks1" aria-expanded="true" aria-controls="collapse_wks1">
+                    <h1>Beverage Partner</h1>
+                </a>
+            </h4>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="collapse_wks1" role="tabpanel" aria-labelledby="heading_wks1" class="collapse in" aria-expanded="true">
+    <section class="tiles">
+        <a href="https://www.pepsi.com/"><img src="/static/images/pepsi.png" style="width:79%;height:200px;"></a>
+    </section>
+</div>
+
 {% endblock %}
