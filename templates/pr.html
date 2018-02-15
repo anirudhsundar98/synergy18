@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<br>
+<div id="details"></div>
+<br>
+<form id="pr_form">
+	{% csrf_token %}
+	<div class="field half"><label for="id_email_inp">Email</label> <input type="email" name="email" id="email_inp"></div>
+	<div class="field half"><label for="id_syn_id_inp">Synergy ID</label> <input type="text" name="syn_id" id="syn_id_inp"></div>
+	<div class="field half"><label for="id_paid">Amount Paid </label>
+		<input type="number" name="amount" id="id_paid">
+	</div>
+	<submit/>
+</form>
+{% endblock %}
+
+{% block afterBody %}
+<script>
+function jhsdbfjh2b34t293sdjwef(e)
+{
+	e.preventDefault();
+	form = $("#pr_form");
+	$.ajax({
+		url:"/admin/wggef23t23g23eg23",
+		method:"POST",
+		data:form.serialize(),
+		timeout:20000,
+		beforeSend:function(){
+			console.log(" loading .. ")
+			// $('#loading').show();
+		},
+		complete:function(){
+			// $('#loading').hide();
+		},
+		error:function(err)
+		{
+			error_div= $('.all-errors');
+			error_div.html(err);
+			error_div.show();
+		}
+
+	})
+	.done(function(msg)
+		{
+			console.log(msg);
+			if(typeof(msg) != "object")
+			{
+					$(".all-errors").html("There was an issue with your request. Please try again !");
+					return;
+			}
+
+			if(msg.status == 200)
+			{
+				details = $("#details");
+				var u = "<span>user : "+String(msg.fullname)+"</span><br>";
+				var email = "<span>email : "+String(msg.email)+"</span><br>";
+				var paid = "<span>paid : "+String(msg.paid)+"</span><br>";
+				var amount = "<span>amount : "+String(msg.amount)+"</span><br>";
+				details.html(u+email+paid+amount);
+			}
+			else
+				$(".all-errors").html(msg.errors);
+		});
+}
+
+$(document).ready(function(){
+$("#pr_form").submit(jhsdbfjh2b34t293sdjwef);
+});
+
+</script>
+<script src="{% static 'js/components.js' %}"></script>
+{% endblock %}

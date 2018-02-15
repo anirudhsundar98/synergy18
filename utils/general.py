@@ -157,3 +157,21 @@ def send_welcome_mail(fullname, email, uniq):
     # and message to send - here it is sent as one string.
     s.sendmail(me, you, msg.as_string())
     s.quit()
+
+def check_loggedInUser_admin(r):
+
+    loggedIn = True
+    user = None
+
+    try:
+        auth_token = r.session["cur_token"]
+        user = auth_token_lookup(auth_token)
+    except:
+        loggedIn = False
+
+    if not loggedIn or not user:
+        return False
+    if not user.admin:
+        return False
+
+    return user

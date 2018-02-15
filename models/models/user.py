@@ -33,6 +33,7 @@ class UserDetails(models.Model):
     tokenCreatedAt = models.DateTimeField(auto_now_add=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    amount = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'users'
