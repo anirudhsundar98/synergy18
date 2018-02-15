@@ -4,12 +4,37 @@
 <br>
 <div id="details"></div>
 <br>
+<div id="amt"></div>
+<br>
 <form id="pr_form">
 	{% csrf_token %}
 	<div class="field half"><label for="id_email_inp">Email</label> <input type="email" name="email" id="email_inp"></div>
-	<div class="field half"><label for="id_syn_id_inp">Synergy ID</label> <input type="text" name="syn_id" id="syn_id_inp"></div>
-	<div class="field half"><label for="id_paid">Amount Paid </label>
-		<input type="number" name="amount" id="id_paid">
+	<div class="field half"><label for="events">Events </label>
+		<input type="checkbox" class="check" name="events" id="events">
+	</div>
+
+	<div class="field half"><label for="automobile">Automobile Workshop</label>
+		<input class="check" type="checkbox" name="automobile" id="automobile">
+	</div>
+	<div class="field half"><label for="creo">PTC Creo Workshop</label>
+		<input class="check" type="checkbox" name="creo" id="creo">
+	</div>
+	<div class="field half"><label for="automation">Automation Workshop</label>
+		<input class="check" type="checkbox" name="automation" id="automation">
+	</div>
+	<div class="field half"><label for="automation">Swarm Robotics Workshop</label>
+		<select class="check" name="swarm" id="swarm">
+			<option selected>None</option>
+			<option value="2396">Team of 4</option>
+			<option value="2750">Team of 5</option>
+			<option value="2994">Team of 6</option>
+		</select>
+	</div>
+	<div class="field half"><label for="3d">3D Printing Workshop</label>
+		<input class="check" type="checkbox" name="3d" id="3d">
+	</div>
+	<div class="field half"><label for="photography">Photography Workshop</label>
+		<input class="check" type="checkbox" name="photography" id="photography">
 	</div>
 	<submit/>
 </form>
@@ -20,6 +45,10 @@
 function jhsdbfjh2b34t293sdjwef(e)
 {
 	e.preventDefault();
+
+	if(!confirm("Are you sure you wanna record this ?"))
+		return;
+
 	form = $("#pr_form");
 	$.ajax({
 		url:"/admin/wggef23t23g23eg23",
@@ -56,16 +85,47 @@ function jhsdbfjh2b34t293sdjwef(e)
 				var u = "<span>user : "+String(msg.fullname)+"</span><br>";
 				var email = "<span>email : "+String(msg.email)+"</span><br>";
 				var paid = "<span>paid : "+String(msg.paid)+"</span><br>";
-				var amount = "<span>amount : "+String(msg.amount)+"</span><br>";
+				var amount = "<span>Total amount paid so far : "+String(msg.amount)+"</span><br>";
 				details.html(u+email+paid+amount);
+				$(".all-errors").html("");
 			}
 			else
 				$(".all-errors").html(msg.errors);
 		});
 }
 
+function ghiu4g4iugh4iuhg(e)
+{
+	money = 0;
+	e_list = ["events", "automobile", "creo", "automation", "swarm", '3d', 'photography'];
+	money_dict = {"events":150, 'automobile':450, 'creo':299, 'automation':299, 'swarm':0, '3d':199, 'photography':50};
+	
+	if($("#swarm").find(":selected").val() == "2396")
+	{
+		money+=2396;
+	}
+	else if($("#swarm").find(":selected").val() == "2750")
+	{
+		money+=2750;
+	}
+	else if($("#swarm").find(":selected").val() == "2994")
+	{
+		money+=2994;
+	}
+
+	for (var i = 0; i < e_list.length; i++)
+	{
+		if(document.getElementById(e_list[i]).checked)
+			money+=money_dict[e_list[i]];
+	}
+
+	$("#amt").html(" Total Money : "+ "<strong>" + String(money) + "</strong>");
+}
+
 $(document).ready(function(){
 $("#pr_form").submit(jhsdbfjh2b34t293sdjwef);
+$(".check").change(ghiu4g4iugh4iuhg);
+
 });
 
 </script>

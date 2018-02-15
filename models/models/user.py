@@ -34,6 +34,7 @@ class UserDetails(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     amount = models.IntegerField(default=0)
+    events_paid = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'users'
