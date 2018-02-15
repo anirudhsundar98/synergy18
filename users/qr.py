@@ -16,7 +16,12 @@ def render_qr(request):
 
     logged_in = False
     fullname = ""
+    uniq = ""
+    email = ""
     if cur_user:
         logged_in = True
         fullname = cur_user.fullname
-    return render(request, "QR.html", {"qr":cur_user.unique, "logged_in": logged_in, "user": fullname})
+        uniq = cur_user.unique
+        email = cur_user.email
+
+    return render(request, "QR.html", {"qr":uniq, "logged_in": logged_in, "user": fullname, "syn_id":uniq[len(uniq)-10:], "email":email})
