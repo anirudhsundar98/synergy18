@@ -138,6 +138,10 @@ def mark_hostels(r):
         hospi.amount = amount
         hospi.check_in = time
         hospi.save()
+
+        user.accommodation = True
+        user.save()
+
     except:
         return jr({'status':500, 'errors':'Server issue. Please try again ! '})
     return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "check_in":time, "amount":amount})
