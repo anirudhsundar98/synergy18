@@ -71,8 +71,8 @@ def mark_attended_paid(r):
                         e.save()
                         money+=money_dict[w]
                     elif not reg.paid:
-                        e.paid = True
-                        e.save()
+                        reg.paid = True
+                        reg.save()
                         money += money_dict[w]
     except Exception as e:
         print(e)
