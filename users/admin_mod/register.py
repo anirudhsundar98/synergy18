@@ -82,9 +82,9 @@ def mark_attended_paid(r):
         user.paid = True
         user.amount += money
         user.alt_phone = entered_phone
-        print("tick ", len(user.ticket))
         if user.ticket is not None and len(user.ticket)!=0 and len(entered_ticket)!=0:
             user.ticket += ", {}".format(entered_ticket)
+
         elif len(entered_ticket)!=0:
             user.ticket = entered_ticket
         user.save()
