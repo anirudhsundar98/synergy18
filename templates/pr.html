@@ -37,6 +37,10 @@
 	<div class="field half"><label for="photography">Photography Workshop</label>
 		<input class="check" type="checkbox" name="photography" id="photography">
 	</div>
+	<div class="field half"><label for="ticket">Ticket No. </label>
+		<input type="text" name="ticket" id="ticket">
+	</div>
+	
 	<submit/>
 </form>
 {% endblock %}
@@ -87,7 +91,8 @@ function jhsdbfjh2b34t293sdjwef(e)
 				var email = "<span>email : "+String(msg.email)+"</span><br>";
 				var paid = "<span>paid : "+String(msg.paid)+"</span><br>";
 				var amount = "<span>Total amount paid so far : "+String(msg.amount)+"</span><br>";
-				details.html(u+email+paid+amount);
+				var ticket = "<span>Tickets : "+String(msg.ticket)+"</span><br>";
+				details.html(u+email+paid+amount+ticket);
 				$(".all-errors").html("");
 			}
 			else

@@ -26,6 +26,7 @@ def mark_attended_paid(r):
     try:
         entered_email = r.POST["email"]
         entered_phone = r.POST["phone"]
+        entered_ticket = r.POST["ticket"]
     except Exception as e:
         print(e)
         return jr({'status':400, 'errors':'Invalid request !'})
@@ -81,13 +82,18 @@ def mark_attended_paid(r):
         user.paid = True
         user.amount += money
         user.alt_phone = entered_phone
+        print("tick ", len(user.ticket))
+        if user.ticket is not None and len(user.ticket)!=0 and len(entered_ticket)!=0:
+            user.ticket += ", {}".format(entered_ticket)
+        elif len(entered_ticket)!=0:
+            user.ticket = entered_ticket
         user.save()
     except Exception as e:
         print(e)
         return jr({"status":400, "errors":"There was an error in saving to the database. Please try again !"})
 
 
-    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount})
+    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount, "ticket":user.ticket})
 
 def mark_hospi(r):
     user = general.check_loggedInUser_admin(r)

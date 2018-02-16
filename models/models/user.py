@@ -36,6 +36,7 @@ class UserDetails(models.Model):
     amount = models.IntegerField(default=0)
     events_paid = models.BooleanField(default=False)
     alt_phone = models.CharField(max_length=20, default=None, null=True)
+    ticket = models.CharField(max_length=1000, default=None, null=True)
 
     class Meta:
         db_table = 'users'
