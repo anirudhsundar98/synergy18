@@ -102,7 +102,7 @@ def mark_hostels(r):
     if not user:
         return jr({'status':400, "errors":"Sorry, you can't access this !"})
 
-    hostels = ["garnet a", "garnet b", "garnet c", "zircon a", "zircon b", "zircon c", "amber a", "amber b", "opal"]
+    hostels = ["garnet a", "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b", "ruby", "pearl", "opal"]
 
     try:
         email = r.POST["email"]
