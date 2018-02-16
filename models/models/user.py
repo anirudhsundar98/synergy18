@@ -35,6 +35,7 @@ class UserDetails(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     amount = models.IntegerField(default=0)
     events_paid = models.BooleanField(default=False)
+    alt_phone = models.CharField(max_length=20, default=None, null=True)
 
     class Meta:
         db_table = 'users'

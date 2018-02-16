@@ -25,6 +25,7 @@ def mark_attended_paid(r):
 
     try:
         entered_email = r.POST["email"]
+        entered_phone = r.POST["phone"]
     except Exception as e:
         print(e)
         return jr({'status':400, 'errors':'Invalid request !'})
@@ -39,11 +40,9 @@ def mark_attended_paid(r):
     money = 0
 
     if 'swarm' in r.POST:
-        if r.POST['swarm'] == "None":
-            r.POST.pop("swarm")
-        elif r.POST['swarm'] not in ["2396", "2994", "2750"]:
+        if r.POST['swarm'] not in ["2396", "2994", "2750", "None"]:
             return jr({"status":400, "errors":"Incorrect detail for swarm !"})
-        else:
+        elif r.POST['swarm'] != "None":
             money_dict["swarm"] = int(r.POST["swarm"])
 
     try:
@@ -54,6 +53,8 @@ def mark_attended_paid(r):
                 user.save()
 
             for w in ws_dict:
+                if w == "swarm" and r.POST['swarm'] == "None":
+                    continue
                 if w in r.POST:
                     reg = None
                     try:
@@ -79,6 +80,7 @@ def mark_attended_paid(r):
     try:
         user.paid = True
         user.amount += money
+        user.alt_phone = entered_phone
         user.save()
     except Exception as e:
         print(e)
