@@ -26,9 +26,9 @@
 	<div class="field half"><label for="automation">Swarm Robotics Workshop</label>
 		<select class="check" name="swarm" id="swarm">
 			<option selected>None</option>
-			<option value="2396">Team of 4</option>
+			<option value="2400">Team of 4</option>
 			<option value="2750">Team of 5</option>
-			<option value="2994">Team of 6</option>
+			<option value="3000">Team of 6</option>
 		</select>
 	</div>
 	<div class="field half"><label for="3d">3D Printing Workshop</label>
@@ -99,19 +99,19 @@ function ghiu4g4iugh4iuhg(e)
 {
 	money = 0;
 	e_list = ["events", "automobile", "creo", "automation", "swarm", '3d', 'photography'];
-	money_dict = {"events":150, 'automobile':450, 'creo':299, 'automation':299, 'swarm':0, '3d':199, 'photography':50};
+	money_dict = {"events":150, 'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50};
 	
-	if($("#swarm").find(":selected").val() == "2396")
+	if($("#swarm").find(":selected").val() == "2400")
 	{
-		money+=2396;
+		money+=2400;
 	}
 	else if($("#swarm").find(":selected").val() == "2750")
 	{
 		money+=2750;
 	}
-	else if($("#swarm").find(":selected").val() == "2994")
+	else if($("#swarm").find(":selected").val() == "3000")
 	{
-		money+=2994;
+		money+=3000;
 	}
 
 	for (var i = 0; i < e_list.length; i++)

@@ -36,11 +36,11 @@ def mark_attended_paid(r):
         return jr({'status': 400, 'errors': 'This user doesn\'t even exist ! They\'ll have to sign up first !'})
 
     ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
-    money_dict = {'automobile':450, 'creo':299, 'automation':299, 'swarm':0, '3d':199, 'photography':50}
+    money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
     money = 0
 
     if 'swarm' in r.POST:
-        if r.POST['swarm'] not in ["2396", "2994", "2750", "None"]:
+        if r.POST['swarm'] not in ["2400", "3000", "2750", "None"]:
             return jr({"status":400, "errors":"Incorrect detail for swarm !"})
         elif r.POST['swarm'] != "None":
             money_dict["swarm"] = int(r.POST["swarm"])
