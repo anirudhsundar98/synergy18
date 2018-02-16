@@ -42,6 +42,8 @@ urlpatterns = [
     url(r"^sponsors$", sponsors),
     url(r"^iuwetgiu4bgiuweg4iu23tg/27384t23tg2u3gt2g3t2323r$", get_stats),
     url(r"^iurbhiuerbhiw4ouebgiwu4b/w48bgiuw4bgiuw4ebiuw/iewugbiweugbewiugb$", mark_users),
+    url(r"^sdkjgbu34iugb3i4/gejhgj34gib3/34gb34gig4$", mark_hospi),
     url(r"^admin/wggef23t23g23eg23$", mark_attended_paid),
+    url(r"^admin/gjkrgiu24g34t$", mark_hostels),
     url(r"^", handler_404)
 ]

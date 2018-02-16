@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<br>
+<div id="details"></div>
+<br>
+<div id="amt"></div>
+<br>
+<form id="pr_form">
+	{% csrf_token %}
+	<div class="field half"><label for="id_email_inp">Email</label> <input type="email" name="email" id="email_inp"></div>
+	<div class="field half"><label for="hostel">Hostel</label>
+		
+		<select class="check" name="hostel" id="hostel">
+			<option selected>None</option>
+			<option value="garnet a">Garnet A</option>
+			<option value="garnet b">Garnet B</option>
+			<option value="garnet c">Garnet C</option>
+			<option value="amber a">Amber A</option>
+			<option value="amber b">Amber B</option>
+			<option value="zircon a">Zircon A</option>
+			<option value="zircon b">Zircon B</option>
+			<option value="zircon c">Zircon C</option>
+			<option value="opal">Opal</option>
+		</select>
+
+	</div>
+	<div class="field half"><label for="days">Number of days of stay</label>
+		<input class="check" type="number" name="days" id="days">
+	</div>
+	<submit/>
+</form>
+{% endblock %}
+
+{% block afterBody %}
+<script>
+function jhsdbfjh2b34t293sdjwef(e)
+{
+	e.preventDefault();
+
+	if(!confirm("Are you sure you wanna record this ?"))
+		return;
+
+	form = $("#pr_form");
+	$.ajax({
+		url:"/admin/gjkrgiu24g34t",
+		method:"POST",
+		data:form.serialize(),
+		timeout:20000,
+		beforeSend:function(){
+			console.log(" loading .. ")
+			// $('#loading').show();
+		},
+		complete:function(){
+			// $('#loading').hide();
+		},
+		error:function(err)
+		{
+			error_div= $('.all-errors');
+			error_div.html(err);
+			error_div.show();
+		}
+
+	})
+	.done(function(msg)
+		{
+			console.log(msg);
+			if(typeof(msg) != "object")
+			{
+					$(".all-errors").html("There was an issue with your request. Please try again !");
+					return;
+			}
+
+			if(msg.status == 200)
+			{
+				details = $("#details");
+				var u = "<span>user : "+String(msg.fullname)+"</span><br>";
+				var email = "<span>email : "+String(msg.email)+"</span><br>";
+				var hostel = "<span>Hostel : "+String(msg.hostel)+"</span><br>";
+				var check_in = "<span>Check In time : "+String(msg.check_in)+"</span><br>";
+				var amount = "<span>Amount paid : "+String(msg.amount)+"</span><br>";
+				details.html(u+email+hostel+amount+check_in);
+				$(".all-errors").html("");
+			}
+			else
+				$(".all-errors").html(msg.errors);
+		});
+}
+
+function ghiu4g4iugh4iuhg(e)
+{
+	money = 0;
+	days=document.getElementById('days').value;
+	money = 150 + 150*days;
+	$("#amt").html(" Total Money : "+ "<strong>" + String(money) + "</strong>");
+}
+
+$(document).ready(function(){
+$("#pr_form").submit(jhsdbfjh2b34t293sdjwef);
+$("#days").keydown(ghiu4g4iugh4iuhg);
+$("#days").keyup(ghiu4g4iugh4iuhg);
+$("#days").change(ghiu4g4iugh4iuhg);
+
+});
+
+</script>
+<script src="{% static 'js/components.js' %}"></script>
+{% endblock %}

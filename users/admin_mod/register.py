@@ -4,6 +4,9 @@ from django.http import JsonResponse as jr
 from models.models import UserDetails as u
 from models.models.events import EventRegister as er
 from django.db import transaction
+from datetime import datetime
+from models.models.user import Hospi as h
+
 def mark_users(r):
 
     user = general.check_loggedInUser_admin(r)
@@ -83,3 +86,58 @@ def mark_attended_paid(r):
 
 
     return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount})
+
+def mark_hospi(r):
+    user = general.check_loggedInUser_admin(r)
+    if not user:
+        return render(r, "404.html")
+    return render(r, "hospi.html", {"logged_in":True, "user":user.fullname})
+
+def mark_hostels(r):
+
+    user = general.check_loggedInUser_admin(r)
+
+    if not user:
+        return jr({'status':400, "errors":"Sorry, you can't access this !"})
+
+    hostels = ["garnet a", "garnet b", "garnet c", "zircon a", "zircon b", "zircon c", "amber a", "amber b", "opal"]
+
+    try:
+        email = r.POST["email"]
+        hostel = r.POST["hostel"]
+        days = int(r.POST["days"])
+        time = datetime.now()
+    except Exception as e:
+        print(e)
+        return jr({'status':400, 'errors':'Invalid request !'})
+
+    try:
+        user = u.objects.get(email__exact=email)
+    except:
+        return jr({'status':400, 'errors':'This user doesn\'t exist !'})
+
+    try:
+        hospi= h.objects.get(user=user)
+    except:
+        hospi = None
+
+    if hospi:
+        return jr({'status':400, 'errors':'This person has already paid for accommodation ! '})
+    else:
+        hospi = h()
+
+    if hostel not in hostels:
+        return jr({'status':400, 'errors':'Invalid hostel in request ! '})
+
+    amount = 150 + 150*days
+
+    try:
+        hospi.user = user
+        hospi.hostel = hostel
+        hospi.days = days
+        hospi.amount = amount
+        hospi.check_in = time
+        hospi.save()
+    except:
+        return jr({'status':500, 'errors':'Server issue. Please try again ! '})
+    return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "check_in":time, "amount":amount})

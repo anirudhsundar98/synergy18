@@ -38,3 +38,14 @@ class UserDetails(models.Model):
 
     class Meta:
         db_table = 'users'
+
+class Hospi(models.Model):
+
+    user = models.ForeignKey(UserDetails)
+    hostel = models.CharField(max_length=200)
+    days = models.IntegerField(default=0)
+    amount = models.IntegerField(default=0)
+    check_in = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'hospi'
