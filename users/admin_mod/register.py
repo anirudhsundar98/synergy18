@@ -63,7 +63,7 @@ def mark_attended_paid(r):
                         reg_count = all_reg.count()
                     except:
                         return ({"status":400, "errors":"Error ! Please try again "})
-                    if reg_count >= restrict[w]:
+                    if w in restrict and reg_count >= restrict[w]:
                         return jr({"status":400, "errors":"Sorry ! There are already {} on-spot registrants for {} !".format(restrict[w], w)})
                     reg = None
                     try:
