@@ -59,7 +59,7 @@ def mark_attended_paid(r):
                     continue
                 if w in r.POST:
                     try:
-                        all_reg = er.objects.filter(event_id=ws_dict[w])
+                        all_reg = er.objects.filter(event_id=ws_dict[w], paid=True)
                         reg_count = all_reg.count()
                     except:
                         return ({"status":400, "errors":"Error ! Please try again "})
