@@ -72,16 +72,20 @@ def mark_attended_paid(r):
                         pass
 
                     e = er()
-                    if not reg:
-                        e.user = user
-                        e.event_id = ws_dict[w]
-                        e.paid = True
-                        e.save()
-                        money+=money_dict[w]
-                    elif not reg.paid:
-                        reg.paid = True
-                        reg.save()
-                        money += money_dict[w]
+                    try:
+                        if not reg:
+                            e.user = user
+                            e.event_id = ws_dict[w]
+                            e.paid = True
+                            e.save()
+                            money+=money_dict[w]
+                        elif not reg.paid:
+                            reg.paid = True
+                            reg.save()
+                            money += money_dict[w]
+                    except Exception as e:
+                        print(e)
+                        return jr({'status': 400, 'errors': 'There was problem with the server. Please try again !'})
     except Exception as e:
         print(e)
         return jr({'status': 400, 'errors': 'There was problem in saving your response. Please try again !'})
