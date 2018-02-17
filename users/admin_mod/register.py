@@ -38,6 +38,7 @@ def mark_attended_paid(r):
 
     ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
     money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
+    restrict = {"automation":60, "creo":17}
     money = 0
 
     if 'swarm' in r.POST:
@@ -57,6 +58,13 @@ def mark_attended_paid(r):
                 if w == "swarm" and r.POST['swarm'] == "None":
                     continue
                 if w in r.POST:
+                    try:
+                        all_reg = er.objects.filter(event_id=ws_dict[w])
+                        reg_count = all_reg.count()
+                    except:
+                        return ({"status":400, "errors":"Error ! Please try again "})
+                    if reg_count >= restrict[w]:
+                        return jr({"status":400, "errors":"Sorry ! There are already {} on-spot registrants for {} !".format(restrict[w], w)})
                     reg = None
                     try:
                         reg = er.objects.get(user=user, event_id=ws_dict[w])
@@ -93,7 +101,11 @@ def mark_attended_paid(r):
         return jr({"status":400, "errors":"There was an error in saving to the database. Please try again !"})
 
 
-    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount, "ticket":user.ticket})
+    ticket = user.ticket
+    if ticket is None:
+        ticket = ""
+
+    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount, "ticket":ticket})
 
 def mark_hospi(r):
     user = general.check_loggedInUser_admin(r)
