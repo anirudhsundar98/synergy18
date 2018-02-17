@@ -47,7 +47,8 @@ class Hospi(models.Model):
     hostel = models.CharField(max_length=200)
     days = models.IntegerField(default=0)
     amount = models.IntegerField(default=0)
-    check_in = models.DateTimeField(auto_now=True)
+    check_in = models.DateTimeField(auto_now_add=True)
+    check_out = models.DateTimeField(default=None, null=True)
 
     class Meta:
         db_table = 'hospi'

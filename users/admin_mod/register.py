@@ -4,8 +4,9 @@ from django.http import JsonResponse as jr
 from models.models import UserDetails as u
 from models.models.events import EventRegister as er
 from django.db import transaction
-from datetime import datetime
+from datetime import datetime, timezone
 from models.models.user import Hospi as h
+import pytz
 
 def mark_users(r):
 
@@ -156,16 +157,114 @@ def mark_hostels(r):
     amount = 150 + 150*days
 
     try:
-        hospi.user = user
-        hospi.hostel = hostel
-        hospi.days = days
-        hospi.amount = amount
-        hospi.check_in = time
-        hospi.save()
+        with transaction.atomic():
+            hospi.user = user
+            hospi.hostel = hostel
+            hospi.days = days
+            hospi.amount = amount
+            hospi.check_in = time
+            hospi.save()
 
-        user.accommodation = True
-        user.save()
+            user.accommodation = True
+            user.save()
 
-    except:
+    except Exception as e:
+        print(e)
         return jr({'status':500, 'errors':'Server issue. Please try again ! '})
     return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "check_in":time, "amount":amount})
+
+def checkout_page(r):
+    user = general.check_loggedInUser_admin(r)
+    if not user:
+        return render(r, "404.html")
+    return render(r, "checkout.html", {"logged_in":True, "user":user.fullname})
+
+def checkout(r):
+    user = general.check_loggedInUser_admin(r)
+
+    if not user:
+        return jr({'status': 400, "errors": "Sorry, you can't access this !"})
+
+    email = ""
+
+    try:
+        email = r.POST["email"]
+    except Exception as e:
+        print(e)
+        return jr({'status': 400, "errors": "Invalid request !"})
+
+    try:
+        user = u.objects.get(email__exact=email)
+    except:
+        return jr({'status': 400, "errors": "This user doesn\'t even exist !"})
+
+    try:
+        h_user = h.objects.get(user=user)
+    except:
+        return jr({'status': 400, "errors": "This user never checked in !"})
+
+    try:
+        if h_user.check_out:
+            return jr({'status': 400, "errors": "This user already checked out at {} !".format(h_user.check_out)})
+    except Exception as e:
+        print(e)
+        return jr({'status': 400, "errors": "Sorry there was an error. Try again !"})
+
+    try:
+        h_user.check_out = datetime.now(timezone.utc)
+        print("Checkin out ", h_user.check_out)
+        co_time = h_user.check_out
+        ci_time = h_user.check_in
+
+        diff = co_time - ci_time
+        stayed = "This person has stayed for {} days {} seconds ".format(diff.days, diff.seconds)
+
+        h_user.save()
+    except Exception as e:
+        print(e)
+        return jr({'status': 400, "errors": "Sorry there was an error in saving to database. Try again !"})
+
+    return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':h_user.check_out, 'stayed':stayed})
+
+def checkout_details(r):
+    user = general.check_loggedInUser_admin(r)
+
+    if not user:
+        return jr({'status': 400, "errors": "Sorry, you can't access this !"})
+
+    email = ""
+
+    try:
+        email = r.POST["email"]
+    except Exception as e:
+        print(e)
+        return jr({'status': 400, "errors": "Invalid request !"})
+
+    try:
+        user = u.objects.get(email__exact=email)
+    except:
+        return jr({'status': 400, "errors": "This user doesn\'t even exist !"})
+
+    try:
+        h_user = h.objects.get(user=user)
+    except:
+        return jr({'status': 400, "errors": "This user never checked in !"})
+
+    try:
+        check_out = h_user.check_out
+        co_time = h_user.check_out
+        ci_time = h_user.check_in
+
+
+        if not check_out:
+            check_out = "NO"
+            co_time = datetime.now(timezone.utc)
+
+        diff = co_time - ci_time
+        stayed = "This person has stayed for {} days {} seconds ".format(diff.days, diff.seconds)
+
+        return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':check_out, 'stayed':stayed})
+
+    except Exception as e:
+        print(e)
+        return jr({'status': 400, "errors": "Error in retrieving data. Please try again !"})

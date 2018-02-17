@@ -45,5 +45,8 @@ urlpatterns = [
     url(r"^sdkjgbu34iugb3i4/gejhgj34gib3/34gb34gig4$", mark_hospi),
     url(r"^admin/wggef23t23g23eg23$", mark_attended_paid),
     url(r"^admin/gjkrgiu24g34t$", mark_hostels),
+    url(r"^dsdfu43bgiu3b4g/sefwefwef$", checkout_page),
+    url(r"^admin/fdgu23t8934g", checkout),
+    url(r"^admin/sdfiurgb34gu34ds", checkout_details),
     url(r"^", handler_404)
 ]
