@@ -38,7 +38,7 @@ def mark_attended_paid(r):
 
     ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
     money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
-    restrict = {"automation":70, "creo":17}
+    restrict = {"automation":74, "creo":17}
     money = 0
 
     if 'swarm' in r.POST:
