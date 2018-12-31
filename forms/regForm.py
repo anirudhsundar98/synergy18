@@ -5,7 +5,7 @@ from .baseForm import baseForm
 from utils import general
 from models.models import user
 
-class regForm(ModelForm, baseForm):
+class regForm(baseForm, ModelForm):
     class Meta:
         model = user.UserDetails
 

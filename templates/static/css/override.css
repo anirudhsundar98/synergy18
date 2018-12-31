@@ -1,0 +1,126 @@
+/* Events page content */
+div#main .inner {
+    max-width: 75%;
+}
+
+.modal.in .modal-dialog {
+    margin-top: 100px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+header .logo:hover #nav-title {
+    transition: color 0.2s;
+}
+
+header .logo #nav-title:hover {
+    color: #f2849e;
+} 
+
+.tiles {
+    justify-content: center;
+}
+
+.tiles article {
+    max-width: 270px;
+    max-height: 270px;
+    min-width: 190px;
+    min-height: 190px;
+    margin: 1.25em;
+}
+
+.tiles article > span.image {
+    width: 100%;
+    height: 100%;
+}
+
+.tiles article > span img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Events page modals */
+div.modal-content .modal-header h5 {
+    font-size: 1.8em;
+    display: inline-block;
+}
+
+div.modal-content .btn {
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 2px 5px gray;
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+div.modal-content .btn:hover {
+    box-shadow: 0 2px 5px gray, 2px 3px 10px black;
+    cursor: pointer;
+}
+div.modal-content .btn:active {
+    box-shadow: none;
+}
+div.modal-content .btn:focus {
+    outline: none;
+}
+
+div.modal-content .btn-primary {
+    background-color: #337ab7;
+    text-transform: capitalize;
+}
+div.modal-content .btn-primary:hover {
+    background-color: #337ab7;
+}
+div.modal-content .btn-primary:active {
+    background-color: #286090;
+}
+
+div.modal-content .btn-secondary:active {
+    background-color: #c5c5c5;
+}
+
+div.modal-content .close {
+    transition: opacity 0.2s;
+}
+div.modal-content .close:hover {
+    opacity: 0.7;
+}
+div.modal-content .close:active {
+    opacity: 0.5;
+}
+div.modal-content .close:focus {
+    outline: none;
+}
+
+
+/* Footer Stuff */
+div#wrapper {
+    min-height: 100vh;
+    margin-bottom: -154px;
+}
+
+div.push {
+    height: 154px;
+}
+
+footer#footer {
+	text-align: center;
+	padding: 3px;
+    height: 154px;
+    box-shadow: 0 0 10px #d7d7d7;
+}
+
+footer#footer .inner section {
+	width: 100% !important;
+	margin: 0em !important;
+}
+
+/* Dont ask */
+footer#footer .inner section h2 {
+    padding-left: 9px;
+}
+
+#footer > .inner .copyright {
+	margin-top: 2em;
+}
+

@@ -1,0 +1,18 @@
+#qr-container {
+    text-align: center;
+}
+
+div#QrC0dE {
+    display: inline-block;
+    padding: 20px 0 30px;
+}
+
+.qr-info {
+    font-style: italic
+}
+
+.qr-info label {
+    font-weight: 700;
+    font-size: 1.2em;
+    padding-right: 10px;
+}

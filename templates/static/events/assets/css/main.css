@@ -2150,6 +2150,7 @@ color: red;
 	}
 
 	input[type="text"],
+	input[type="number"],
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
@@ -2172,6 +2173,7 @@ color: red;
 	}
 
 		input[type="text"]:invalid,
+		input[type="number"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
@@ -2181,6 +2183,7 @@ color: red;
 		}
 
 		input[type="text"]:focus,
+		input[type="number"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
@@ -2226,6 +2229,7 @@ color: red;
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="number"],
 	select {
 		height: 3em;
 	}
@@ -2599,8 +2603,8 @@ color: red;
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		postiion: relative;
-		margin: -2.5em 0 0 -2.5em;
+		position: relative;
+		margin-top: -1.25em;
 	}
 
 		.tiles article {
@@ -2804,7 +2808,7 @@ color: red;
 		@media screen and (max-width: 1280px) {
 
 			.tiles {
-				margin: -1.25em 0 0 -1.25em;
+				margin-top: -1.25em;
 			}
 
 				.tiles article {
@@ -2817,7 +2821,7 @@ color: red;
 		@media screen and (max-width: 980px) {
 
 			.tiles {
-				margin: -2.5em 0 0 -2.5em;
+				margin-top: -1.25em;
 			}
 
 				.tiles article {
@@ -2830,7 +2834,7 @@ color: red;
 		@media screen and (max-width: 736px) {
 
 			.tiles {
-				margin: -1.25em 0 0 -1.25em;
+				margin-top: -1.25em;
 			}
 
 				.tiles article {
@@ -3367,4 +3371,4 @@ color: red;
 				padding: 0 1.25em;
 			}
 
-		}
+        }

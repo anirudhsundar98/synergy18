@@ -27,11 +27,11 @@
 
 				<!-- Header -->
 					<header id="header">
-						<div class="inner">
+						<div class="inner" id="nav-inner">
 
 							<!-- Logo -->
 								<a href="/" class="logo">
-									<span class="symbol"></span><span class="title">Synergy</span>
+									<span class="symbol"></span><h2 class="title" id="nav-title">Synergy</h2>
 								</a>
 
 							<!-- Nav -->
@@ -52,9 +52,9 @@
 						{% endif %}
 						<ul>
 							<li><a href="/">Home</a></li>
-							<li><a href="/events/e">Events</a></li>
-							<li><a href="/events/w">Workshops</a></li>
-							<li><a href="/events/gl">Guest Lectures</a></li>
+							<li><a href="/events">Events</a></li>
+							<li><a href="/workshops">Workshops</a></li>
+							<li><a href="/guest_lectures">Guest Lectures</a></li>
 							{% if logged_in %}
 							<li><a href="/myQR">QR Code</a></li>
 							<li><a href="/update">Update Info</a></li>

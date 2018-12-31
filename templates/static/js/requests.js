@@ -23,18 +23,20 @@ function request(after_func, form) {
 		}
 
 	})
-	.done(function(msg){
-	if(msg.status == 200)
-	{if(form.attr("data-purpose") === "register")
-	 {
-	    if(confirm("Thank you for registering ! You\'re about to be redirected to http://synergy.nitt.edu/login for logging in !"))
-	        window.location.href = "http://synergy.nitt.edu/login";
-	 }
-	 else
-	    after_func(msg);
-	}
-    else
-	    after_func(msg);});
+    .done(function (msg) {
+        if (msg.status == 200) {
+            if (form.attr("data-purpose") === "register") {
+                if (confirm("Thank you for registering ! You\'re about to be redirected to http://synergy.nitt.edu/login for logging in !")) {
+                    // window.location.href = "http://synergy.nitt.edu/login";
+                    window.location.href = "/login";
+                }
+            } else {
+                after_func(msg);
+            }
+        } else {
+            after_func(msg);
+        }
+    });
 		// function(msg)
 		// {
 		// 	error_div= $('.all-errors');

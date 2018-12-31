@@ -6,3 +6,7 @@ db.cnf
 tmp
 mail_creds
 mailScript.py
+venv
+TEMP
+.vscode
+scripts

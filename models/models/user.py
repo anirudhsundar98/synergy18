@@ -18,7 +18,7 @@ class UserDetails(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.BooleanField(default=False)
     email = models.EmailField(max_length=255, unique=True)
-    uniq_val = models.CharField(max_length=100, unique=True, name="unique")
+    uniq_val = models.CharField(max_length=100, unique=True, name="unique") # external id
     fullname = models.CharField(max_length=100)
     passwd = models.CharField(max_length=100, name="password")
     country = models.CharField(max_length=100, choices=Countries, default='India')
@@ -27,16 +27,16 @@ class UserDetails(models.Model):
     yearOfStudy = models.IntegerField(name="YoS", validators=[max_val, min_val])
     accommodation = models.BooleanField()
     attended = models.BooleanField(default=False)
-    paid = models.BooleanField(default=False)
-    activated = models.BooleanField(default=False)
+    paid = models.BooleanField(default=False) # whether or not they paid at front desk
+    activated = models.BooleanField(default=False) # email verifaction not implemented
     auth_token = models.CharField(max_length=500, default="")
     tokenCreatedAt = models.DateTimeField(auto_now_add=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     amount = models.IntegerField(default=0)
-    events_paid = models.BooleanField(default=False)
+    events_paid = models.BooleanField(default=False) # if they paid for events
     alt_phone = models.CharField(max_length=20, default=None, null=True)
-    ticket = models.CharField(max_length=1000, default=None, null=True)
+    ticket = models.CharField(max_length=1000, default=None, null=True) # ?
 
     class Meta:
         db_table = 'users'

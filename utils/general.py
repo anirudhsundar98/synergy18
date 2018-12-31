@@ -57,7 +57,7 @@ def phno_validate(phno):
         return False
     return True
 
-def send_mail(html, subject, email):
+def send_mail(html, subject, email):  # general 
     me = "synergy18.web@outlook.com"
     you = email
 
@@ -79,7 +79,7 @@ def send_mail(html, subject, email):
     s = smtplib.SMTP('smtp-mail.outlook.com', 587)
     s.starttls()
 
-    creds_file = open(settings.BASE_DIR+"/utils/mail_creds", "r+")
+    creds_file = open(settings.BASE_DIR+"/utils/mail_creds", "r+")  # CREATE
     creds = []
     for k in creds_file:
         creds.append(k.strip())

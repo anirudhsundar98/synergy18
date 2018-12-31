@@ -16,7 +16,8 @@
 				}
 				else
 				{
-					window.location.href = "http://synergy.nitt.edu";
+          // window.location.href = "http://synergy.nitt.edu";
+					window.location.href = "/";
 
 				}
 //			}

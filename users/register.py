@@ -49,7 +49,8 @@ def register_user(request):
 
     try:
         url = "https://www.google.com/recaptcha/api/siteverify"
-        secr = "6LcmLz8UAAAAAFUFuEGC7gQ8aHCTlSUiDQauPgwi"
+        # secr = "6LcmLz8UAAAAAFUFuEGC7gQ8aHCTlSUiDQauPgwi"
+        secr = "6Lcd8YkUAAAAAAC_t4kmB2Ui2oj2Sw-wW9HMRGzc"
         resp = requests.post(url, {'secret':secr, "response":request.POST.get("g-recaptcha-response", "")})
         resp = resp.json()
         if not resp["success"]:

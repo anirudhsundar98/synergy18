@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/form-override.css' %}" />
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="{% static 'js/requests.js' %}"></script>
+<script src='https://www.google.com/recaptcha/api.js?render=6LcR5okUAAAAABRc5zJJxBk0HaGUuVgTXIxb_lUC' async defer></script>
 
 {% endblock %}
 

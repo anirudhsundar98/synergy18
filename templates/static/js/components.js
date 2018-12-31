@@ -1,6 +1,6 @@
 captcha = Vue.component('captcha', {
 	props:["purpose"],
-  	template: '<div v-if="purpose === \'register\'" class="g-recaptcha field half" data-sitekey="6LcmLz8UAAAAAKXZA2gw3qIPRmNGRZdPf_TDm121"></div>'
+    template: '<div v-if="purpose === \'register\'" class="g-recaptcha field half" data-sitekey="6Lcd8YkUAAAAABYfkE8agR5L1ZCddRzNWCktTGkU"></div>'
 });
 
 submit = Vue.component('submit',{

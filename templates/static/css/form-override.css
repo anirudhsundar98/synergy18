@@ -1,0 +1,117 @@
+/* Form Title */
+h1 {
+    font-size: 2.5em;
+}
+
+/* Errors */
+ul.errorslist, ul.errorlist {
+    text-align: center;
+    list-style: none;
+}
+
+ul ul {
+    margin-bottom: 5px;
+}
+
+
+/* Form stuff */
+form {
+    width: 50vw;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+form .half.field {
+    width: initial !important;
+    padding-left: initial;
+    float: none;
+}
+
+form .half.field label {
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+form .half.field input {
+    padding: 0 3px;
+}
+
+form .half.field input {
+    transition: all 0.3s;
+}
+
+/* button */
+input[type="submit"].special, input[type="reset"].special,
+input[type="button"].special, button.special, .button.special {
+    margin-top: 15px;
+    padding: 0 25px;
+    color: white;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 1.2em;
+    line-height: 1em;
+    letter-spacing: 0.15em;
+    height: 40px;
+
+    background-color: #e15a70;
+    box-shadow: 0 2px 7px gray;
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+input[type="submit"].special:hover, input[type="reset"].special:hover,
+input[type="button"].special:hover, button.special:hover, .button.special:hover {
+    box-shadow: 0 2px 7px gray, 2px 3px 10px black;
+    cursor: pointer;
+}
+
+input[type="submit"].special:active, input[type="reset"].special:active,
+input[type="button"].special:active, button.special:active, .button.special:active {
+    background-color: #aa4555;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+input[type="submit"].special:focus, input[type="reset"].special:focus,
+input[type="button"].special:focus, button.special:focus, .button.special:focus {
+    outline: none;
+}
+
+/* Captcha */
+.g-recaptcha {
+    padding-top: 10px;
+}
+
+/* Span below form */
+span#not-registed {
+    display: block;
+    width: 50vw;
+    margin: 25px auto 0;
+}
+
+@media screen and (max-width: 1000px) {
+    form {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    form {
+        width: 70vw;
+    }
+
+    div#main .inner {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    form {
+        width: 75vw;
+    }
+
+    div#main .inner {
+        max-width: 100%;
+    }
+}
+

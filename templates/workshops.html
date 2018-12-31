@@ -1,0 +1,195 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Synergy'18</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/html5shiv.js' %}"></script><![endif]-->
+		<link rel="stylesheet" href="{% static 'events/assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/override.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/workshops.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="shortcut icon" href="{% static 'images/synergy_logo.png' %}" type="image/png">
+		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'events/assets/css/ie9.css' %" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'events/assets/css/ie8.css' %}" /><![endif]-->
+		<script type="text/javascript" src="{% static 'js/vue.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/events.js' %}"></script>
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner" id="nav-inner">
+
+							<!-- Logo -->
+								<a href="/" class="logo">
+									<span class="symbol"></span><h2 class="title" id="nav-title">Synergy</h2>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						{% if logged_in %}
+						<h4>Welcome, {{ user }}</h4>
+						{% endif %}
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/workshops">Workshops</a></li>
+                            <li><a href="/guest_lectures">Guest Lectures</a></li>
+                            <li><a href="https://goo.gl/nk4SNA" target="_blank">Schedule</a></li>
+                            {% if logged_in %}
+                            <li><a href="/myQR">QR Code</a></li>
+                            <li><a href="/update">Update Info</a></li>
+                            {% endif %}
+                            <li><a href="/sponsors">Sponsors</a></li>
+                            {% if logged_in %}
+                            <li><a href="/logout">Logout</a></li>
+                            {% else %}
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Register</a></li>
+                            {% endif %}
+                        </ul>
+					</nav>
+
+				<!-- Modals -->
+					{% for w, reg in workshops %}
+					<div class="modal fade" id="workshop-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="wlabel-{{ forloop.counter }}" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="wlabel-{{ forloop.counter }}">{{ w.name }}</h5>
+					        <button class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        {{ w.desc }}
+					      </div>
+					      <div class="modal-footer">
+					      	<span class="pull-left">
+							{% if logged_in %}
+                                {% if not reg %}
+                                <button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this, false)">Register</button>
+                                {% else %}
+                                Registered! Click <a href="https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk" target="_blank">Here</a> to pay
+                                {% endif %}
+                                {% else %}
+                                <a href="/login" class="btn btn-primary">Login</a>
+                            {% endif %}
+					      	</span>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					{% endfor %}
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+              <div class="all-errors"></div>
+              
+							<header>
+                <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                  <div class="panel">
+                    <div class="panel-heading" role="tab" id="heading_wks">
+                      <h4 class="panel-title">
+                        <!-- <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse_wks" aria-expanded="true" aria-controls="collapse_wks"> -->
+                          <h1>Workshops</h1>
+                        <!-- </a> -->
+                      </h4>
+                    </div>
+                  </div>
+								</div>
+                
+              </header>
+              
+              <div>
+                <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse_promo" aria-expanded="true" aria-controls="collapse_promo">
+                  <div class="text-center">
+                    <div onclick="handlePromoClick(this)">(Click here to hide workshops promo)</div>
+                    <div id="collapse_promo" class="collapse in" role="tabpanel" aria-labelledby="heading_wks">
+                      <a href="https://goo.gl/2k2MNM" target="_blank">https://goo.gl/2k2MNM</a>
+                    </div>
+                  </div>
+                </a>
+                <section class="tiles">
+                  {% for w, reg in workshops %}
+                    {% if forloop.counter|divisibleby:2 %}
+                      <article class="style2">
+                    {% else %}
+                      <article class="style1">
+                    {% endif %}
+                      <span class="image">
+                        <img src="{% static 'events/images/pic01.jpg' %}" alt="" />
+                      </span>
+                      <a href="#" data-toggle="modal" data-target="#workshop-{{ forloop.counter }}">
+                        <h3>{{ w.name }}</h3>
+                        <div class="content">
+                          <p>{{ w.caption }}</p>
+                        </div>
+                      </a>
+                    </article>
+                  {% endfor %}
+                </section>
+                <div id="workshop-contact">( For Workshop related queries contact Babu : <a href="tel:8870708062">8870708062</a> )</div>
+              </div>
+						</div>
+                    </div>
+            <div class="push"></div>
+      </div>
+      
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+      
+          <section>
+            <h2>Follow</h2>
+            <ul class="icons">
+              <li><a href="https://twitter.com/synergynitt" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="https://www.facebook.com/synergynitt/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+              <li><a href="https://www.instagram.com/synergynitt/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="tel:7418171944" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+              <li><a href="mailto:mea18.nitt@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+          </section>
+          <ul class="copyright">
+            <li>&copy; Synergy. All rights reserved</li>
+          </ul>
+        </div>
+      </footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'events/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'events/assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'js/bootstrap.min.js' %}"></script>
+			<script src="{% static 'events/assets/js/util.js' %}"></script>
+			<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/respond.min.js' %}"></script><![endif]-->
+			<script src="{% static 'events/assets/js/main.js' %}"></script>
+			<script src="{% static 'events/assets/js/workshops.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/components.js' %}"></script>
+
+	</body>
+</html>

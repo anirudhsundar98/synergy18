@@ -2,23 +2,18 @@
 {% load staticfiles %}
 {% block css %}
 <script src="{% static 'js/qrcode.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/qr.css' %}" />
 {% endblock %}
 
+{% block formTitle %}
+{{ purpose }}
+{% endblock %}
 
 {% block content %}
-<div id="QrC0dE">
-
-</div>
-<br><br>
-
-<div id="syn_id">
-    <label>Synergy ID : </label> &nbsp;<strong>{{ syn_id }}</strong>
-</div>
-
-<br>
-
-<div>
-    <label>Email : </label>&nbsp;<strong>{{ email }}</strong>
+<div id="qr-container">
+    <div id="QrC0dE"></div>
+    <div class="qr-info" id="syn_id"><label>Synergy ID: </label> {{ syn_id }}</div>
+    <div class="qr-info" if="email"><label>Email: </label> {{ email }}</div>
 </div>
 {% endblock %}
 

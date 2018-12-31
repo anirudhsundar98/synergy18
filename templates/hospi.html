@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/form-override.css' %}" />
+
+{% endblock %}
 {% block content %}
 <br>
+<h1 class="text-center" style="margin-bottom: 0;">Hospi</h1>
 <div id="details"></div>
 <br>
-<div id="amt"></div>
+
 <br>
 <form id="pr_form">
 	{% csrf_token %}
@@ -25,10 +30,12 @@
 		</select>
 
 	</div>
-	<div class="field half"><label for="days">Number of days of stay</label>
+	<div class="field half"><label for="days">Number of days of stay</label><br>
 		<input class="check" type="number" name="days" id="days">
 	</div>
-	<submit/>
+    <div id="amt"></div>
+    <submit/>
+    
 </form>
 {% endblock %}
 
@@ -87,12 +94,13 @@ function jhsdbfjh2b34t293sdjwef(e)
 		});
 }
 
+// MONEY FUNCTION
 function ghiu4g4iugh4iuhg(e)
 {
 	money = 0;
 	days=document.getElementById('days').value;
 	money = 150 + 150*days;
-	$("#amt").html(" Total Money : "+ "<strong>" + String(money) + "</strong>");
+	$("#amt").html(" (Total Money : "+ "<strong>" + String(money) + "</strong>)");
 }
 
 $(document).ready(function(){

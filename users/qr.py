@@ -24,4 +24,4 @@ def render_qr(request):
         uniq = cur_user.unique
         email = cur_user.email
 
-    return render(request, "QR.html", {"qr":uniq, "logged_in": logged_in, "user": fullname, "syn_id":uniq[len(uniq)-10:], "email":email})
+    return render(request, "QR.html", {"qr":uniq, "logged_in": logged_in, "user": fullname, "syn_id":uniq[len(uniq)-10:], "email":email, "purpose":"QR Code"})

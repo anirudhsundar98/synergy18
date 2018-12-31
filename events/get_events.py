@@ -6,23 +6,9 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 
 @require_GET
-def get(request, e_type):
-    if not e_type or e_type == "":
-        e_type="e"
-    if e_type not in ["e", "w", "gl"]:
-        return render(request, "404.html")
-
+def get_events(request):
     events = e.objects.filter(type="event")
-    workshops = e.objects.filter(type="workshop")
-    gl = e.objects.filter(type="gl")
-
-    g_lec = []
-    for g in gl:
-        g.desc = mark_safe(g.desc)
-        g_lec.append(g)
-
     reg = {}
-
 
     try:
         auth_token = request.session["cur_token"]
@@ -38,6 +24,32 @@ def get(request, e_type):
         except:
             reg[event.unique] = False
 
+    events_list = []
+
+    for event in events:
+        event.desc = mark_safe(event.desc)
+        events_list.append((event, reg[event.unique]))
+
+    logged_in = True
+    fullname = ""
+    if not user:
+        logged_in = False
+    else:
+        fullname = user.fullname
+
+    return render(request, "events.html", {"events": events_list, "logged_in":logged_in, "user":fullname})
+
+def get_workshops(request):
+    workshops = e.objects.filter(type="workshop")
+    reg = {}
+
+    try:
+        auth_token = request.session["cur_token"]
+        user = u.objects.get(auth_token__exact=auth_token)
+
+    except:
+        user = None
+
     for w in workshops:
         try:
             evr_user = evr.objects.get(user=user, event=w)
@@ -45,12 +57,7 @@ def get(request, e_type):
         except:
             reg[w.unique] = False
 
-    events_list = []
     workshops_list = []
-
-    for event in events:
-        event.desc = mark_safe(event.desc)
-        events_list.append((event, reg[event.unique]))
 
     for w in workshops:
         w.desc = mark_safe(w.desc)
@@ -63,4 +70,27 @@ def get(request, e_type):
     else:
         fullname = user.fullname
 
-    return render(request, "events/index.html", {"events": events_list, "workshops":workshops_list, "logged_in":logged_in, "user":fullname, "guest_lectures":g_lec, "e_type":e_type})
+    return render(request, "workshops.html", {"workshops":workshops_list, "logged_in":logged_in, "user":fullname})
+
+def get_gls(request):
+    gl = e.objects.filter(type="gl")
+    g_lec = []
+    for g in gl:
+        g.desc = mark_safe(g.desc)
+        g_lec.append(g)
+
+    try:
+        auth_token = request.session["cur_token"]
+        user = u.objects.get(auth_token__exact=auth_token)
+
+    except:
+        user = None
+
+    logged_in = True
+    fullname = ""
+    if not user:
+        logged_in = False
+    else:
+        fullname = user.fullname
+
+    return render(request, "guest-lectures.html", {"logged_in":logged_in, "user":fullname, "guest_lectures":g_lec})

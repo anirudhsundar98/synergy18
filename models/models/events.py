@@ -3,11 +3,11 @@ from .user import UserDetails as u
 
 class EventDetails(models.Model):
     id = models.AutoField(primary_key=True)
-    unique = models.CharField(max_length=20, unique=True, default=None)
+    unique = models.CharField(max_length=20, unique=True, default=None) # internal id (unique hash)
     name = models.CharField(max_length=100)
-    caption = models.CharField(max_length=300)
+    caption = models.CharField(max_length=300) # byline
     desc = models.TextField()
-    types = (('event', 'event'), ('workshop', 'workshop'), ('gl', 'gl'))
+    types = (('event', 'event'), ('workshop', 'workshop'), ('gl', 'gl'))  # Enum
     type = models.CharField(max_length=20, choices=types, default="event")
     created_time = models.DateTimeField(auto_now_add=True)
     start_time = models.DateTimeField()
