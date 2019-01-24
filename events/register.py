@@ -16,21 +16,21 @@ def register_event(request):
         cur_user = u.objects.get(auth_token__exact=auth_token)
 
     except:
-        return JsonResponse({"status":400, "errors":"You need to login first !"})
+        return JsonResponse({"status":400, "errors":"You need to login first"})
 
     event_unique = request.POST.get("event")
 
     try:
         cur_event = e.objects.get(unique__exact=event_unique)
     except:
-        error = "This event doesn't exist !"
+        error = "This event doesn't exist"
         final_response["status"] = 400
         final_response["errors"] = error
         return JsonResponse(final_response)
 
     try:
         register = evr.objects.get(user=cur_user, event=cur_event)
-        error = "Looks like you have already registered for {} !".format(cur_event.name)
+        error = "Looks like you have already registered for {}!".format(cur_event.name)
         final_response["status"] = 400
         final_response["errors"] = error
         return JsonResponse(final_response)
@@ -43,7 +43,7 @@ def register_event(request):
         register.event = cur_event
         register.save()
     except:
-        error = "There was an error in registering. Please try again !"
+        error = "There was an error in registering. Please try again."
         final_response["status"] = 500
         final_response["errors"] = error
         return JsonResponse(final_response)

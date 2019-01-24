@@ -1,6 +1,6 @@
 function register_event(event, isEvent)
 {
-	if(!confirm("Are you sure you want to register ? "))
+	if(!confirm("Are you sure you want to register? "))
 		return;
 
     data = {'event': event.getAttribute('data-event')};
@@ -28,7 +28,7 @@ function register_event(event, isEvent)
 .done(function(msg){
 
     if(typeof(msg) != "object")
-        alert("There was an issue with your request. Please check your connection and try again !");
+        alert("There was an issue with your request. Please check your connection and try again.");
     else
     {
         try{
@@ -37,18 +37,18 @@ function register_event(event, isEvent)
             else
             {
                 if(isEvent)
-                    after_reg_txt = " Registered ! ";
+                    after_reg_txt = " Registered.";
                 else
-                    after_reg_txt = " Registered ! Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay";
+                    after_reg_txt = " Registered. Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay";
 
-                alert("Registered for event ! If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
+                alert("Registered for event. If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
                 span = event.parentElement;
                 span.innerHTML = after_reg_txt;
             }
 
         }
         catch(e){
-            alert("There was an issue with your request. Please try again !");
+            alert("There was an issue with your request. Please try again.");
         }
     }
 

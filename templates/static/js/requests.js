@@ -26,10 +26,8 @@ function request(after_func, form) {
     .done(function (msg) {
         if (msg.status == 200) {
             if (form.attr("data-purpose") === "register") {
-                if (confirm("Thank you for registering ! You\'re about to be redirected to http://synergy.nitt.edu/login for logging in !")) {
-                    // window.location.href = "http://synergy.nitt.edu/login";
-                    window.location.href = "/login";
-                }
+                alert("Thank you for registering! You\'re about to be redirected to the login page.");
+                window.location.href = "/login";
             } else {
                 after_func(msg);
             }

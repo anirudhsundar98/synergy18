@@ -7,7 +7,7 @@
 {% block content %}
 <br>
 <h1 class="text-center" style="margin-bottom: 0;">Hospi</h1>
-<div id="details"></div>
+<div id="details" class="text-center" style="margin-top: 10px;"></div>
 <br>
 
 <br>
@@ -45,7 +45,7 @@ function jhsdbfjh2b34t293sdjwef(e)
 {
 	e.preventDefault();
 
-	if(!confirm("Are you sure you wanna record this ?"))
+	if(!confirm("Are you sure you want to record this?"))
 		return;
 
 	form = $("#pr_form");
@@ -74,18 +74,18 @@ function jhsdbfjh2b34t293sdjwef(e)
 			console.log(msg);
 			if(typeof(msg) != "object")
 			{
-					$(".all-errors").html("There was an issue with your request. Please try again !");
+					$(".all-errors").html("There was an issue with your request. Please try again.");
 					return;
 			}
 
 			if(msg.status == 200)
 			{
 				details = $("#details");
-				var u = "<span>user : "+String(msg.fullname)+"</span><br>";
-				var email = "<span>email : "+String(msg.email)+"</span><br>";
-				var hostel = "<span>Hostel : "+String(msg.hostel)+"</span><br>";
-				var check_in = "<span>Check In time : "+String(msg.check_in)+"</span><br>";
-				var amount = "<span>Amount paid : "+String(msg.amount)+"</span><br>";
+				var u = "<span><b>User</b>: "+String(msg.fullname)+"</span><br>";
+				var email = "<span><b>Email</b>: "+String(msg.email)+"</span><br>";
+				var hostel = "<span><b>Hostel</b>: "+String(msg.hostel)+"</span><br>";
+				var check_in = "<span><b>Check In time</b>: "+String(msg.check_in)+"</span><br>";
+				var amount = "<span><b>Amount paid</b>: "+String(msg.amount)+"</span><br>";
 				details.html(u+email+hostel+amount+check_in);
 				$(".all-errors").html("");
 			}

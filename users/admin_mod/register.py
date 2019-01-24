@@ -22,7 +22,7 @@ def mark_attended_paid(r):
     user = general.check_loggedInUser_admin(r)
 
     if not user:
-        return jr({'status':400, "errors":"Sorry, you can't access this !"})
+        return jr({'status':400, "errors":"Sorry, you can't access this."})
 
     try:
         entered_email = r.POST["email"]
@@ -30,21 +30,22 @@ def mark_attended_paid(r):
         entered_ticket = r.POST["ticket"]
     except Exception as e:
         print(e)
-        return jr({'status':400, 'errors':'Invalid request !'})
+        return jr({'status':400, 'errors':'Invalid request.'})
 
     try:
         user = u.objects.get(email__exact=entered_email)
     except:
-        return jr({'status': 400, 'errors': 'This user doesn\'t even exist ! They\'ll have to sign up first !'})
+        return jr({'status': 400, 'errors': 'This user doesn\'t exist. They\'ll have to sign up first.'})
 
-    ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
+    ws_dict = {'automobile':2, 'creo':7}
+    # ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
     money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
     restrict = {"automation":74, "creo":17}
     money = 0
 
     if 'swarm' in r.POST:
         if r.POST['swarm'] not in ["2400", "3000", "2750", "None"]:
-            return jr({"status":400, "errors":"Incorrect detail for swarm !"})
+            return jr({"status":400, "errors":"Incorrect detail for swarm"})
         elif r.POST['swarm'] != "None":
             money_dict["swarm"] = int(r.POST["swarm"])
 
@@ -63,9 +64,9 @@ def mark_attended_paid(r):
                         all_reg = er.objects.filter(event_id=ws_dict[w], paid=True)
                         reg_count = all_reg.count()
                     except:
-                        return ({"status":400, "errors":"Error ! Please try again "})
+                        return ({"status":400, "errors":"Error. Please try again "})
                     if w in restrict and reg_count >= restrict[w]:
-                        return jr({"status":400, "errors":"Sorry ! There are already {} on-spot registrants for {} !".format(restrict[w], w)})
+                        return jr({"status":400, "errors":"Sorry. There are already {} on-spot registrants for {}.".format(restrict[w], w)})
                     reg = None
                     try:
                         reg = er.objects.get(user=user, event_id=ws_dict[w])
@@ -86,13 +87,14 @@ def mark_attended_paid(r):
                             money += money_dict[w]
                     except Exception as e:
                         print(e)
-                        return jr({'status': 400, 'errors': 'There was problem with the server. Please try again !'})
+                        return jr({'status': 400, 'errors': 'There was a problem with the server. Please try again.'})
     except Exception as e:
         print(e)
-        return jr({'status': 400, 'errors': 'There was problem in saving your response. Please try again !'})
+        return jr({'status': 400, 'errors': 'There was a problem in saving your response. Please try again.'})
 
     try:
         user.paid = True
+        user.attended = True
         user.amount += money
         user.alt_phone = entered_phone
         if user.ticket is not None and len(user.ticket)!=0 and len(entered_ticket)!=0:
@@ -103,7 +105,7 @@ def mark_attended_paid(r):
         user.save()
     except Exception as e:
         print(e)
-        return jr({"status":400, "errors":"There was an error in saving to the database. Please try again !"})
+        return jr({"status":400, "errors":"There was an error in saving to the database. Please try again."})
 
 
     ticket = user.ticket
@@ -123,7 +125,7 @@ def mark_hostels(r):
     user = general.check_loggedInUser_admin(r)
 
     if not user:
-        return jr({'status':400, "errors":"Sorry, you can't access this !"})
+        return jr({'status':400, "errors":"Sorry, you can't access this."})
 
     hostels = ["garnet a", "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b", "ruby", "pearl", "opal"]
 
@@ -134,12 +136,12 @@ def mark_hostels(r):
         time = datetime.now()
     except Exception as e:
         print(e)
-        return jr({'status':400, 'errors':'Invalid request !'})
+        return jr({'status':400, 'errors':'Invalid request.'})
 
     try:
         user = u.objects.get(email__exact=email)
     except:
-        return jr({'status':400, 'errors':'This user doesn\'t exist !'})
+        return jr({'status':400, 'errors':'This user doesn\'t exist.'})
 
     try:
         hospi= h.objects.get(user=user)
@@ -147,12 +149,12 @@ def mark_hostels(r):
         hospi = None
 
     if hospi:
-        return jr({'status':400, 'errors':'This person has already paid for accommodation ! '})
+        return jr({'status':400, 'errors':'This person has already paid for accommodation. '})
     else:
         hospi = h()
 
     if hostel not in hostels:
-        return jr({'status':400, 'errors':'Invalid hostel in request ! '})
+        return jr({'status':400, 'errors':'Invalid hostel in request. '})
 
     amount = 150 + 150*days
 
@@ -166,11 +168,12 @@ def mark_hostels(r):
             hospi.save()
 
             user.accommodation = True
+            user.attended = True
             user.save()
 
     except Exception as e:
         print(e)
-        return jr({'status':500, 'errors':'Server issue. Please try again ! '})
+        return jr({'status':500, 'errors':'Server issue. Please try again. '})
     return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "check_in":time, "amount":amount})
 
 def checkout_page(r):
@@ -183,7 +186,7 @@ def checkout(r):
     user = general.check_loggedInUser_admin(r)
 
     if not user:
-        return jr({'status': 400, "errors": "Sorry, you can't access this !"})
+        return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
     email = ""
 
@@ -191,24 +194,24 @@ def checkout(r):
         email = r.POST["email"]
     except Exception as e:
         print(e)
-        return jr({'status': 400, "errors": "Invalid request !"})
+        return jr({'status': 400, "errors": "Invalid request."})
 
     try:
         user = u.objects.get(email__exact=email)
     except:
-        return jr({'status': 400, "errors": "This user doesn\'t even exist !"})
+        return jr({'status': 400, "errors": "This user doesn\'t exist."})
 
     try:
         h_user = h.objects.get(user=user)
     except:
-        return jr({'status': 400, "errors": "This user never checked in !"})
+        return jr({'status': 400, "errors": "This user never checked in."})
 
     try:
         if h_user.check_out:
-            return jr({'status': 400, "errors": "This user already checked out at {} !".format(h_user.check_out)})
+            return jr({'status': 400, "errors": "This user already checked out at {}.".format(h_user.check_out)})
     except Exception as e:
         print(e)
-        return jr({'status': 400, "errors": "Sorry there was an error. Try again !"})
+        return jr({'status': 400, "errors": "Sorry there was an error. Try again."})
 
     try:
         h_user.check_out = datetime.now(timezone.utc)
@@ -222,7 +225,7 @@ def checkout(r):
         h_user.save()
     except Exception as e:
         print(e)
-        return jr({'status': 400, "errors": "Sorry there was an error in saving to database. Try again !"})
+        return jr({'status': 400, "errors": "Sorry there was an error in saving to database. Try again."})
 
     return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':h_user.check_out, 'stayed':stayed})
 
@@ -230,7 +233,7 @@ def checkout_details(r):
     user = general.check_loggedInUser_admin(r)
 
     if not user:
-        return jr({'status': 400, "errors": "Sorry, you can't access this !"})
+        return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
     email = ""
 
@@ -238,17 +241,17 @@ def checkout_details(r):
         email = r.POST["email"]
     except Exception as e:
         print(e)
-        return jr({'status': 400, "errors": "Invalid request !"})
+        return jr({'status': 400, "errors": "Invalid request."})
 
     try:
         user = u.objects.get(email__exact=email)
     except:
-        return jr({'status': 400, "errors": "This user doesn\'t even exist !"})
+        return jr({'status': 400, "errors": "This user doesn\'t exist."})
 
     try:
         h_user = h.objects.get(user=user)
     except:
-        return jr({'status': 400, "errors": "This user never checked in !"})
+        return jr({'status': 400, "errors": "This user never checked in."})
 
     try:
         check_out = h_user.check_out
@@ -267,4 +270,4 @@ def checkout_details(r):
 
     except Exception as e:
         print(e)
-        return jr({'status': 400, "errors": "Error in retrieving data. Please try again !"})
+        return jr({'status': 400, "errors": "Error in retrieving data. Please try again."})

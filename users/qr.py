@@ -6,7 +6,7 @@ from models.models import UserDetails as u
 @decorators.check_logged_in("/")
 def render_qr(request):
     if request.method == "POST":
-        return JsonResponse({"message":"Hacker ? :P"})
+        return JsonResponse({"message":"?"})
     cur_user = None
     try:
         cur_token = request.session["cur_token"]

@@ -25,13 +25,13 @@ def register_user(request):
                 form.errors["Full Name"] = form.errors.pop(e)
             elif e == "unique":
                 form.errors.pop(e)
-                form.errors["Your Account"] = mark_safe("<ul class=\"errorslist\"><li>There was an issue in setting up your account. Please try again 1 !</li></ul>")
+                form.errors["Your Account"] = mark_safe("<ul class=\"errorslist\"><li>There was an issue in setting up your account. Please try again 1.</li></ul>")
             else:
                 form.errors[e.title()] = form.errors.pop(e)
 
         final_response["errors"] = str(form.errors)
         final_response["status"] = 400
-        return JsonResponse(final_response)#"There were errors in your details !")
+        return JsonResponse(final_response)#"There were errors in your details.")
     try:
         email = form.cleaned_data['email']
         fullname = form.cleaned_data['fullname']
@@ -54,10 +54,10 @@ def register_user(request):
         resp = requests.post(url, {'secret':secr, "response":request.POST.get("g-recaptcha-response", "")})
         resp = resp.json()
         if not resp["success"]:
-            form.errors["Captcha"] = mark_safe("<ul class=\"errorslist\"><li>Invalid captcha response. Please try again !</li></ul>")
+            form.errors["Captcha"] = mark_safe("<ul class=\"errorslist\"><li>Invalid captcha response. Please try again.</li></ul>")
     except:
         form.errors["Captcha"] = mark_safe(
-            "<ul class=\"errorslist\"><li>Invalid captcha response. Please try again !</li></ul>")
+            "<ul class=\"errorslist\"><li>Invalid captcha response. Please try again.</li></ul>")
 
 
 

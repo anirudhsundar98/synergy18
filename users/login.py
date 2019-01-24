@@ -72,7 +72,7 @@ def validate_user(request):
                 request.session["cur_token"] = auth_token
             except:
                 final_response["status"] = 400
-                final_response["errors"] = "There was an issue in setting up your account. Please try again !"
+                final_response["errors"] = "There was an issue in setting up your account. Please try again."
                 return JsonResponse(final_response)
             final_response["status"] = 200
             return JsonResponse(final_response)

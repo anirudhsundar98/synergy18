@@ -1,18 +1,18 @@
 
 	function after_req(msg) {
 		if(typeof(msg) != "object")
-			$(".all-errors").html("There was an issue with your request. Please try again !");
+			$(".all-errors").html("There was an issue with your request. Please try again.");
 		else
 		{
 				if(msg.status != 200)
 				{
 					$(".all-errors").html(msg.errors);
-					alert('Please resolve the errors and try again !');
+					alert('Please resolve the errors and try again');
 				}
 				else if(msg.hasOwnProperty('inline'))
 				{
 				    if(msg.inline == true)
-				        alert("Done updating !");
+				        alert("Done updating");
 				}
 				else
 				{
@@ -22,7 +22,7 @@
 //			}
 //			catch(e){
 //
-//				$(".all-errors").html("There was an issue with your request. Please try again !");
+//				$(".all-errors").html("There was an issue with your request. Please try again.");
 //			}
 		}
 

@@ -12,7 +12,7 @@ submit = Vue.component('submit',{
 after_reg = Vue.component('afterReg', {
 
 	template: `<div class="after_reg" style="display:none;">
-		Thank you for registering ! Click <a href="/login">Here</a> to login 
+		Thank you for registering! Click <a href="/login">Here</a> to login.
 	</div>
 	`
 });

@@ -23,7 +23,7 @@ def get_stats(r):
     try:
         registrants = u.objects.count()
     except Exception as e:
-        return HttpResponse("Sorry there was an issue in fetching details. Pls try again !")
+        return HttpResponse("Sorry there was an issue in fetching details. Pls try again.")
 
 
     return render(r, "Attendee_Report.html", {"count":registrants})
