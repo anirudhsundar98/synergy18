@@ -1,0 +1,424 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow-y: hidden; */
+}
+
+body {
+    background: black;
+}
+
+div#particles-js {
+    width: 100%;
+    height: 100%;
+}
+
+div#wrapper {
+    margin-bottom: 0;
+}
+
+#header {
+    transition: height 1s;
+}
+#header .logo {
+    transition: opacity 1s;
+}
+.img-container {
+    transition: width 1s, height 1s, top 1s, left 1s, opacity 2s;
+}
+
+/* GEARS AND CONTAINERS CSS */
+.img-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 160px;
+    height: 160px;
+    z-index: 1;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+/* Center placements (for both preloader and main screen) */
+img.center-s {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: initial;
+    transform: translate(50%, calc(50% - 5px)); /* 5px corrective offset */
+}
+
+div.center-container {
+    width: 280px;
+    height: 280px;
+    z-index: 100;
+}
+
+/* PRELOADER */
+div#preloader-container {
+    position: absolute;
+    top: 0;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    
+    opacity: 1;
+    z-index: 1000;
+    transition: opacity 2s;
+}
+
+div.preloader-outer-img-container {
+    width: 112px;
+    height: 112px;
+}
+
+div#preloader-top-gear-container {
+    /**
+     * -(280/2)px to clear center div
+     * -(112/2)px for top div and center div to share edges
+     * +8px offset for images to overlap
+     * = -180px
+     * 
+     * (280px and 112px are the dimensions of the square divs)
+     */
+    top: calc(50% - 180px);
+}
+
+div#preloader-left-gear-container {
+    /**
+     * Split the 184px calculated above as
+     * top: 184cos(60deg)
+     * left: 184sin(60deg)
+     */
+    top: calc(50% + 90px);
+    left: calc(50% + 155.88px);
+}
+
+/* Based on the same calculation above */
+div#preloader-right-gear-container {
+    top: calc(50% + 90px);
+    left: calc(50% - 155.88px);
+}
+
+
+/* MAIN SCREEN */
+/* Outer Gears */
+div.outer-img-container {
+    opacity: 0;
+}
+
+div#top-gear-container {
+    /**
+     * -(280/2)px to clear center div
+     * -(160/2)px for top div and center div to share edges
+     * +17px offset for images to overlap
+     * = -260px
+     * 
+     * (280px and 160px are the dimensions of the square divs)
+     */
+    top: calc(50% - 203px);
+}
+
+div#upper-left-gear-container {
+    /**
+     * Split the 203px calculated above as
+     * top: 203cos(60deg)
+     * left: 203sin(60deg)
+     */
+    top: calc(50% - 101.5px);
+    left: calc(50% - 175.8px);
+}
+
+/* Everything else is based off the same calculations above */
+div#upper-right-gear-container {
+    top: calc(50% - 101.5px);
+    left: calc(50% + 175.8px);.gear
+}
+
+div#lower-left-gear-container {
+    top: calc(50% + 101.5px);
+    left: calc(50% - 175.8px);
+}
+
+div#lower-right-gear-container {
+    top: calc(50% + 101.5px);
+    left: calc(50% + 175.8px);
+}
+
+div#bottom-gear-container {
+    top: calc(50% + 203px);
+}
+
+/* Links CSS */
+div.gear-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-size: 22px;
+    font-family: sans-serif;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px #145e9d, 0 0 10px white;
+    text-transform: uppercase;
+
+    transition: text-shadow 0.2s;
+}
+
+div.outer-img-container:hover {
+    cursor: pointer;
+}
+
+div.outer-img-container:hover div.gear-text {
+    text-shadow: 0 0 5px #145e9d, 0 0 10px #d0d0d0, 0 0 10px white, 0 0 10px white;
+}
+
+div#workshops-link {
+    font-size: 17px;
+}
+
+div#gl-link, div#schedule-link, div#sponsors-link {
+    font-size: 20px;
+}
+
+/* ANIMATIONS */
+/**
+ * Inner gear time of rotation set to 5 seconds
+ * Gear tip velocity = 2 * PI * R / t
+ * => Angular velocity of outer gears = 2*PI / (t*r / R)
+ * => Time of rotation for outer gears = t * r / R
+ * t' = 15*100 / 175 = 4.5714
+ * (for smaller gear)
+ * t' = 15*70 / 175 = 2.85714
+ */
+img.inner-gear {
+    animation: rotate-clockwise 15s linear 0s infinite normal none running;
+}
+
+img.outer-gear {
+    animation: rotate-counter-clockwise 8.5714s linear 0s infinite normal none running;
+}
+
+img.preloader-outer-gear {
+    animation: rotate-counter-clockwise 6s linear 0s infinite normal none running;
+}
+
+@keyframes rotate-clockwise {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes rotate-counter-clockwise {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(-360deg) }
+}
+
+@media screen and (max-width: 800px), screen and (max-height: 800px) {
+    div.gear-text {
+        font-size: 18px !important;
+    }
+    div#workshops-link {
+        font-size: 15px !important;
+    }
+    div#gl-link, div#schedule-link, div#sponsors-link {
+        font-size: 16px !important;
+    }
+
+    .img-container {
+        width: 128px;
+        height: 128px;
+    }
+
+    div.center-container {
+        width: 224px;
+        height: 224px;
+    }
+
+    div.preloader-outer-img-container {
+        width: 89.6px;
+        height: 89.6px;
+    }
+    div#preloader-top-gear-container {
+        top: calc(50% - 147.2px);
+    }
+    div#preloader-left-gear-container {
+        top: calc(50% + 73.6px);
+        left: calc(50% + 127.48px);
+    }
+    div#preloader-right-gear-container {
+        top: calc(50% + 73.6px);
+        left: calc(50% - 127.48px);
+    }
+
+    div#top-gear-container {
+        top: calc(50% - 162.4px);
+    }
+    div#upper-left-gear-container {
+        top: calc(50% - 81.2px);
+        left: calc(50% - 140.64px);
+    }
+    div#upper-right-gear-container {
+        top: calc(50% - 81.2px);
+        left: calc(50% + 140.64px);
+    }
+    div#lower-left-gear-container {
+        top: calc(50% + 81.2px);
+        left: calc(50% - 140.64px);
+    }
+    div#lower-right-gear-container {
+        top: calc(50% + 81.2px);
+        left: calc(50% + 140.64px);
+    }
+    div#bottom-gear-container {
+        top: calc(50% + 162.4px);
+    }
+}
+
+@media screen and (max-width: 600px), screen and (max-height: 600px) {
+    /* Nav based stuff */
+    #nav-inner.inner {
+        padding: 0;
+    }
+
+    div.gear-text {
+        font-size: 12px !important;
+    }
+    div#workshops-link {
+        font-size: 10px !important;
+    }
+    div#gl-link, div#schedule-link, div#sponsors-link {
+        font-size: 11px !important;
+    }
+
+    .img-container {
+        width: 96px;
+        height: 96px;
+    }
+
+    div.center-container {
+        width: 168px;
+        height: 168px;
+    }
+
+    div.preloader-outer-img-container {
+        width: 67.2px;
+        height: 67.2px;
+    }
+    div#preloader-top-gear-container {
+        top: calc(50% - 108px);
+    }
+    div#preloader-left-gear-container {
+        top: calc(50% + 54px);
+        left: calc(50% + 93.53px);
+    }
+    div#preloader-right-gear-container {
+        top: calc(50% + 54px);
+        left: calc(50% - 93.53px);
+    }
+
+    div#top-gear-container {
+        top: calc(50% - 122px);
+    }
+    div#upper-left-gear-container {
+        top: calc(50% - 61px);
+        left: calc(50% - 105.66px);
+    }
+    div#upper-right-gear-container {
+        top: calc(50% - 61px);
+        left: calc(50% + 105.66px);
+    }
+    div#lower-left-gear-container {
+        top: calc(50% + 61px);
+        left: calc(50% - 105.66px);
+    }
+    div#lower-right-gear-container {
+        top: calc(50% + 61px);
+        left: calc(50% + 105.66px);
+    }
+    div#bottom-gear-container {
+        top: calc(50% + 122px);
+    }
+}
+
+@media screen and (max-width: 450px), screen and (max-height: 450px) {
+    div.gear-text {
+        font-size: 11px !important;
+    }
+    div#workshops-link {
+        font-size: 8px !important;
+    }
+    div#gl-link, div#schedule-link, div#sponsors-link {
+        font-size: 9px !important;
+    }
+
+    .img-container {
+        width: 76.8px;
+        height: 76.8px;
+    }
+
+    div.center-container {
+        width: 134.4px;
+        height: 134.4px;
+    }
+
+    div.preloader-outer-img-container {
+        width: 53.76px;
+        height: 53.76px;
+    }
+    div#preloader-top-gear-container {
+        top: calc(50% - 86.4px);
+    }
+    div#preloader-left-gear-container {
+        top: calc(50% + 43.2px);
+        left: calc(50% + 74.82px);
+    }
+    div#preloader-right-gear-container {
+        top: calc(50% + 43.2px);
+        left: calc(50% - 74.82px);
+    }
+
+    div#top-gear-container {
+        top: calc(50% - 97.6px);
+    }
+    div#upper-left-gear-container {
+        top: calc(50% - 48.8px);
+        left: calc(50% - 84.53px);
+    }
+    div#upper-right-gear-container {
+        top: calc(50% - 48.8px);
+        left: calc(50% + 84.53px);
+    }
+    div#lower-left-gear-container {
+        top: calc(50% + 48.8px);
+        left: calc(50% - 84.53px);
+    }
+    div#lower-right-gear-container {
+        top: calc(50% + 48.8px);
+        left: calc(50% + 84.53px);
+    }
+    div#bottom-gear-container {
+        top: calc(50% + 97.6px);
+    }
+}
+
+@media screen and (max-height: 500px) {
+    /* Nav based stuff */
+    header#header {
+        height: 0;
+    }
+
+    header#header #nav-inner .logo {
+        opacity: 0;
+    }
+}

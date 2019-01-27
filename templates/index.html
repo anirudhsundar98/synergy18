@@ -7,196 +7,151 @@
 -->
 <html>
 	<head>
-		<title>Synergy'18</title>
+		<title>Synergy'19</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<!-- <link rel="stylesheet" href="{% static 'css/main.css' %}" /> -->
+        <link rel="stylesheet" href="{% static 'events/assets/css/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/override.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
 		<link rel="shortcut icon" href="{% static 'images/synergy_logo.png' %}" type="image/png">
 		<!--<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" />-->
 		<!--<link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'css/ie9.css' %}" /><![endif]-->
-		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
-		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/notify.min.js' %}"></script>
+        <noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+		<!-- <script src="{% static 'js/notify.min.js' %}"></script>
 		<script>
 			$(".notifs").notify("Welcome.");
-		</script>
+		</script> -->
 		<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-    gtag('config', 'UA-90698513-2');
-  </script>
+            gtag('config', 'UA-90698513-2');
+        </script>
 		
 		<!--<script src="{% static 'js/materialize.min.js' %}"></script>-->
 
 
 	</head>
-	<body>
-		<div class="notifs">
-			<span class="notif">Registrations are open for all events &nbsp;&nbsp; | &nbsp;&nbsp; Accomodation will be provided &nbsp;&nbsp; | &nbsp;&nbsp; We are accepting abstracts for the events Paper presentation and AgroTech
-			&nbsp;&nbsp; | &nbsp;&nbsp; Certificates will be provided for all workshops &nbsp;&nbsp; | &nbsp;&nbsp; Only limited seats are available for the workshops, so register, pay up and grab your seat ASAP. &nbsp;&nbsp; | &nbsp;&nbsp; On spot registrations are also available. </span>
-		</div>
-		<!-- Wrapper -->
-			<div id="wrapper">
-					<div class="sidenav left">
-						<div class="nav_elements">
-						<!--<div class="nav"><div class="icon fa fa-home"></div><div class="description"><a href="/events">Home</a></div></div>-->
-					  <!--<div class="nav"><div class="icon fa fa-database"></div><div class="description">About</div></div>-->
-							<div class="nav"><div class="icon fa fa-arrow-up"></div><div class="description"><a href="#intro">Intro</a></div></div>
-							<div class="nav"><div class="icon fa fa-users"></div><div class="description"><a href="#work">Team</a></div></div>
-                                                        <div class="nav"><div class="icon fa fa-user"></div><div class="description"><a href="#about">About</a></div></div>
-                                                        <div class="nav"><div class="icon fa fa-phone"></div><div class="description"><a href="#contact">Contact Us</a></div></div>
+    <body onload="load()">
+        <div id="wrapper">
+            <!-- Top Nav -->
+            <header id="header">
+                <div class="inner" id="nav-inner">
+            
+                    <!-- Logo -->
+                    <a href="/" class="logo">
+                        <span class="symbol"></span>
+                        <h2 class="title" id="nav-title">Synergy</h2>
+                    </a>
+            
+                    <!-- Nav -->
+                    <nav>
+                        <ul>
+                            <li><a href="#menu">Menu</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Menu -->
+            <nav id="menu">
+                <h2>Menu</h2>
+                {% if logged_in %}
+                <h4>Welcome, {{ user }}</h4>
+                {% endif %}
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/workshops">Workshops</a></li>
+                    <li><a href="/guest_lectures">Guest Lectures</a></li>
+                    <li><a href="https://goo.gl/nk4SNA" target="_blank">Schedule</a></li>
+                    {% if logged_in %}
+                    <li><a href="/myQR">QR Code</a></li>
+                    <li><a href="/update">Update Info</a></li>
+                    {% endif %}
+                    <li><a href="/sponsors">Sponsors</a></li>
+                    {% if logged_in %}
+                    <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
 
 
-							<!--fa-sign-out-->
-							{% if logged_in %}
-						<div class="nav"><div class="icon fa fa-qrcode"></div><div class="description"><a href="/myQR">QR</a></div></div>
-							{% endif %}
+            <div id="particles-js"></div>
 
+            <div id="preloader-container">
+                <div class="img-container center-container">
+                    <img class="inner-gear" src="{% static 'images/003_.png' %}">
+                    <img class="center-s" src="{% static 'images/004_.png' %}">
+                </div>
+                <div class="img-container preloader-outer-img-container" id="preloader-top-gear-container">
+                    <img class="preloader-outer-gear" id="preloader-top-gear" src="{% static 'images/002_.png' %}">
+                </div>
+                <div class="img-container preloader-outer-img-container" id="preloader-left-gear-container">
+                    <img class="preloader-outer-gear" id="preloader-left-gear" src="{% static 'images/002_.png' %}">
+                </div>
+                <div class="img-container preloader-outer-img-container" id="preloader-right-gear-container">
+                    <img class="preloader-outer-gear" id="preloader-right-gear" src="{% static 'images/002_.png' %}">
+                </div>
+            </div>
 
-						</div>
-					</div>
-				<!-- Header -->
-					<header id="header">
-
-						<div id="imgc" style="background-color: #a7a5a221;border-radius: 50%;"><img src="{% static 'images/synergy_logo.png' %}" style="width:15.5rem; height:9.5rem;"></div>
-						<div class="content">
-							<div class="inner">
-								<h1>Synergy&#39;18</h1>
-								<p>Hybrid Technology
-								</p>
-								<p>
-									Feb 16, 17, 18
-								</p>
-							</div>
-						</div>
-						<nav class>
-							<ul>
-                                                                <li><a href="/events">Events</a></li>
-                                                                <li><a href="/workshops">Workshops</a></li>
-                                                                {% if logged_in %}
-								<li><a href="/update">Update</a></li>
-								<li><a href="/logout">Logout</a></li>
-                                                                {% else %}
-								<li><a href="/login">Login</a></li>
-								<li><a href="/register">Sign Up</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-                                                                {% endif %}
-								<li><a href="https://goo.gl/nk4SNA" target="_blank">Schedule</a></li>
-								<li><a href="/sponsors">Sponsors</a></li>
-							</ul>
-						</nav>
-					</header>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Intro</h2>
-								<span class="image main"><img src="{% static 'images/synergy_intro.jpg' %}" alt="" /></span>
-								Synergy is the annual symposium of the Mechanical Engineering department of NIT Trichy!<p> Come and celebrate Mechanical Engineering at Synergy NITT</p>
-							</article>
-
-						<!-- Work -->
-							<article id="work">
-								<h2 class="major">Team</h2>
-								<div class="member">
-									<span class="image main">
-										<img src="{% static 'images/Sai Ganesh.jpg' %}">
-									</span>
-									<ul>
-										<li>Name : Sai Ganesh </li>
-										<li>Email : sai3097ganesh@gmail.com </li>
-										<li>Phone : 7418171944 </li>
-									</ul>
-								</div>
-								<div class="member">
-									<span class="image main">
-										<img src="{% static 'images/K. Sai Prasad.jpg' %}">
-									</span>
-									<ul>
-										<li>Name : K. Sai Prasad </li>
-										<li>Email : saiprasadk333@gmail.com </li>
-										<li>Phone : +919092435350 </li>
-									</ul>
-								</div>
-
-								<div class="member">
-									<span class="image main">
-										<img src="{% static 'images/Tatapudi R S S Sridhar.jpg'%}">
-									</span>
-									<ul>
-										<li>Name : Tatapudi R S S Sridhar </li>
-										<li>Email : sridhar18t@gmail.com </li>
-										<li>Phone : 08331836549 </li>
-									</ul>
-								</div>
-								<div class="member">
-									<span class="image main">
-										<img src="{% static 'images/Shravan Murali.jpg'%}">
-									</span>
-									<ul>
-										<li>Name : Shravan Murali </li>
-										<li>Email : shravanmurali@gmail.com </li>
-										<li>Phone : 9791677881 </li>
-									</ul>
-								</div>
-
-								<br>
-								.... and more to be updated
-
-								<!--<ul><li> <a href="https://www.facebook.com/sai3097ganesh">Sai Ganesh</a>-->
-								<!--<li><a href="shravanmurali.com">Shravan Murali</a></li>-->
-<!--</ul>-->
-							</article>
-
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="{% static 'images/nitt.jpg' %}" alt="" /></span>
-								<p> Synergy is the annual symposium of the Mechanical Engineering department of NIT Trichy! Prepare to be amazed by a dazzling array of tech events, workshops, and for the very first time, fun and entertainment filled informal events! From events like Fix ‘em Up to Junkyard Wars, from workshops like design to automobile. Held at the Mechanical Department of NIT Trichy’s campus, Synergy promises an educational, exciting and entertainment filled three days, and assures that every person attending will leave with newly acquired knowledge and fond memories. Come and celebrate Mechanical Engineering at Synergy NITT.
-							</article>
-
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<ul>
-									<li>Sai Ganesh : 7418171944 (Head)</li>
-									<li>Sai Prasad : 9092435350 (Overall Coordinator)</li>
-									<li>Hari Haran : 9487777642 (Organising Head)</li>
-
-								</ul>
-								<ul class="icons">
-									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-								</ul>
-							</article>
-
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Synergy</p>
-					</footer>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="{% static 'js/skel.min.js' %}"></script>
-			<script src="{% static 'js/util.js' %}"></script>
-			<script src="{% static 'js/main.js' %}"></script>
-			<script>
-					$(document).ready(function(){$(".use-middle").toggleClass("use-middle ");});
-			</script>
-
-
+            <div class="img-container center-container">
+                <img class="inner-gear" src="{% static 'images/003_.png' %}">
+                <img class="center-s" src="{% static 'images/004_.png' %}">
+            </div>
+            <div class="img-container outer-img-container" id="top-gear-container" onclick="window.location = '/events'">
+                <img class="outer-gear" id="top-gear" src="{% static 'images/002_.png' %}">
+                <div class="gear-text" id="events-link">Events</div>
+            </div>
+            <div class="img-container outer-img-container" id="upper-left-gear-container" onclick="window.location = '/workshops'">
+                <img class="outer-gear" id="upper-left-gear" src="{% static 'images/002_.png' %}">
+                <div class="gear-text" id="workshops-link">Workshops</div>
+            </div>
+            <div class="img-container outer-img-container" id="upper-right-gear-container" onclick="window.location = '/guest_lectures'">
+                <img class="outer-gear" id="upper-right-gear" src="{% static 'images/002_.png' %}">
+                <div class="gear-text" id="gl-link">Guest Lectures</div>
+            </div>
+            <div class="img-container outer-img-container" id="lower-left-gear-container" onclick="window.location = '/schedule'">
+                <img class="outer-gear" id="lower-left-gear" src="{% static 'images/002_.png' %}">
+                <div class="gear-text" id="schedule-link">Schedule</div>
+            </div>
+            <div class="img-container outer-img-container" id="lower-right-gear-container" onclick="window.location = '/sponsors'">
+                <img class="outer-gear" id="lower-right-gear" src="{% static 'images/002_.png' %}">
+                <div class="gear-text" id="sponsors-link">Sponsors</div>
+            </div>
+            {% if logged_in %}
+                <div class="img-container outer-img-container" id="bottom-gear-container" onclick="window.location = '/logout'">
+                    <img class="outer-gear" id="bottom-gear" src="{% static 'images/002_.png' %}">
+                    <div class="gear-text" id="register-link">Logout</div>
+                </div>
+            {% else %}
+                <div class="img-container outer-img-container" id="bottom-gear-container" onclick="window.location = '/register'">
+                    <img class="outer-gear" id="bottom-gear" src="{% static 'images/002_.png' %}">
+                    <div class="gear-text" id="register-link">Register</div>
+                </div>
+            {% endif %}
+        </div>
 	</body>
+    <!-- <script src="{% static 'js/skel.min.js' %}"></script> -->
+    <!-- <script src="{% static 'js/util.js' %}"></script> -->
+    <!-- <script src="{% static 'js/main.js' %}"></script> -->
+    <script src="{% static 'events/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'events/assets/js/skel.min.js' %}"></script>
+    <script src="{% static 'events/assets/js/util.js' %}"></script>
+    <script src="{% static 'events/assets/js/main.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/components.js' %}"></script> -->
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    <script src="{% static 'js/start-particles.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+    <!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/respond.min.js' %}"></script><![endif]-->
 </html>
