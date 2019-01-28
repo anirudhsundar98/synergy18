@@ -2,6 +2,7 @@
     width: 100%;
     height: 74px;
     position: fixed;
+    top: 0;
     padding: 0;
     margin-bottom: 20px;
 
@@ -57,4 +58,16 @@ nav#menu .inner {
 
 #menu > .inner > ul > li a {
     font-size: 1.2em;
+}
+
+/* Color Overrides */
+nav#menu {
+    background-color: transparent;
+}
+nav#menu .inner {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px #bbb;
+}
+header#header {
+    background-color: rgba(0, 0, 0, 0.8);
 }

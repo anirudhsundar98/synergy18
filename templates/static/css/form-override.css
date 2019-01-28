@@ -133,3 +133,22 @@ span#not-registed {
     }
 }
 
+/* Color override */
+input[type="submit"].special, input[type="reset"].special,
+input[type="button"].special, button.special, .button.special {
+    background-color: #bc485b;
+}
+input[type="submit"].special:hover, input[type="reset"].special:hover,
+input[type="button"].special:hover, button.special:hover, .button.special:hover {
+    box-shadow: 0 0 5px rgb(146, 146, 146), 0px 1px 10px rgb(170, 170, 170);
+    background-color: #da5168;
+}
+input[type="submit"].special:active, input[type="reset"].special:active,
+input[type="button"].special:active, button.special:active, .button.special:active {
+    background-color: #863644;
+    box-shadow: none;
+}
+
+option {
+    background-color: black;
+}

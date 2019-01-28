@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Synergy'18</title>
+		<title>Synergy'19</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/html5shiv.js' %}"></script><![endif]-->
@@ -30,8 +30,9 @@
 
 	</head>
 	<body>
-		<!-- Wrapper -->
-			<div id="wrapper">
+        <!-- Wrapper -->
+            <div id="wrapper">
+                <div id="particles-js"></div>
 
 				<!-- Header -->
 					<header id="header">
@@ -128,7 +129,8 @@
 			<script src="{% static 'events/assets/js/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/respond.min.js' %}"></script><![endif]-->
 			<script src="{% static 'events/assets/js/main.js' %}"></script>
-
+            <script src="{% static 'js/particles.min.js' %}"></script>
+            <script src="{% static 'js/start-particles.js' %}"></script>
 	</body>
 {% block afterBody %}
 {% endblock %}

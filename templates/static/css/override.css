@@ -1,3 +1,14 @@
+/* Particles */
+body {
+    overflow-x: hidden; 
+}
+
+div#particles-js {
+    position: absolute;
+    width: 100vw;
+    z-index: -100;
+}
+
 /* Events page content */
 div#main .inner {
     max-width: 75%;
@@ -80,6 +91,7 @@ div.modal-content .btn-secondary:active {
 }
 
 div.modal-content .close {
+    color: white;
     transition: opacity 0.2s;
 }
 div.modal-content .close:hover {
@@ -108,6 +120,8 @@ footer#footer {
 	padding: 3px;
     height: 154px;
     box-shadow: 0 0 10px #d7d7d7;
+
+    transition: opacity 0.5s;
 }
 
 footer#footer .inner section {
@@ -132,3 +146,65 @@ footer#footer .inner section h2 {
     }
 }
 
+body.is-menu-visible #footer {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+}
+
+
+/* Color Overrides */
+.inner header .panel {
+    background-color: transparent;
+}
+
+body {
+    background-color: black !important;
+    color: white !important;
+}
+
+footer#footer {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal color overrides */
+div.modal-content {
+    background: #161616;
+}
+
+div.modal-content .btn {
+    box-shadow: 0 1px 5px rgb(146, 146, 146);
+}
+div.modal-content .btn:hover {
+    box-shadow: 0 1px 5px rgb(146, 146, 146), 0px 1px 10px rgb(170, 170, 170);
+    color: white !important;
+}
+div.modal-content .btn:active {
+    box-shadow: 0 0;
+}
+
+div.modal-content .btn-secondary {
+    background-color: #575757;
+}
+div.modal-content .btn-secondary:hover {
+    color: white;
+}
+div.modal-content .btn-secondary:active {
+    color: white;
+    background-color: #464646;
+    box-shadow: 0 0;
+}
+div.modal-content .btn-secondary:focus {
+    color: white;
+}
+
+/* Event Tiles */
+.tiles article.style1 > .image:before {
+    background-color: #c23b5b !important;
+    background-color: #c23b5bab !important;
+}
+
+.tiles article.style2 > .image:before {
+    background-color: #2da0e3 !important;
+    background-color: #2da0e3ab !important;
+}

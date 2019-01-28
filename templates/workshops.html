@@ -9,7 +9,7 @@
 -->
 <html>
 	<head>
-		<title>Synergy'18</title>
+		<title>Synergy'19</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="{% static 'events/assets/js/ie/html5shiv.js' %}"></script><![endif]-->
@@ -25,8 +25,9 @@
 		<script type="text/javascript" src="{% static 'js/events.js' %}"></script>
 	</head>
 	<body>
-		<!-- Wrapper -->
-			<div id="wrapper">
+        <!-- Wrapper -->
+            <div id="wrapper">
+                <div id="particles-js"></div>
 
 				<!-- Header -->
 					<header id="header">
@@ -135,7 +136,7 @@
                     </div>
                   </div>
                 </a>
-                <section class="tiles">
+                <section class="tiles" style="margin-top: 1em">
                   {% for w, reg in workshops %}
                     {% if forloop.counter|divisibleby:2 %}
                       <article class="style2">
@@ -190,6 +191,7 @@
 			<script src="{% static 'events/assets/js/main.js' %}"></script>
 			<script src="{% static 'events/assets/js/workshops.js' %}"></script>
 			<script type="text/javascript" src="{% static 'js/components.js' %}"></script>
-
+            <script src="{% static 'js/particles.min.js' %}"></script>
+            <script src="{% static 'js/start-particles.js' %}"></script>
 	</body>
 </html>

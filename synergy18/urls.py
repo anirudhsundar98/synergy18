@@ -25,6 +25,7 @@ from events.handlers import handler_404
 from users import qr, user_home
 from django.views.generic import TemplateView
 from events.sponsors import sponsors
+from events.coming_soon import coming_soon
 from users.stats import get_stats
 from users.admin_mod.register import *
 # event_urls= [url(r"^", TemplateView.as_view(template_name="events.html")),
@@ -43,6 +44,7 @@ urlpatterns = [
     url(r"^guest_lectures", get_gls),
     url(r"^myQR", qr.render_qr),
     url(r"^update", update.update_info),
+    url(r"^schedule$", coming_soon),  # To remove
     url(r"^sponsors$", sponsors),
     url(r"^iuwetgiu4bgiuweg4iu23tg/27384t23tg2u3gt2g3t2323r$", get_stats), # Static data, Admin Page
     url(r"^iurbhiuerbhiw4ouebgiwu4b/w48bgiuw4bgiuw4ebiuw/iewugbiweugbewiugb$", mark_users), # Admin Page
