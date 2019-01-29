@@ -1,5 +1,6 @@
 [client]
 database = NAME
+host = db
 user = USER
 password = PASSWORD
 default-character-set = utf8
