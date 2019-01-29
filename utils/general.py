@@ -85,11 +85,11 @@ def send_mail(html, subject, email):  # general
     for k in creds_file:
         creds.append(k.strip())
 
-    s.login(creds[0], creds[1])
+    # s.login(creds[0], creds[1])
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    s.sendmail(me, you, msg.as_string())
-    s.quit()
+    # s.sendmail(me, you, msg.as_string())
+    # s.quit()
 
 
 def send_welcome_mail(fullname, email, uniq):
@@ -157,11 +157,11 @@ def send_welcome_mail(fullname, email, uniq):
     for k in creds_file:
         creds.append(k.strip())
 
-    s.login(creds[0], creds[1])
+    # s.login(creds[0], creds[1])
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    s.sendmail(me, you, msg.as_string())
-    s.quit()
+    # s.sendmail(me, you, msg.as_string())
+    # s.quit()
 
 def check_loggedInUser_admin(r):
 
