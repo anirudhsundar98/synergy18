@@ -54,7 +54,7 @@ header .logo #nav-title:hover {
 }
 
 .tiles a h3 {
-    letter-spacing: 0.2em;
+    letter-spacing: 3px;
 }
 
 /* Events page modals */
