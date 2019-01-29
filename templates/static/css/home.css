@@ -71,7 +71,8 @@ a.logo:hover #dates-text {
 
 /* NOTIFICATIONS */
 div#notifications-container {
-    margin-top: 110px;    
+    margin-top: 110px;
+    transition: margin-top 1s;
 }
 
 div#notifications-container img {
@@ -201,7 +202,7 @@ div#upper-left-gear-container {
 /* Everything else is based off the same calculations above */
 div#upper-right-gear-container {
     top: calc(50% - 101.5px);
-    left: calc(50% + 175.8px);.gear
+    left: calc(50% + 175.8px);
 }
 
 div#lower-left-gear-container {
@@ -284,7 +285,7 @@ img.preloader-outer-gear {
     100% { transform: rotate(-360deg) }
 }
 
-@media screen and (max-width: 800px), screen and (max-height: 800px) {
+@media screen and (max-width: 800px), screen and (max-height: 850px) {
     div#notifications-container {
         margin-top: 100px;    
     }
@@ -364,7 +365,7 @@ img.preloader-outer-gear {
     }
 }
 
-@media screen and (max-width: 600px), screen and (max-height: 600px) {
+@media screen and (max-width: 600px), screen and (max-height: 730px) {
     div#notifications-container img {
         width: 400px !important;
     }
@@ -452,7 +453,7 @@ img.preloader-outer-gear {
     }
 }
 
-@media screen and (max-width: 450px), screen and (max-height: 450px) {
+@media screen and (max-width: 450px), screen and (max-height: 610px) {
     div#notifications-container img {
         width: 300px !important;
     }
@@ -532,5 +533,9 @@ img.preloader-outer-gear {
 
     footer#footer {
         height: 0;
+    }
+
+    div#notifications-container {
+        margin-top: 10px;
     }
 }
