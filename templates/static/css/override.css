@@ -53,6 +53,10 @@ header .logo #nav-title:hover {
     height: 100%;
 }
 
+.tiles a h3 {
+    letter-spacing: 0.2em;
+}
+
 /* Events page modals */
 div.modal-content .modal-header h5 {
     font-size: 1.8em;
