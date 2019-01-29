@@ -7,6 +7,7 @@ div#particles-js {
     position: absolute;
     width: 100vw;
     z-index: -100;
+    top: 0;
 }
 
 /* Events page content */
@@ -207,4 +208,8 @@ div.modal-content .btn-secondary:focus {
 .tiles article.style2 > .image:before {
     background-color: #2da0e3 !important;
     background-color: #2da0e3ab !important;
+}
+
+.copyright {
+    color: gray !important;
 }

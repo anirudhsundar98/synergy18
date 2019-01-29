@@ -47,7 +47,10 @@
                     <!-- Logo -->
                     <a href="/" class="logo">
                         <span class="symbol"></span>
-                        <h2 class="title" id="nav-title">Synergy</h2>
+                        <div class="title-container">
+                            <h2 class="title" id="nav-title">Synergy</h2>
+                            <div id="dates-text">Feb 15, 16, 17</div>
+                        </div>
                     </a>
             
                     <!-- Nav -->
@@ -88,6 +91,11 @@
 
 
             <div id="particles-js"></div>
+
+            <div id="notifications-container">
+                <img src="{% static 'images/notif_holder.svg' %}">
+                <div id="notifs"></div>
+            </div>
 
             <div id="preloader-container">
                 <div class="img-container center-container">
@@ -141,6 +149,25 @@
                 </div>
             {% endif %}
         </div>
+
+        <footer id="footer">
+            <div class="inner">
+        
+                <section>
+                    <h2>Follow</h2>
+                    <ul class="icons">
+                        <li><a href="https://twitter.com/synergynitt" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://www.facebook.com/synergynitt/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="https://www.instagram.com/synergynitt/" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="tel:7418171944" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+                        <li><a href="mailto:mea18.nitt@gmail.com" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                    </ul>
+                </section>
+                <ul class="copyright">
+                    <li>&copy; Synergy. All rights reserved</li>
+                </ul>
+            </div>
+        </footer>
 	</body>
     <!-- <script src="{% static 'js/skel.min.js' %}"></script> -->
     <!-- <script src="{% static 'js/util.js' %}"></script> -->

@@ -8,4 +8,4 @@ window.addEventListener('resize', () => {
 });
 
 document.querySelector("#particles-js").style.width = `${window.innerWidth}`;
-document.querySelector("#particles-js").style.height = `calc(${document.querySelector("#wrapper").offsetHeight}px - 10px)`;
+document.querySelector("#particles-js").style.height = `${document.querySelector("#wrapper").offsetHeight - 10}px)`;

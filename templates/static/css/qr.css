@@ -4,7 +4,7 @@
 
 div#QrC0dE {
     display: inline-block;
-    padding: 20px 0 30px;
+    padding: 20px;
 }
 
 .qr-info {
@@ -15,4 +15,9 @@ div#QrC0dE {
     font-weight: 700;
     font-size: 1.2em;
     padding-right: 10px;
+}
+
+/* Color override */
+div#QrC0dE {
+    background: white;
 }
