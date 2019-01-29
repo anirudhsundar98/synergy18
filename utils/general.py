@@ -57,8 +57,9 @@ def phno_validate(phno):
         return False
     return True
 
-def send_mail(html, subject, email):  # general 
-    me = "synergy18.web@outlook.com"
+def send_mail(html, subject, email):  # general
+    # me = "synergy18.web@outlook.com"
+    me = "anirudhsundar@hotmail.com"
     you = email
 
     # Create message container - the correct MIME type is multipart/alternative.
@@ -92,14 +93,20 @@ def send_mail(html, subject, email):  # general
 
 
 def send_welcome_mail(fullname, email, uniq):
-    me = "synergy18.web@outlook.com"
+    me = "synergy19.web@outlook.com"
+    # me = "anirudhsundar@hotmail.com"
     you = email
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Hello from Synergy !"
+    msg['Subject'] = "Hello from Synergy!"
     msg['From'] = me
     msg['To'] = you
+
+
+    # OTHER
+    # , but due to the high volume of participants, registering on-spot may not guarantee a place in any of our workshops.
+    # To have a hassle free experience at Synergy, we request you to register online and book a place in the workshop you're interested in by paying well in advance.
 
     # Create the body of the message (a plain-text and an HTML version).
     html = """\
@@ -111,8 +118,7 @@ def send_welcome_mail(fullname, email, uniq):
         <p>Dear {},</p>
         <br>
     <p>Greetings from Team Synergy! Please check our website <a href='http://synergy.nitt.edu'>synergy.nitt.edu</a> for the workshop and event schedules and other such details.
-    On-spot registrations are also available, but due to the high volume of participants, registering on-spot may not guarantee a place in any of our workshops.
-    To have a hassle free experience at Synergy, we request you to register online and book a place in the workshop you're interested in by paying well in advance.
+    On-spot registrations are also available.
     </p>
     <p>An important point to be noted  is that a QR code will be assigned to those who have registered. Do make it a point to save the QR code image on your phone.</p>
     <img src='https://www.patrick-wied.at/static/qrgen/qrgen.php?r=5&a=0&content={}'>
@@ -124,10 +130,9 @@ def send_welcome_mail(fullname, email, uniq):
     <p> Your registration Id : <strong> {} </strong></p>
     <p>For more details about your stay or events or workshops, do contact:
     <ul>
-    <li>PR head, Dharnesh: <a href='tel:7904453042'>7904453042</a></li>
-    <li>Hospitality head, Gokul: <a href='9444936082'>9444936082</a></li>
-    <li>Events head, Prashanth: <a href='9444741389'>9444741389</a></li> 
-    <li>Workshops head, Babu: <a href='8870708062'>8870708062</a></li>
+    <li>PR and Hospitality head, Somu: <a href='tel:9940767842'>9940767842</a></li>
+    <li>Events head, Murali: <a href='tel:8056047085'>8056047085</a></li> 
+    <li>Workshops head, Suhel: <a href='tel:9944641883'>9944641883</a></li>
     </ul>
     <br>
     <p>Team Synergy thanks you for the interest you have shown in our symposium. We hope you will participate in forthcoming MEA events!</p>
@@ -152,11 +157,11 @@ def send_welcome_mail(fullname, email, uniq):
     for k in creds_file:
         creds.append(k.strip())
 
-    s.login(creds[0], creds[1])
+    # s.login(creds[0], creds[1])
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    s.sendmail(me, you, msg.as_string())
-    s.quit()
+    # s.sendmail(me, you, msg.as_string())
+    # s.quit()
 
 def check_loggedInUser_admin(r):
 
