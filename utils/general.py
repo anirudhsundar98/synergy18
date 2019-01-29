@@ -58,8 +58,8 @@ def phno_validate(phno):
     return True
 
 def send_mail(html, subject, email):  # general
-    # me = "synergy18.web@outlook.com"
-    me = "anirudhsundar@hotmail.com"
+    me = "synergy19.web@outlook.com"
+    # me = "anirudhsundar@hotmail.com"
     you = email
 
     # Create message container - the correct MIME type is multipart/alternative.
@@ -157,11 +157,11 @@ def send_welcome_mail(fullname, email, uniq):
     for k in creds_file:
         creds.append(k.strip())
 
-    # s.login(creds[0], creds[1])
+    s.login(creds[0], creds[1])
     # sendmail function takes 3 arguments: sender's address, recipient's address
     # and message to send - here it is sent as one string.
-    # s.sendmail(me, you, msg.as_string())
-    # s.quit()
+    s.sendmail(me, you, msg.as_string())
+    s.quit()
 
 def check_loggedInUser_admin(r):
 
