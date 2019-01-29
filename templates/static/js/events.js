@@ -36,12 +36,13 @@ function register_event(event, isEvent)
                 alert(msg.errors);
             else
             {
-                if(isEvent)
-                    after_reg_txt = " Registered.";
-                else
-                    after_reg_txt = " Registered. Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay";
+                // if(isEvent)
+                    after_reg_txt = " Registered";
+                // else
+                    // after_reg_txt = " Registered. Click <a href=\"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\">Here</a> to pay";
 
-                alert("Registered for event. If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
+                // alert("Registered successfully. If the event or workshop requires you to pay, remember that your seat isn't confirmed until you pay. Visit \"https://www.thecollegefever.com/events/synergy-ObTEcQ3mgk\" to pay (If applicable)");
+                alert("Registered successfully");
                 span = event.parentElement;
                 span.innerHTML = after_reg_txt;
             }
