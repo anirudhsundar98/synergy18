@@ -20,4 +20,4 @@ def sponsors(request):
     except:
         loggedIn = False
 
-    return render(request, "sponsors.html", {"purpose":"sponsors", "logged_in":loggedIn, "user":uname})
+    return render(request, "sponsors-new.html", {"purpose":"sponsors", "logged_in":loggedIn, "user":uname})

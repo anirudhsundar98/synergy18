@@ -1,0 +1,334 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/sponsors.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="text-center"><h1>Sponsors</h1></div>
+<div class="section-container">
+    <header>
+        <div id="accordion8" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks8" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion8" href="#collapse_wks7" aria-expanded="true" aria-controls="collapse_wks7">
+                        <h1>Title Sponsor</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks7" role="tabpanel" aria-labelledby="heading_wks8" style="padding-bottom: 60px;" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.mahindra.com/"><img src="/static/images/title-sponsor.png" style="background-color:#ffffffcc;height:300px;max-width:90%;"></a>
+        </section>
+    </div>
+</div>
+
+<!-- <div class="section-container">
+    <header>
+        <div id="accordion1" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapse_wks" aria-expanded="true" aria-controls="collapse_wks">
+                        <h1>Photography Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks" role="tabpanel" aria-labelledby="heading_wks" class="collapse in" aria-expanded="true" style="padding-bottom:75px;">
+        <section class="tiles">
+            <div class="text-center" style="padding-top: 40px;"><a target="_blank" style="border: 0px;" href="https://www.ambitions4.com/"><img style="max-width: 90%; height: 100px;" src="/static/images/a4.png"></a></div>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion2" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks1" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse_wks1" aria-expanded="true" aria-controls="collapse_wks1">
+                        <h1>Beverage Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="padding-bottom: 60px;" id="collapse_wks1" role="tabpanel" aria-labelledby="heading_wks1" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.pepsi.com/"><img src="/static/images/pepsi.png" style="width:79%;height:200px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion3" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks2" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapse_wks2" aria-expanded="true" aria-controls="collapse_wks2">
+                        <h1>Workshop Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="padding-bottom: 60px;" id="collapse_wks2" role="tabpanel" aria-labelledby="heading_wks1" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.tcs.com/"><img src="/static/images/tcs.png" style="width:82%;height:200px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion4" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks4" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion4" href="#collapse_wks3" aria-expanded="true" aria-controls="collapse_wks3">
+                        <h1>Travel Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="padding-bottom: 60px;" id="collapse_wks3" role="tabpanel" aria-labelledby="heading_wks1" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.abhibus.com/"><img src="/static/images/abhibus.png" style="width:100%;height:200px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion5" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks5" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion5" href="#collapse_wks4" aria-expanded="true" aria-controls="collapse_wks4">
+                        <h1>Social Media Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks4" style="padding-bottom: 60px;" role="tabpanel" aria-labelledby="heading_wks5" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.facebook.com/humansoftrichy/"><img src="/static/images/hot.jpg" style="height:300px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion6" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks6" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion6" href="#collapse_wks5" aria-expanded="true" aria-controls="collapse_wks5">
+                        <h1>Association Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks5" style="padding-bottom: 60px;" role="tabpanel" aria-labelledby="heading_wks6" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="http://www.ashleyalteams.com"><img src="/static/images/ashley.jpg" style="max-width:90%;height:300px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion7" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks7" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion7" href="#collapse_wks6" aria-expanded="true" aria-controls="collapse_wks6">
+                        <h1>Auto Workshop Patron</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks6" role="tabpanel" style="padding-bottom: 60px;" aria-labelledby="heading_wks7" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="http://saeindia.org//"><img src="/static/images/sae.jpg" style="max-width:90%;height:300px;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion9" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks9" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion9" href="#collapse_wks8" aria-expanded="true" aria-controls="collapse_wks8">
+                        <h1>Entertainment Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks8" role="tabpanel" aria-labelledby="heading_wks9" class="collapse in" style="padding-bottom: 60px;" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="http://btpark.org/"><img src="/static/images/bt.jpg" style="height:300px;max-width:90%;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion10" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks10" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion10" href="#collapse_wks9" aria-expanded="true" aria-controls="collapse_wks9">
+                        <h1>Gift Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="padding-bottom: 60px;" id="collapse_wks9" role="tabpanel" aria-labelledby="heading_wks10" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="http://lenskart.com"><img src="/static/images/lenskart.png" style="height:300px;max-width:90%;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion11" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks11" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion11" href="#collapse_wks10" aria-expanded="true" aria-controls="collapse_wks10">
+                        <h1>Internship Partner</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks10" style="padding-bottom: 60px;" role="tabpanel" aria-labelledby="heading_wks11" class="collapse in" aria-expanded="true">
+        <section class="tiles">
+            <a style="border:0px;" href="https://www.uniqtechnologies.co.in/"><img src="/static/images/uniq.jpg" style="height:300px;max-width:90%;"></a>
+        </section>
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion12" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks12" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion11" href="#collapse_wks10" aria-expanded="true" aria-controls="collapse_wks11">
+                        <h1>Auto Expo Partners</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks11" style="padding-bottom: 60px;" role="tabpanel" aria-labelledby="heading_wks12" class="collapse in" aria-expanded="true">
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://www.tvsmotor.com/"><img src="/static/images/tvs.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles">
+            <a href="https://royalenfield.com/"><img src="/static/images/royal.jpg" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://www.heromotocorp.com/"><img src="/static/images/hero.jpg" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a style="border:0px;" href="https://www.suzukimotorcycle.co.in/"><img src="/static/images/suzuki.png" style="height:300px;max-width:90%;"></a>
+        </section>
+
+
+    </div>
+</div>
+
+<div class="section-container">
+    <header>
+        <div id="accordion13" role="tablist" aria-multiselectable="true" class="panel-group">
+            <div class="panel">
+                <div role="tab" id="heading_wks13" class="panel-heading">
+                    <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion11" href="#collapse_wks10" aria-expanded="true" aria-controls="collapse_wks12">
+                        <h1>Online Media Partners</h1>
+                    </a>
+                </h4>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="collapse_wks12" style="padding-bottom: 60px;" role="tabpanel" aria-labelledby="heading_wks12" class="collapse in" aria-expanded="true">
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="http://www.knowafest.com/"><img src="/static/images/knwfest.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="http://www.twenty19.com"><img src="/static/images/twenty19.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://www.brainbuxa.com/"><img src="/static/images/bb.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://allevents.in/"><img src="/static/images/allevents.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://dare2compete.com/"><img src="/static/images/dare2compete.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a href="https://www.meraevents.com/"><img src="/static/images/meraevents.png" style="height:300px;max-width:90%;"></a>
+        </section>
+        <hr>
+        <section class="tiles" style="padding-bottom:60px;">
+            <a style="border:0px;" href="http://thecollegefever.com"><img src="/static/images/collegefever.png" style="height:300px;max-width:90%;"></a>
+        </section>
+    </div>
+</div> -->
+
+{% endblock %}

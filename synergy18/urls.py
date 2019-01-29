@@ -46,8 +46,8 @@ urlpatterns = [
     url(r"^myQR", qr.render_qr),
     url(r"^update", update.update_info),
     url(r"^schedule$", coming_soon),  # To remove
-    # url(r"^sponsors$", sponsors),
-    url(r"^sponsors$", coming_soon),
+    url(r"^sponsors$", sponsors),
+    # url(r"^sponsors$", coming_soon),
     url(r"^iuwetgiu4bgiuweg4iu23tg/27384t23tg2u3gt2g3t2323r$", get_stats), # Static data, Admin Page
     url(r"^iurbhiuerbhiw4ouebgiwu4b/w48bgiuw4bgiuw4ebiuw/iewugbiweugbewiugb$", mark_users), # Admin Page
     url(r"^sdkjgbu34iugb3i4/gejhgj34gib3/34gb34gig4$", mark_hospi), # Admin Page
