@@ -17,6 +17,8 @@ function startNotifs() {
     let notifs = [
         "Registrations are open for all events",
         "A fee of ₹200 will be collected on registration",
+        "If a college has more than 15 participants...",
+        "...that college's participants get a total discount of 10%",
         "Accomodation will be provided",
         "We are accepting abstracts for Paper presentation",
         "Certificates will be provided for all events and workshops"
