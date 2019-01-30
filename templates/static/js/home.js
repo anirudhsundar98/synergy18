@@ -16,12 +16,10 @@ function load() {
 function startNotifs() {
     let notifs = [
         "Registrations are open for all events",
+        "A fee of ₹200 will be collected on registration",
         "Accomodation will be provided",
         "We are accepting abstracts for Paper presentation",
-        "Certificates will be provided for all workshops",
-        "Only limited seats are available for workshops...",
-        "...so register, pay up and grab your seat ASAP",
-        "On spot registrations are also available"
+        "Certificates will be provided for all events and workshops"
     ];
     let pointer = 0;
     document.querySelector("#notifs").innerHTML = notifs[pointer];

@@ -38,7 +38,7 @@ footer#footer {
     bottom: 0;
     width: 100vw;
     height: 135px;
-    transition: height 1s;
+    transition: height 1s, opacity 1s;
 }
 
 footer h2 {
@@ -72,7 +72,8 @@ a.logo:hover #dates-text {
 /* NOTIFICATIONS */
 div#notifications-container {
     margin-top: 110px;
-    transition: margin-top 1s;
+    opacity: 1;
+    transition: margin-top 1s, opacity 1s;
 }
 
 div#notifications-container img {
@@ -115,7 +116,7 @@ img.center-s {
     left: 0;
     width: 50%;
     height: initial;
-    transform: translate(50%, calc(50% - 5px)); /* 5px corrective offset */
+    transform: translate(50%, calc(50% - 4px)); /* 5px corrective offset */
 }
 
 div.center-container {
@@ -533,9 +534,16 @@ img.preloader-outer-gear {
 
     footer#footer {
         height: 0;
+        opacity: 0;
     }
 
     div#notifications-container {
         margin-top: 10px;
+    }
+}
+
+@media screen and (max-height: 350px) {
+    div#notifications-container {
+        opacity: 0;
     }
 }
