@@ -217,3 +217,7 @@ div.modal-content .btn-secondary:focus {
 .copyright {
     color: gray !important;
 }
+
+.pull-left {
+    text-align: left;
+}
