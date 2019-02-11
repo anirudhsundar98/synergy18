@@ -23,6 +23,7 @@ class EventRegister(models.Model):
     event = models.ForeignKey(EventDetails)
     req_payment = models.BooleanField(name="require_payment", default=False)
     paid = models.BooleanField(default=False)
+    paid_online = models.BooleanField(default=False)
 
     class Meta:
         db_table = "registration"

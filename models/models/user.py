@@ -34,6 +34,7 @@ class UserDetails(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     amount = models.IntegerField(default=0)
+    amount_online = models.IntegerField(default=0)
     events_paid = models.BooleanField(default=False) # if they paid for events
     alt_phone = models.CharField(max_length=20, default=None, null=True)
     ticket = models.CharField(max_length=1000, default=None, null=True) # ?
