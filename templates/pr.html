@@ -11,37 +11,35 @@ PR
 {% block content %}
 <form id="pr_form">
     <div id="details" class="text-center" style="font-style:italic"></div>
-    <div id="amt" class="text-center" style="font-style:italic"></div>
+    <br />
+    <div id="amt" class="text-center" style="font-style:italic">Total Money : <strong>0</strong></div>
 	{% csrf_token %}
 	<div class="field half"><label for="id_email_inp">Email</label> <input type="email" name="email" id="email_inp"></div>
-	<div class="field half"><label for="phone">Alternate Phone Number</label> <input type="number" name="phone" id="phone"></div>
-	<div class="field half"><label for="events">Events </label>
+    <!-- <div class="field half"><label for="phone">Alternate Phone Number</label> <input type="number" name="phone" id="phone"></div> -->
+
+	<div class="field half"><label for="events">Events</label>
 		<input type="checkbox" class="check" name="events" id="events">
 	</div>
 
-	<div class="field half"><label for="automobile">Automobile Workshop</label>
-		<input class="check" type="checkbox" name="automobile" id="automobile">
+	<div class="field half"><label for="fusion360">Fusion 360</label>
+		<input class="check" type="checkbox" name="fusion360" id="fusion360">
 	</div>
-	<div class="field half"><label for="creo">PTC Creo Workshop</label>
-		<input class="check" type="checkbox" name="creo" id="creo">
+	<div class="field half"><label for="matlab">MATLAB</label>
+		<input class="check" type="checkbox" name="matlab" id="matlab">
 	</div>
-	<!-- <div class="field half"><label for="automation">Automation Workshop</label>
-		<input class="check" type="checkbox" name="automation" id="automation">
-	</div> -->
-	<!-- <div class="field half"><label for="automation">Swarm Robotics Workshop</label>
-		<select class="check" name="swarm" id="swarm">
-			<option selected>None</option>
-			<option value="2400">Team of 4</option>
-			<option value="2750">Team of 5</option>
-			<option value="3000">Team of 6</option>
+	<div class="field half"><label for="robotics">Furious 5 Robotics</label>
+		<select class="check" name="robotics" id="robotics">
+            <option selected>None</option>
+			<option value="2250">Team of 4</option>
+			<option value="2500">Team of 5</option>
 		</select>
-	</div> -->
-	<!-- <div class="field half"><label for="3d">3D Printing Workshop</label>
-		<input class="check" type="checkbox" name="3d" id="3d">
 	</div>
-	<div class="field half"><label for="photography">Photography Workshop</label>
-		<input class="check" type="checkbox" name="photography" id="photography">
-	</div> -->
+    <div class="field half"><label for="automobile">Automobile Workshop</label>
+        <input class="check" type="checkbox" name="automobile" id="automobile">
+    </div>
+	<div class="field half"><label for="sketch">Automobile Hand Sketch</label>
+		<input class="check" type="checkbox" name="sketch" id="sketch">
+	</div>
 	<div class="field half"><label for="ticket">Ticket No. </label>
 		<input type="text" name="ticket" id="ticket">
 	</div>
@@ -52,8 +50,7 @@ PR
 
 {% block afterBody %}
 <script>
-function jhsdbfjh2b34t293sdjwef(e)
-{
+function jhsdbfjh2b34t293sdjwef(e) {
 	e.preventDefault();
 
 	if(!confirm("Are you sure you want to record this?"))
@@ -66,7 +63,7 @@ function jhsdbfjh2b34t293sdjwef(e)
 		data:form.serialize(),
 		timeout:20000,
 		beforeSend:function(){
-			console.log(" loading .. ")
+			console.log(" loading... ")
 			// $('#loading').show();
 		},
 		complete:function(){
@@ -77,66 +74,59 @@ function jhsdbfjh2b34t293sdjwef(e)
 			error_div= $('.all-errors');
 			error_div.html(err);
 			error_div.show();
+            $("#details").html("");
 		}
 
 	})
-	.done(function(msg)
-		{
-			console.log(msg);
-			if(typeof(msg) != "object")
-			{
-					$(".all-errors").html("There was an issue with your request. Please try again.");
-					return;
-			}
+	.done(function(msg) {
+        console.log(msg);
+        if(typeof(msg) != "object")
+        {
+            $(".all-errors").html("There was an issue with your request. Please try again.");
+            $("#details").html("");
+            return;
+        }
 
-			if(msg.status == 200)
-			{
-				details = $("#details");
-				var u = "<span>user : "+String(msg.fullname)+"</span><br>";
-				var email = "<span>email : "+String(msg.email)+"</span><br>";
-				var paid = "<span>paid : "+String(msg.paid)+"</span><br>";
-				var amount = "<span>Total amount paid so far : "+String(msg.amount)+"</span><br>";
-				var ticket = "<span>Tickets : "+String(msg.ticket)+"</span><br>";
-				details.html(u+email+paid+amount+ticket);
-				$(".all-errors").html("");
-			}
-			else
-				$(".all-errors").html(msg.errors);
-		});
+        if(msg.status == 200) {
+            details = $("#details");
+            var u = "<span>User : "+String(msg.fullname)+"</span><br>";
+            var email = "<span>Email : "+String(msg.email)+"</span><br>";
+            var paid = "<span>Paid : "+String(msg.paid)+"</span><br>";
+            var amount = "<span>Total amount paid so far : "+String(msg.amount)+"</span><br>";
+            var ticket = "<span>Tickets : "+String(msg.ticket)+"</span><br>";
+            details.html(u+email+paid+amount+ticket);
+            $(".all-errors").html("");
+        } else {
+            $(".all-errors").html(msg.errors);
+            $("#details").html("");
+        }
+    });
 }
 
-function ghiu4g4iugh4iuhg(e)
-{
+function ghiu4g4iugh4iuhg(e) {
 	money = 0;
-	e_list = ["events", "automobile", "creo", "automation", "swarm", '3d', 'photography'];
-	money_dict = {"events":150, 'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50};
+	eventList = ["events", "fusion360", "matlab", "automobile", 'sketch'];
+	amount = {"events":200, 'fusion360':250, 'matlab':250, 'automobile':500, 'sketch':1000};
 	
-	if($("#swarm").find(":selected").val() == "2400")
-	{
-		money+=2400;
-	}
-	else if($("#swarm").find(":selected").val() == "2750")
-	{
-		money+=2750;
-	}
-	else if($("#swarm").find(":selected").val() == "3000")
-	{
-		money+=3000;
+	if($("#robotics").find(":selected").val() == "2250") {
+		money += 2250;
+	} else if($("#robotics").find(":selected").val() == "2500") {
+		money += 2500;
 	}
 
-	for (var i = 0; i < e_list.length; i++)
+	for (var i = 0; i < eventList.length; i++)
 	{
-		if(document.getElementById(e_list[i]).checked)
-			money+=money_dict[e_list[i]];
+		if(document.querySelector(`#${eventList[i]}`).checked) {
+			money += amount[eventList[i]];
+        }
 	}
 
-	$("#amt").html(" Total Money : "+ "<strong>" + String(money) + "</strong>");
+	$("#amt").html("Total Money : "+ "<strong>" + String(money) + "</strong>");
 }
 
 $(document).ready(function(){
-$("#pr_form").submit(jhsdbfjh2b34t293sdjwef);
-$(".check").change(ghiu4g4iugh4iuhg);
-
+    $("#pr_form").submit(jhsdbfjh2b34t293sdjwef);
+    $(".check").change(ghiu4g4iugh4iuhg);
 });
 
 </script>

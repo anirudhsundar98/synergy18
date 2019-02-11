@@ -26,7 +26,7 @@ def mark_attended_paid(r):
 
     try:
         entered_email = r.POST["email"]
-        entered_phone = r.POST["phone"]
+        # entered_phone = r.POST["phone"]
         entered_ticket = r.POST["ticket"]
     except Exception as e:
         print(e)
@@ -37,27 +37,39 @@ def mark_attended_paid(r):
     except:
         return jr({'status': 400, 'errors': 'This user doesn\'t exist. They\'ll have to sign up first.'})
 
-    ws_dict = {'automobile':2, 'creo':7}
-    # ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'swarm':19, '3d':20, 'photography':21}
-    money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
-    restrict = {"automation":74, "creo":17}
+    # ws_dict = {'automobile':2, 'creo':7}
+    ws_dict = {"fusion360": 11, "matlab": 12, "robotics": 13, "automobile": 14, 'sketch': 15}
+    # ws_dict = {'automobile':3, 'creo':16, 'automation':17, 'robotics':19, '3d':20, 'photography':21}
+    # money_dict = {'automobile':450, 'creo':300, 'automation':300, 'swarm':0, '3d':200, 'photography':50}
+    money_dict = {
+        'fusion360': 250,
+        'matlab': 250,
+        'automobile': 500,
+        'sketch': 1000,
+        'robotics': 0
+    }
+    # restrict = {"automation":74, "creo":17}
     money = 0
 
-    if 'swarm' in r.POST:
-        if r.POST['swarm'] not in ["2400", "3000", "2750", "None"]:
-            return jr({"status":400, "errors":"Incorrect detail for swarm"})
-        elif r.POST['swarm'] != "None":
-            money_dict["swarm"] = int(r.POST["swarm"])
+    if 'robotics' in r.POST:
+        if r.POST['robotics'] not in ["2250", "2500", "None"]:
+            return jr({"status":400, "errors":"Incorrect detail for robotics"})
+        elif r.POST['robotics'] == "2250":
+            money_dict["robotics"] = 562.5
+        elif r.POST['robotics'] == "2500":
+            money_dict["robotics"] = 500
+
+        print(money_dict['robotics'])
 
     try:
         with transaction.atomic():
             if 'events' in r.POST and not user.events_paid:
                 user.events_paid = True
-                money+=150
+                money+=200
                 user.save()
 
             for w in ws_dict:
-                if w == "swarm" and r.POST['swarm'] == "None":
+                if w == "robotics" and r.POST['robotics'] == "None":
                     continue
                 if w in r.POST:
                     try:
@@ -65,8 +77,8 @@ def mark_attended_paid(r):
                         reg_count = all_reg.count()
                     except:
                         return ({"status":400, "errors":"Error. Please try again "})
-                    if w in restrict and reg_count >= restrict[w]:
-                        return jr({"status":400, "errors":"Sorry. There are already {} on-spot registrants for {}.".format(restrict[w], w)})
+                    # if w in restrict and reg_count >= restrict[w]:
+                    #     return jr({"status":400, "errors":"Sorry. There are already {} on-spot registrants for {}.".format(restrict[w], w)})
                     reg = None
                     try:
                         reg = er.objects.get(user=user, event_id=ws_dict[w])
@@ -96,7 +108,7 @@ def mark_attended_paid(r):
         user.paid = True
         user.attended = True
         user.amount += money
-        user.alt_phone = entered_phone
+        # user.alt_phone = entered_phone
         if user.ticket is not None and len(user.ticket)!=0 and len(entered_ticket)!=0:
             user.ticket += ", {}".format(entered_ticket)
 

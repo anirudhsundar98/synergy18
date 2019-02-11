@@ -39,7 +39,7 @@ function register_event(event, isEvent)
                 // if(isEvent)
                     // after_reg_txt = " Registered";
                 // else
-                    after_reg_txt = "Registered. Click <a href=\"https://allevents.in/org/synergy-nit-trichy/14792816\">here</a> to pay.";
+                after_reg_txt = `Registered. Click <a href="https://allevents.in/org/synergy-nit-trichy/14792816">here</a> to pay. <br> Click <a href="/myQR" target="_blank">here</a> for your unique Synergy ID.`;
 
                 alert("Registered successfully. Events require a general registration fee while each individual workshop requires separate payment. Workshop seats aren't confirmed until you pay. Visit \"https://allevents.in/org/synergy-nit-trichy/14792816\" to pay.");
                 // alert("Registered successfully");
