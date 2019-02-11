@@ -16,9 +16,6 @@ def mark_users(r):
     return render(r, "pr.html", {"logged_in":True, "user":user.fullname})
 
 def mark_attended_paid(r):
-
-    print('events' in r.POST)
-
     user = general.check_loggedInUser_admin(r)
 
     if not user:
@@ -28,6 +25,9 @@ def mark_attended_paid(r):
         entered_email = r.POST["email"]
         # entered_phone = r.POST["phone"]
         entered_ticket = r.POST["ticket"]
+        paymentOnline = False
+        if ("online-pay" in r.POST.keys()):
+            paymentOnline = True
     except Exception as e:
         print(e)
         return jr({'status':400, 'errors':'Invalid request.'})
@@ -59,8 +59,6 @@ def mark_attended_paid(r):
         elif r.POST['robotics'] == "2500":
             money_dict["robotics"] = 500
 
-        print(money_dict['robotics'])
-
     try:
         with transaction.atomic():
             if 'events' in r.POST and not user.events_paid:
@@ -90,11 +88,18 @@ def mark_attended_paid(r):
                         if not reg:
                             e.user = user
                             e.event_id = ws_dict[w]
-                            e.paid = True
+                            if (paymentOnline):
+                                e.paid_online = True
+                            else:
+                                e.paid = True
                             e.save()
                             money+=money_dict[w]
                         elif not reg.paid:
-                            reg.paid = True
+                            if (paymentOnline):
+                                reg.paid_online = True
+                            else:
+                                reg.paid = True
+                                pass
                             reg.save()
                             money += money_dict[w]
                     except Exception as e:
@@ -107,7 +112,10 @@ def mark_attended_paid(r):
     try:
         user.paid = True
         user.attended = True
-        user.amount += money
+        if (paymentOnline):
+            user.amount_online += money
+        else:
+            user.amount += money
         # user.alt_phone = entered_phone
         if user.ticket is not None and len(user.ticket)!=0 and len(entered_ticket)!=0:
             user.ticket += ", {}".format(entered_ticket)
@@ -124,7 +132,7 @@ def mark_attended_paid(r):
     if ticket is None:
         ticket = ""
 
-    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount, "ticket":ticket})
+    return jr({"status":200, "fullname":user.fullname, "email":user.email, "paid":"Success", "amount":user.amount + user.amount_online, "ticket":ticket})
 
 def mark_hospi(r):
     user = general.check_loggedInUser_admin(r)
