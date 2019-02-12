@@ -4,6 +4,7 @@ from django.http import JsonResponse as jr
 from models.models import UserDetails as u
 from models.models.events import EventRegister as er
 from django.db import transaction
+from django.db.models import Count
 from datetime import datetime, timezone
 from models.models.user import Hospi as h
 import pytz
@@ -143,11 +144,34 @@ def mark_hospi(r):
 def mark_hostels(r):
 
     user = general.check_loggedInUser_admin(r)
+    # SELECT hostel, count(*) as `count` FROM `hospi` GROUP BY hostel
 
     if not user:
         return jr({'status':400, "errors":"Sorry, you can't access this."})
 
     hostels = ["garnet a", "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b", "ruby", "pearl", "opal"]
+    hostel_max_slots = {
+        "garnet a": 25,
+        "garnet b": 25,
+        "garnet c": 25,
+        "jasper": 25,
+        "aquamarine a": 25,
+        "aquamarine b": 25,
+        "ruby": 25,
+        "pearl": 25,
+        "opal": 25
+    }
+    current_hostel_count = {
+        "garnet a": 0,
+        "garnet b": 0,
+        "garnet c": 0,
+        "jasper": 0,
+        "aquamarine a": 0,
+        "aquamarine b": 0,
+        "ruby": 0,
+        "pearl": 0,
+        "opal": 0
+    }
 
     try:
         email = r.POST["email"]
@@ -157,6 +181,11 @@ def mark_hostels(r):
     except Exception as e:
         print(e)
         return jr({'status':400, 'errors':'Invalid request.'})
+
+    # Vacancy Calculations
+    hostel_count_query_result = h.objects.values('hostel').annotate(count=Count('hostel'))
+    for item in hostel_count_query_result:
+        current_hostel_count[item["hostel"]] = item["count"]
 
     try:
         user = u.objects.get(email__exact=email)
@@ -172,6 +201,10 @@ def mark_hostels(r):
         return jr({'status':400, 'errors':'This person has already paid for accommodation. '})
     else:
         hospi = h()
+
+    hostel_vacancy_count = hostel_max_slots[hostel] - current_hostel_count[hostel]
+    if (hostel_vacancy_count <= 0):
+        return jr({'status': 400, 'errors': 'This hostel does not have any vacancies.'})
 
     if hostel not in hostels:
         return jr({'status':400, 'errors':'Invalid hostel in request. '})
@@ -194,7 +227,7 @@ def mark_hostels(r):
     except Exception as e:
         print(e)
         return jr({'status':500, 'errors':'Server issue. Please try again. '})
-    return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "check_in":time, "amount":amount})
+    return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "vacancy_count":hostel_vacancy_count - 1, "check_in":time, "amount":amount})
 
 def checkout_page(r):
     user = general.check_loggedInUser_admin(r)
