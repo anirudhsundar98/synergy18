@@ -282,7 +282,7 @@ def checkout(r):
         print(e)
         return jr({'status': 400, "errors": "Sorry there was an error in saving to database. Try again."})
 
-    return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':h_user.check_out, 'stayed':stayed})
+    return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'hostel': h_user.hostel, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':h_user.check_out, 'stayed':stayed})
 
 def checkout_details(r):
     user = general.check_loggedInUser_admin(r)
@@ -319,7 +319,7 @@ def checkout_details(r):
         diff = co_time - ci_time
         stayed = "This person has stayed for {} days {} seconds ".format(diff.days, diff.seconds)
 
-        return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':check_out, 'stayed':stayed})
+        return jr({'status':200, 'fullname':user.fullname, 'email':user.email, 'hostel': h_user.hostel, 'check_in':h_user.check_in, 'days':h_user.days, 'amount':h_user.amount, 'check_out':check_out, 'stayed':stayed})
 
     except Exception as e:
         print(e)

@@ -84,10 +84,10 @@ function jhsdbfjh2b34t293sdjwef(e)
 				var u = "<span><b>User</b>: "+String(msg.fullname)+"</span><br>";
 				var email = "<span><b>Email</b>: "+String(msg.email)+"</span><br>";
 				var hostel = "<span><b>Hostel</b>: "+String(msg.hostel)+"</span><br>";
-				var hostel = "<span><b>Vacancy in hostel</b>: "+String(msg.vacancy_count)+"</span><br>";
+				var vacancy = "<span><b>Vacancy in hostel</b>: "+String(msg.vacancy_count)+"</span><br>";
 				var check_in = "<span><b>Check In time</b>: "+String(msg.check_in)+"</span><br>";
 				var amount = "<span><b>Amount paid</b>: "+String(msg.amount)+"</span><br>";
-				details.html(u+email+hostel+amount+check_in);
+				details.html(u+email+hostel+vacancy+amount+check_in);
 				$(".all-errors").html("");
 			}
 			else

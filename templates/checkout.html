@@ -70,13 +70,14 @@ function jhsdbfjh2b34t293sdjwef(e)
 				details = $("#details");
 				var u = "<span><b>User:</b> "+String(msg.fullname)+"</span><br>";
 				var email = "<span><b>Email:</b> "+String(msg.email)+"</span><br>";
+				var hostel = "<span><b>Hostel:</b> "+String(msg.hostel)+"</span><br>";
 				var check_in = "<span><b>Check In time:</b> "+String(msg.check_in)+" <i> UTC </i></span><br>";
 				var amount = "<span><b>Amount paid:</b> "+String(msg.amount)+"</span><br>";
 				var days = "<span><b>Days registered for:</b> "+String(msg.days)+"</span><br>";
 				var stayed = "<span> "+String(msg.stayed)+"</span><br>";
 				var check_out = "<span><b>Check out time:</b> "+String(msg.check_out)+"</span><br>";
 				
-				details.html(u+email+days+amount+stayed+check_in+check_out);
+				details.html(u+email+hostel+days+amount+stayed+check_in+check_out);
 				$(".all-errors").html("");
 			}
 			else {
@@ -124,13 +125,14 @@ function ghiu4g4iugh4iuhg(e)
 				details = $("#details");
 				var u = "<span><b>User:</b> " + String(msg.fullname) + "</span><br>";
                 var email = "<span><b>Email:</b> " + String(msg.email) + "</span><br>";
+                var hostel = "<span><b>Hostel:</b> " + String(msg.hostel) + "</span><br>";
                 var check_in = "<span><b>Check In time:</b> " + String(msg.check_in) + " <i> UTC </i></span><br>";
                 var amount = "<span><b>Amount paid:</b> " + String(msg.amount) + "</span><br>";
                 var days = "<span><b>Days registered for:</b> " + String(msg.days) + "</span><br>";
                 var stayed = "<span> " + String(msg.stayed) + "</span><br>";
                 var check_out = "<span><b>Check out time:</b> " + String(msg.check_out) + "</span><br>";
 				
-				details.html(u+email+days+amount+check_in+stayed+check_out);
+				details.html(u+email+hostel+days+amount+check_in+stayed+check_out);
 				$(".all-errors").html("");
 			}
 			else {
