@@ -23,7 +23,8 @@ def mark_attended_paid(r):
         return jr({'status':400, "errors":"Sorry, you can't access this."})
 
     try:
-        entered_email = r.POST["email"]
+        # entered_email = r.POST["email"]
+        entered_unique_id = r.POST["unique"]
         # entered_phone = r.POST["phone"]
         entered_ticket = r.POST["ticket"]
         paymentOnline = False
@@ -34,7 +35,8 @@ def mark_attended_paid(r):
         return jr({'status':400, 'errors':'Invalid request.'})
 
     try:
-        user = u.objects.get(email__exact=entered_email)
+        # user = u.objects.get(email__exact=entered_email)
+        user = u.objects.get(unique__contains=entered_unique_id)
     except:
         return jr({'status': 400, 'errors': 'This user doesn\'t exist. They\'ll have to sign up first.'})
 
@@ -174,7 +176,7 @@ def mark_hostels(r):
     }
 
     try:
-        email = r.POST["email"]
+        unique = r.POST["unique"]
         hostel = r.POST["hostel"]
         days = int(r.POST["days"])
         time = datetime.now()
@@ -188,7 +190,8 @@ def mark_hostels(r):
         current_hostel_count[item["hostel"]] = item["count"]
 
     try:
-        user = u.objects.get(email__exact=email)
+        # user = u.objects.get(email__exact=email)
+        user = u.objects.get(unique__contains=unique)
     except:
         return jr({'status':400, 'errors':'This user doesn\'t exist.'})
 
@@ -227,7 +230,7 @@ def mark_hostels(r):
     except Exception as e:
         print(e)
         return jr({'status':500, 'errors':'Server issue. Please try again. '})
-    return jr({"status":200, "fullname":user.fullname, "email":email, "hostel":hostel, "vacancy_count":hostel_vacancy_count - 1, "check_in":time, "amount":amount})
+    return jr({"status":200, "fullname":user.fullname, "email":user.email, "hostel":hostel, "vacancy_count":hostel_vacancy_count - 1, "check_in":time, "amount":amount})
 
 def checkout_page(r):
     user = general.check_loggedInUser_admin(r)
@@ -241,16 +244,15 @@ def checkout(r):
     if not user:
         return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
-    email = ""
-
     try:
-        email = r.POST["email"]
+        unique = r.POST["unique"]
     except Exception as e:
         print(e)
         return jr({'status': 400, "errors": "Invalid request."})
 
     try:
-        user = u.objects.get(email__exact=email)
+        # user = u.objects.get(email__exact=email)
+        user = u.objects.get(unique__contains=unique)
     except:
         return jr({'status': 400, "errors": "This user doesn\'t exist."})
 
@@ -288,16 +290,14 @@ def checkout_details(r):
     if not user:
         return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
-    email = ""
-
     try:
-        email = r.POST["email"]
+        unique = r.POST["unique"]
     except Exception as e:
         print(e)
         return jr({'status': 400, "errors": "Invalid request."})
 
     try:
-        user = u.objects.get(email__exact=email)
+        user = u.objects.get(unique__contains=unique)
     except:
         return jr({'status': 400, "errors": "This user doesn\'t exist."})
 
