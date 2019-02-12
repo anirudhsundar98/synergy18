@@ -294,7 +294,6 @@ img.preloader-outer-gear {
     /* Footer */
     footer#footer {
         height: 120px;
-        transition: height 1s;
     }
 
     footer h2 {
@@ -382,7 +381,6 @@ img.preloader-outer-gear {
     /* Footer */
     footer#footer {
         height: 120px;
-        transition: height 1s;
     }
 
     footer h2 {
