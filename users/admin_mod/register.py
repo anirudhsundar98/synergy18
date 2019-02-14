@@ -66,7 +66,7 @@ def mark_attended_paid(r):
         with transaction.atomic():
             if 'events' in r.POST and not user.events_paid:
                 user.events_paid = True
-                money+=200
+                money+=150
                 user.save()
 
             for w in ws_dict:
