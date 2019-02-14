@@ -39,7 +39,7 @@ urlpatterns = [
     url(r"^register", register.register),
     url(r"^$", user_home.home),
     # url(r"^eve/$", TemplateView.as_view(template_name="events/index.html")),
-    url(r"^events/register", ev_r),
+    # url(r"^events/register", ev_r), # Registrations Closed
     url(r"^events$", get_events),
     url(r"^workshops", get_workshops),
     # url(r"^guest_lectures", get_gls),

@@ -91,13 +91,14 @@
 					      <div class="modal-footer">
 					      	<span class="pull-left">
 							{% if logged_in %}
-                                {% if not reg %}
+                                <!-- {% if not reg %}
                                 <button class="btn btn-primary" data-event="{{ w.unique }}" onclick="register_event(this, false)">Register</button>
                                 {% else %}
                                 Registered. Click <a href="https://allevents.in/org/synergy-nit-trichy/14792816" target="_blank">here</a> to pay. <br> Click <a href="/myQR" target="_blank">here</a> for your unique Synergy ID.
-                                <!-- Registered -->
-                                {% endif %}
-                                {% else %}
+                                
+                                {% endif %} -->
+                                Registrations Closed
+                            {% else %}
                                 <a href="/login" class="btn btn-primary">Login</a>
                             {% endif %}
 					      	</span>

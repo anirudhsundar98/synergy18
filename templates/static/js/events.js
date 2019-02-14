@@ -1,5 +1,6 @@
 function register_event(event, isEvent)
 {
+    return;  // Registrations Closed
 	if(!confirm("Are you sure you want to register? "))
 		return;
 
