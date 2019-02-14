@@ -149,34 +149,22 @@ def vacancies(r):
         return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
     hostel_max_slots = {
-        # "garnet a": 30,
-        # "garnet b": 30,
-        # "ruby": 30,
+        "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
         "garnet a 2nd floor study room": 20,
         "garnet b 2nd floor common room": 24,
-        # "garnet c": 25,
-        # "jasper": 25,
-        # "aquamarine a": 25,
-        # "aquamarine b": 25,
-        # "ruby": 25,
-        # "pearl": 25,
-        # "opal": 25
+        "garnet b 2nd floor study room": 17,
+        "garnet c 1st floor common room": 29,
+        "garnet c 2nd floor common room": 30
     }
     current_vacancies = {
-        # "garnet a": 0,
-        # "garnet b": 0,
-        # "ruby": 0,
+        "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
         "garnet a 2nd floor study room": 20,
         "garnet b 2nd floor common room": 24,
-        # "garnet c": 0,
-        # "jasper": 0,
-        # "aquamarine a": 0,
-        # "aquamarine b": 0,
-        # "ruby": 0,
-        # "pearl": 0,
-        # "opal": 0
+        "garnet b 2nd floor study room": 17,
+        "garnet c 1st floor common room": 29,
+        "garnet c 2nd floor common room": 30
     }
 
     hostel_count_query_result = h.objects.values('hostel').exclude(check_out__isnull=False).annotate(count=Count('hostel'))
@@ -195,35 +183,31 @@ def mark_hostels(r):
         return jr({'status':400, "errors":"Sorry, you can't access this."})
 
     hostels = [
+        "garnet a 1st floor common room",
         "garnet a 2nd floor common room",
         "garnet a 2nd floor study room",
         "garnet b 2nd floor common room",
-        # "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b",
-        # "ruby", "pearl", "opal"
+        "garnet b 2nd floor study room",
+        "garnet c 1st floor common room",
+        "garnet c 2nd floor common room"
     ]
     hostel_max_slots = {
+        "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
         "garnet a 2nd floor study room": 20,
         "garnet b 2nd floor common room": 24,
-        # "garnet c": 25,
-        # "jasper": 25,
-        # "aquamarine a": 25,
-        # "aquamarine b": 25,
-        # "ruby": 25,
-        # "pearl": 25,
-        # "opal": 25
+        "garnet b 2nd floor study room": 17,
+        "garnet c 1st floor common room": 29,
+        "garnet c 2nd floor common room": 30
     }
     current_hostel_count = {
+        "garnet a 1st floor common room": 0,
         "garnet a 2nd floor common room": 0,
         "garnet a 2nd floor study room": 0,
         "garnet b 2nd floor common room": 0,
-        # "garnet c": 0,
-        # "jasper": 0,
-        # "aquamarine a": 0,
-        # "aquamarine b": 0,
-        # "ruby": 0,
-        # "pearl": 0,
-        # "opal": 0
+        "garnet b 2nd floor study room": 0,
+        "garnet c 1st floor common room": 0,
+        "garnet c 2nd floor common room": 0
     }
 
     try:
