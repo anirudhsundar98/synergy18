@@ -151,7 +151,8 @@ def vacancies(r):
     hostel_max_slots = {
         "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
-        "garnet a 2nd floor study room": 20,
+        "garnet a 1st floor study room": 20,
+        "garnet a 2nd floor study room": 16,
         "garnet b 2nd floor common room": 24,
         "garnet b 2nd floor study room": 17,
         "garnet c 1st floor common room": 29,
@@ -160,7 +161,8 @@ def vacancies(r):
     current_vacancies = {
         "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
-        "garnet a 2nd floor study room": 20,
+        "garnet a 1st floor study room": 20,
+        "garnet a 2nd floor study room": 16,
         "garnet b 2nd floor common room": 24,
         "garnet b 2nd floor study room": 17,
         "garnet c 1st floor common room": 29,
@@ -185,6 +187,7 @@ def mark_hostels(r):
     hostels = [
         "garnet a 1st floor common room",
         "garnet a 2nd floor common room",
+        "garnet a 1st floor study room",
         "garnet a 2nd floor study room",
         "garnet b 2nd floor common room",
         "garnet b 2nd floor study room",
@@ -194,7 +197,8 @@ def mark_hostels(r):
     hostel_max_slots = {
         "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
-        "garnet a 2nd floor study room": 20,
+        "garnet a 1st floor study room": 20,
+        "garnet a 2nd floor study room": 16,
         "garnet b 2nd floor common room": 24,
         "garnet b 2nd floor study room": 17,
         "garnet c 1st floor common room": 29,
@@ -203,6 +207,7 @@ def mark_hostels(r):
     current_hostel_count = {
         "garnet a 1st floor common room": 0,
         "garnet a 2nd floor common room": 0,
+        "garnet a 1st floor study room": 0,
         "garnet a 2nd floor study room": 0,
         "garnet b 2nd floor common room": 0,
         "garnet b 2nd floor study room": 0,
