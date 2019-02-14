@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block formTitle %}
+Vacancies
+{% endblock %}
+
+{% block content %}
+
+<div>
+    {% for key, value in vacancies.items %}
+        <h1 style="text-align: center">{{key}}: &nbsp;&nbsp; <span style="font-size: 22px">{{value}}</span></h1>
+        <!-- <h2>{{value}}</h2> -->
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+{% block afterBody %}
+<script src="{% static 'js/components.js' %}"></script>
+<script src="{% static 'js/formScript.js' %}"></script>
+{% endblock %}

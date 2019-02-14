@@ -143,11 +143,53 @@ def mark_hospi(r):
         return render(r, "404.html")
     return render(r, "hospi.html", {"logged_in":True, "user":user.fullname})
 
+def vacancies(r):
+    user = general.check_loggedInUser_admin(r)
+    if not user:
+        return jr({'status': 400, "errors": "Sorry, you can't access this."})
+
+    hostel_max_slots = {
+        # "garnet a": 30,
+        # "garnet b": 30,
+        # "ruby": 30,
+        "garnet a 2nd floor common room": 29,
+        "garnet a 2nd floor study room": 20,
+        "garnet b 2nd floor common room": 24,
+        # "garnet c": 25,
+        # "jasper": 25,
+        # "aquamarine a": 25,
+        # "aquamarine b": 25,
+        # "ruby": 25,
+        # "pearl": 25,
+        # "opal": 25
+    }
+    current_vacancies = {
+        # "garnet a": 0,
+        # "garnet b": 0,
+        # "ruby": 0,
+        "garnet a 2nd floor common room": 0,
+        "garnet a 2nd floor study room": 0,
+        "garnet b 2nd floor common room": 0,
+        # "garnet c": 0,
+        # "jasper": 0,
+        # "aquamarine a": 0,
+        # "aquamarine b": 0,
+        # "ruby": 0,
+        # "pearl": 0,
+        # "opal": 0
+    }
+
+    hostel_count_query_result = h.objects.values('hostel').exclude(check_out__isnull=False).annotate(count=Count('hostel'))
+    for item in hostel_count_query_result:
+        current_vacancies[item["hostel"]] = hostel_max_slots[item["hostel"]] - item["count"]
+
+    return render(r, "vacancies.html", {"vacancies": current_vacancies})
+
 
 def mark_hostels(r):
 
     user = general.check_loggedInUser_admin(r)
-    # SELECT hostel, count(*) as `count` FROM `hospi` GROUP BY hostel
+    # SELECT hostel, count(*) as `count` FROM `hospi` WHERE check_out IS NULL GROUP BY hostel
 
     if not user:
         return jr({'status':400, "errors":"Sorry, you can't access this."})
@@ -194,7 +236,7 @@ def mark_hostels(r):
         return jr({'status':400, 'errors':'Invalid request.'})
 
     # Vacancy Calculations
-    hostel_count_query_result = h.objects.values('hostel').annotate(count=Count('hostel'))
+    hostel_count_query_result = h.objects.values('hostel').exclude(check_out__isnull=False).annotate(count=Count('hostel'))
     for item in hostel_count_query_result:
         current_hostel_count[item["hostel"]] = item["count"]
 
