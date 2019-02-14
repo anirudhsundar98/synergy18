@@ -143,6 +143,7 @@ def mark_hospi(r):
         return render(r, "404.html")
     return render(r, "hospi.html", {"logged_in":True, "user":user.fullname})
 
+
 def mark_hostels(r):
 
     user = general.check_loggedInUser_admin(r)
@@ -151,28 +152,36 @@ def mark_hostels(r):
     if not user:
         return jr({'status':400, "errors":"Sorry, you can't access this."})
 
-    hostels = ["garnet a", "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b", "ruby", "pearl", "opal"]
+    hostels = [
+        "garnet a 2nd floor common room",
+        "garnet a 2nd floor study room",
+        "garnet b 2nd floor common room",
+        # "garnet b", "garnet c", "jasper", "aquamarine a", "aquamarine b",
+        # "ruby", "pearl", "opal"
+    ]
     hostel_max_slots = {
-        "garnet a": 25,
-        "garnet b": 25,
-        "garnet c": 25,
-        "jasper": 25,
-        "aquamarine a": 25,
-        "aquamarine b": 25,
-        "ruby": 25,
-        "pearl": 25,
-        "opal": 25
+        "garnet a 2nd floor common room": 29,
+        "garnet a 2nd floor study room": 20,
+        "garnet b 2nd floor common room": 24,
+        # "garnet c": 25,
+        # "jasper": 25,
+        # "aquamarine a": 25,
+        # "aquamarine b": 25,
+        # "ruby": 25,
+        # "pearl": 25,
+        # "opal": 25
     }
     current_hostel_count = {
-        "garnet a": 0,
-        "garnet b": 0,
-        "garnet c": 0,
-        "jasper": 0,
-        "aquamarine a": 0,
-        "aquamarine b": 0,
-        "ruby": 0,
-        "pearl": 0,
-        "opal": 0
+        "garnet a 2nd floor common room": 0,
+        "garnet a 2nd floor study room": 0,
+        "garnet b 2nd floor common room": 0,
+        # "garnet c": 0,
+        # "jasper": 0,
+        # "aquamarine a": 0,
+        # "aquamarine b": 0,
+        # "ruby": 0,
+        # "pearl": 0,
+        # "opal": 0
     }
 
     try:
