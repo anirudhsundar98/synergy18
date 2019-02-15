@@ -148,6 +148,9 @@ def vacancies(r):
     if not user:
         return jr({'status': 400, "errors": "Sorry, you can't access this."})
 
+    # Ignore repeating hashes between methods. I started with some stuff and went with it.
+    # Ignore hash names with spaces in them. Yes I know. It's shit.
+    # If you are using this, export this dict elsewhere and use it in both methods to keep code DRY.
     hostel_max_slots = {
         "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
@@ -156,18 +159,14 @@ def vacancies(r):
         "garnet b 2nd floor common room": 24,
         "garnet b 2nd floor study room": 17,
         "garnet c 1st floor common room": 29,
-        "garnet c 2nd floor common room": 30
+        "garnet c 2nd floor common room": 30,
+        "jasper ground floor study room": 16,
+        "jasper 1st floor study room": 23,
+        "jasper 2nd floor study room": 22,
+        "jasper 2nd floor common room": 24,
+        "opal": 15
     }
-    current_vacancies = {
-        "garnet a 1st floor common room": 30,
-        "garnet a 2nd floor common room": 29,
-        "garnet a 1st floor study room": 20,
-        "garnet a 2nd floor study room": 16,
-        "garnet b 2nd floor common room": 24,
-        "garnet b 2nd floor study room": 17,
-        "garnet c 1st floor common room": 29,
-        "garnet c 2nd floor common room": 30
-    }
+    current_vacancies = hostel_max_slots.copy()
 
     hostel_count_query_result = h.objects.values('hostel').exclude(check_out__isnull=False).annotate(count=Count('hostel'))
     for item in hostel_count_query_result:
@@ -184,16 +183,7 @@ def mark_hostels(r):
     if not user:
         return jr({'status':400, "errors":"Sorry, you can't access this."})
 
-    hostels = [
-        "garnet a 1st floor common room",
-        "garnet a 2nd floor common room",
-        "garnet a 1st floor study room",
-        "garnet a 2nd floor study room",
-        "garnet b 2nd floor common room",
-        "garnet b 2nd floor study room",
-        "garnet c 1st floor common room",
-        "garnet c 2nd floor common room"
-    ]
+    # Goto line 151
     hostel_max_slots = {
         "garnet a 1st floor common room": 30,
         "garnet a 2nd floor common room": 29,
@@ -202,18 +192,17 @@ def mark_hostels(r):
         "garnet b 2nd floor common room": 24,
         "garnet b 2nd floor study room": 17,
         "garnet c 1st floor common room": 29,
-        "garnet c 2nd floor common room": 30
+        "garnet c 2nd floor common room": 30,
+        "jasper ground floor study room": 16,
+        "jasper 1st floor study room": 23,
+        "jasper 2nd floor study room": 22,
+        "jasper 2nd floor common room": 24,
+        "opal": 15
     }
-    current_hostel_count = {
-        "garnet a 1st floor common room": 0,
-        "garnet a 2nd floor common room": 0,
-        "garnet a 1st floor study room": 0,
-        "garnet a 2nd floor study room": 0,
-        "garnet b 2nd floor common room": 0,
-        "garnet b 2nd floor study room": 0,
-        "garnet c 1st floor common room": 0,
-        "garnet c 2nd floor common room": 0
-    }
+
+    current_hostel_count = {}
+    for hostel in hostel_max_slots.keys():
+       current_hostel_count[hostel] = 0
 
     try:
         unique = r.POST["unique"]
@@ -249,7 +238,7 @@ def mark_hostels(r):
     if (hostel_vacancy_count <= 0):
         return jr({'status': 400, 'errors': 'This hostel does not have any vacancies.'})
 
-    if hostel not in hostels:
+    if hostel not in hostel_max_slots.keys():
         return jr({'status':400, 'errors':'Invalid hostel in request. '})
 
     amount = 150 + 150*days
