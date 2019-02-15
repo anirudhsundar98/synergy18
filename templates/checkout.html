@@ -41,7 +41,7 @@ function jhsdbfjh2b34t293sdjwef(e)
 		data:form.serialize(),
 		timeout:20000,
 		beforeSend:function(){
-			console.log(" loading 234 ... ")
+			console.log(" loading. ")
 			// $('#loading').show();
 		},
 		complete:function(){
@@ -57,7 +57,6 @@ function jhsdbfjh2b34t293sdjwef(e)
 	})
 	.done(function(msg)
 		{
-			console.log(msg);
 			if(typeof(msg) != "object")
 			{
                 $(".all-errors").html("There was an issue with your request. Please try again.");
@@ -71,11 +70,11 @@ function jhsdbfjh2b34t293sdjwef(e)
 				var u = "<span><b>User:</b> "+String(msg.fullname)+"</span><br>";
 				var email = "<span><b>Email:</b> "+String(msg.email)+"</span><br>";
 				var hostel = "<span><b>Hostel:</b> "+String(msg.hostel)+"</span><br>";
-				var check_in = "<span><b>Check In time:</b> "+String(msg.check_in)+" <i> UTC </i></span><br>";
+				var check_in = "<span><b>Check In time:</b> "+String(new Date(msg.check_in))+"</span><br>";
 				var amount = "<span><b>Amount paid:</b> "+String(msg.amount)+"</span><br>";
 				var days = "<span><b>Days registered for:</b> "+String(msg.days)+"</span><br>";
 				var stayed = "<span> "+String(msg.stayed)+"</span><br>";
-				var check_out = "<span><b>Check out time:</b> "+String(msg.check_out)+"</span><br>";
+				var check_out = "<span><b>Check out time:</b> "+String(new Date(msg.check_out))+"</span><br>";
 				
 				details.html(u+email+hostel+days+amount+stayed+check_in+check_out);
 				$(".all-errors").html("");
@@ -96,7 +95,7 @@ function ghiu4g4iugh4iuhg(e)
 		data:form.serialize(),
 		timeout:20000,
 		beforeSend:function(){
-			console.log(" loading 123 ... ")
+			console.log(" loading ")
 			// $('#loading').show();
 		},
 		complete:function(){
@@ -112,7 +111,6 @@ function ghiu4g4iugh4iuhg(e)
 	})
 	.done(function(msg)
 		{
-			console.log(msg);
 			if(typeof(msg) != "object")
 			{
                     $(".all-errors").html("There was an issue with your request. Please try again.");
@@ -122,15 +120,22 @@ function ghiu4g4iugh4iuhg(e)
 
 			if(msg.status == 200)
 			{
+                let check_out_time;
+                if (msg.check_out == "NO") {
+                    check_out_time = "<i> User has not checked out </i>";
+                } else {
+                    check_out_time = new Date(msg.check_out);
+                }
+
 				details = $("#details");
 				var u = "<span><b>User:</b> " + String(msg.fullname) + "</span><br>";
                 var email = "<span><b>Email:</b> " + String(msg.email) + "</span><br>";
                 var hostel = "<span><b>Hostel:</b> " + String(msg.hostel) + "</span><br>";
-                var check_in = "<span><b>Check In time:</b> " + String(msg.check_in) + " <i> UTC </i></span><br>";
+                var check_in = "<span><b>Check In time:</b> " + String(new Date(msg.check_in)) + "</span><br>";
                 var amount = "<span><b>Amount paid:</b> " + String(msg.amount) + "</span><br>";
                 var days = "<span><b>Days registered for:</b> " + String(msg.days) + "</span><br>";
                 var stayed = "<span> " + String(msg.stayed) + "</span><br>";
-                var check_out = "<span><b>Check out time:</b> " + String(msg.check_out) + "</span><br>";
+                var check_out = "<span><b>Check out time:</b> " + String(check_out_time) + "</span><br>";
 				
 				details.html(u+email+hostel+days+amount+check_in+stayed+check_out);
 				$(".all-errors").html("");

@@ -24,8 +24,8 @@
 			<option value="garnet a 2nd floor study room">Garnet A 2nd Floor Study Room</option>
 			<option value="garnet b 2nd floor common room">Garnet B 2nd Floor Common Room</option>
 			<option value="garnet b 2nd floor study room">Garnet B 2nd Floor Study Room</option>
-			<option value="garnet c 1st floor common room">Garnet C 1st Floor Study Room</option>
-			<option value="garnet c 2nd floor common room">Garnet C 2nd Floor Study Room</option>
+			<option value="garnet c 1st floor common room">Garnet C 1st Floor Common Room</option>
+			<option value="garnet c 2nd floor common room">Garnet C 2nd Floor Common Room</option>
 		</select>
 
 	</div>
@@ -84,7 +84,7 @@ function jhsdbfjh2b34t293sdjwef(e)
 				var email = "<span><b>Email</b>: "+String(msg.email)+"</span><br>";
 				var hostel = "<span><b>Hostel</b>: "+String(msg.hostel)+"</span><br>";
 				var vacancy = "<span><b>Vacancy in hostel</b>: "+String(msg.vacancy_count)+"</span><br>";
-				var check_in = "<span><b>Check In time</b>: "+String(msg.check_in)+"</span><br>";
+				var check_in = "<span><b>Check In time</b>: "+String(new Date(msg.check_in))+"</span><br>";
 				var amount = "<span><b>Amount paid</b>: "+String(msg.amount)+"</span><br>";
 				details.html(u+email+hostel+vacancy+amount+check_in);
 				$(".all-errors").html("");
