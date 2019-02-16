@@ -164,7 +164,7 @@ def vacancies(r):
         "jasper 1st floor study room": 23,
         "jasper 2nd floor study room": 22,
         "jasper 2nd floor common room": 24,
-        "opal": 15
+        "opal": 20
     }
     current_vacancies = hostel_max_slots.copy()
 
@@ -197,7 +197,7 @@ def mark_hostels(r):
         "jasper 1st floor study room": 23,
         "jasper 2nd floor study room": 22,
         "jasper 2nd floor common room": 24,
-        "opal": 15
+        "opal": 20
     }
 
     current_hostel_count = {}
