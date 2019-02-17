@@ -26,5 +26,15 @@ img {
 }
 
 div.section-container {
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+div.subheading {
+    text-align: center;
+    font-size: 30px;
+}
+
+.tiles {
+    margin-top: 0;
+    padding-bottom: 50px;
 }
